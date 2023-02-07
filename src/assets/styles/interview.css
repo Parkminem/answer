@@ -5,6 +5,85 @@
 	flex-direction: column;
 	overflow-y: auto;
 }
+/*헤더*/
+.header_wrap {
+	width: 100%;
+	min-width: 1200px;
+	border-bottom: 1px solid #d9d9d9;
+}
+.header {
+	width: 1140px;
+	margin: 0 auto;
+	height: 80px;
+	display: flex;
+	align-items: center;
+}
+.header_logo {
+	width: 110px;
+	height: 16px;
+	margin-right: 30px;
+}
+.header_logo img {
+	width: 100%;
+}
+.header_menu_wrap {
+	display: flex;
+}
+.header_menu_wrap li {
+	font-size: 15px;
+	font-weight: 500;
+	margin-right: 20px;
+	color: #434343;
+	letter-spacing: -1px;
+}
+.header_menu_wrap li:last-child {
+	margin-right: 0;
+}
+.header_menu_wrap li.active,
+.header_menu_wrap li:hover {
+	color: #1484d9;
+}
+.header_btn_wrap {
+	display: flex;
+}
+.header_btn_wrap .btn_round {
+	width: 90px;
+	height: 34px;
+	margin-right: 10px;
+	color: #fff;
+}
+.header_btn_wrap .btn_round:last-child {
+	margin-right: 0;
+}
+.header_btn_wrap .btn_round:hover,
+.header_btn_wrap .btn_round.active {
+	background-color: #054a7e;
+}
+.header h2.sub_top {
+	font-size: 24px;
+	color: #575757;
+	font-weight: 700;
+}
+.header .location {
+	margin-left: auto;
+}
+.header .location ul {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 12px;
+	font-weight: 500;
+}
+.header .location ul li {
+	display: flex;
+}
+.header .location ul li span.location_arrow {
+	font-size: 17px;
+	margin: 0 2px;
+}
+.header .location ul li span.current_location {
+	color: #1484d9;
+}
 /*서브페이지*/
 .sub_wrap {
 	flex: 1;
@@ -25,7 +104,7 @@
 	align-items: center;
 	justify-content: center;
 	margin: 0 auto;
-	background: url(../images/layout/sub_img03.png) 50% 0 no-repeat;
+	background: url(../images/image/sub_img03.png) 50% 0 no-repeat;
 	background-size: 53%;
 	padding-top: 194px;
 	position: relative;
@@ -98,7 +177,7 @@
 	flex-direction: column;
 	box-sizing: border-box;
 	min-height: 373px;
-	background: url(../images/layout/question_bg.png) no-repeat;
+	background: url(../images/image/question_bg.png) no-repeat;
 	background-position: bottom 85px left 0;
 }
 .question_area_wrap .question_box {
