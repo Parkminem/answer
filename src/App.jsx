@@ -1,4 +1,4 @@
-import Router from '@/pages';
+import Router from '@/route';
 import { RecoilRoot } from 'recoil';
 
 function App() {
