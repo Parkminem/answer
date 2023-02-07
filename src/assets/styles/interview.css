@@ -104,7 +104,8 @@
 	align-items: center;
 	justify-content: center;
 	margin: 0 auto;
-	background: url(../images/image/sub_img03.png) 50% 0 no-repeat;
+	background-position: 50% 0;
+	background-repeat: no-repeat;
 	background-size: 53%;
 	padding-top: 194px;
 	position: relative;
@@ -177,7 +178,7 @@
 	flex-direction: column;
 	box-sizing: border-box;
 	min-height: 373px;
-	background: url(../images/image/question_bg.png) no-repeat;
+	background-repeat: no-repeat;
 	background-position: bottom 85px left 0;
 }
 .question_area_wrap .question_box {

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '@/assets/styles/interview.css';
 import img01 from '@/assets/images/image/sub_img01.png';
 import img02 from '@/assets/images/image/sub_img02.png';
+import img03 from '@/assets/images/image/sub_img03.png';
 
 const InterviewTest = () => {
 	return (
@@ -12,7 +13,7 @@ const InterviewTest = () => {
 			<div className="sub_wrap">
 				<div className="content_wrap">
 					<div className="content">
-						<div className="diagnostic_test_wrap">
+						<div className="diagnostic_test_wrap" style={{ backgroundImage: `url(${img03})` }}>
 							<div className="diagnostic_test_box_wrap">
 								<dl>
 									<dt>면접 진단 테스트</dt>

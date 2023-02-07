@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import { SpinnerCircular } from 'spinners-react';
+import bg from '@/assets/images/image/question_bg.png';
 import '@/assets/styles/interview.css';
 
 const userCode = 1; // 임시 유저 코드
@@ -171,7 +172,7 @@ const InterviewTestDetail = () => {
 				<div className="content_wrap">
 					<div className="content">
 						<div className="question_write_wrap">
-							<div className="question_area_wrap">
+							<div className="question_area_wrap" style={{ backgroundImage: `url(${bg})` }}>
 								<div className="my_write_top">
 									<select
 										name=""
