@@ -1,4 +1,4 @@
-import SubHeader from '@/components/InterView/SubHeader';
+import SubHeader from '@/components/interview/SubHeader';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import defaultInstance from '@/apis/utils/defaultInstance';
 import { requestInterviewReplyDetailsState, interviewReplyCodeState } from '@/store/interview';

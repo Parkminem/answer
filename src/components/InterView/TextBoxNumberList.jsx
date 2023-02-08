@@ -1,5 +1,5 @@
 import React from 'react';
-import TextBoxNumber from '@/components/InterView/TextBoxNumber';
+import TextBoxNumber from '@/components/interView/TextBoxNumber';
 import { noticeableAnswersState } from '@/store/interview';
 import { useRecoilState } from 'recoil';
 

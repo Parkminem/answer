@@ -1,4 +1,4 @@
-import SubHeader from '@/components/InterView/SubHeader';
+import SubHeader from '@/components/interview/SubHeader';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '@/assets/styles/interview.css';

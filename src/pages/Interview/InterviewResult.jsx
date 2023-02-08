@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import SubHeader from '@/components/InterView/SubHeader';
-import Subheading from '@/components/InterView/Subheading';
-import TextBoxBasicWrap from '@/components/InterView/TextBoxBasicWrap';
-import BestWordList from '@/components/InterView/BestWordList';
-import TextBoxNumberList from '@/components/InterView/TextBoxNumberList';
-import TextBoxP from '@/components/InterView/TextBoxP';
-import SubQuestionTextWrap from '@/components/InterView/SubQuestionTextWrap';
+import SubHeader from '@/components/interview/SubHeader';
+import Subheading from '@/components/interview/Subheading';
+import TextBoxBasicWrap from '@/components/interview/TextBoxBasicWrap';
+import BestWordList from '@/components/interview/BestWordList';
+import TextBoxNumberList from '@/components/interview/TextBoxNumberList';
+import TextBoxP from '@/components/interview/TextBoxP';
+import SubQuestionTextWrap from '@/components/interview/SubQuestionTextWrap';
 import defaultInstance from '@/apis/utils/defaultInstance';
 import produce from 'immer';
 import { useRecoilState, useResetRecoilState, useRecoilValue } from 'recoil';
