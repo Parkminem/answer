@@ -1,5 +1,5 @@
 import React from 'react';
-import BestWord from '@/components/interview/BestWordw/BestWord';
+import BestWord from '@/components/interview/BestWord';
 import { wordFreqState } from '@/store/interview';
 import { useRecoilState } from 'recoil';
 
