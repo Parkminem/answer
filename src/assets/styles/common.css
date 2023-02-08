@@ -150,6 +150,7 @@ table td {padding:15px; border-bottom:1px solid #ddd; font-size:13px; color:#666
 
 
 /** form **/
+body {box-sizing: border-box;}
 input,
 select,
 textarea {-webkit-border-radius:0; -webkit-appearance:none; background-color:#fff; outline:0;}
