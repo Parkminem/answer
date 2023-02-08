@@ -21,6 +21,28 @@ button,
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'establish_Retrosans';
+	src: url('@/assets/styles/font/establish_Retrosans.ttf');
+}
+
+@font-face {
+	font-family: 'GmarketSansBold';
+	src: url('@/assets/styles/font/GmarketSansTTFBold.ttf');
+}
+@font-face {
+	font-family: 'GmarketSansLight';
+	src: url('@/assets/styles/font/GmarketSansTTFLight.ttf');
+}
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src: url('@/assets/styles/font/GmarketSansTTFMedium.ttf');
+}
+@font-face {
+	font-family: 'RixYeoljeongdo_Pro_Regular';
+	src: url('@/assets/styles/font/RixYeoljeongdo_Pro_Regular.ttf');
+}
+
 .font_current {
 	font-family: 'Current', sans-serif !important;
 }
