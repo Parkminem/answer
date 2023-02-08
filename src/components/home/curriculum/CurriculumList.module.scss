@@ -1,0 +1,39 @@
+.curriculum-list-box {
+	&__list {
+		margin: 0 auto;
+		flex-wrap: wrap;
+		display: flex;
+		width: 1450px;
+		justify-content: center;
+	}
+	&__item {
+		padding: 20px;
+		&__wrap {
+			width: 366px;
+			height: 483px;
+			display: flex;
+			align-items: flex-end;
+		}
+		&__text-box {
+			user-select: none;
+			padding: 0 0 28px 20px;
+			letter-spacing: -0.04em;
+			.onoff {
+				color: #66b2ff;
+				font-weight: 700;
+				font-size: 18px;
+			}
+			p {
+				color: #ffffff;
+				font-size: 20px;
+				font-weight: 500;
+			}
+			.period {
+				color: rgba(255, 255, 255, 0.45);
+				font-weight: 500;
+				font-size: 20px;
+				margin-top: 4px;
+			}
+		}
+	}
+}
