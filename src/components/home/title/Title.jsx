@@ -8,16 +8,16 @@ import title05 from '@/assets/images/image/title05.png';
 
 const Title = () => {
 	return (
-		<section className={style.title} style={{ backgroundImage: `url(${title01})` }}>
-			<div className={style.title__sub} style={{ backgroundImage: `url(${title02})` }}>
+		<section className={style['title-wrap']} style={{ backgroundImage: `url(${title01})` }}>
+			<div className={style['title__banner']} style={{ backgroundImage: `url(${title02})` }}>
 				<p>
 					온라인 면접코칭 <strong>1위</strong> 플랫폼, <strong>앤써</strong>
 				</p>
 			</div>
-			<div className={style.title__banner}>
-				<img src={title03} alt="" />
+			<div className={style['title__main']}>
+				<img src={title03} alt="메인 이미지" />
 			</div>
-			<div className={style.title__button}>
+			<div className={style['title__btn-box']}>
 				<button>
 					<span>면접 피드백 시작하기 &gt;</span>
 				</button>
