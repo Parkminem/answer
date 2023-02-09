@@ -43,7 +43,8 @@ function getUserList() {
 /**
  * 회원가입 api
  * @param {json}userInfo userEmail, password, role
- * @returns
+ * @returns userCode, userEmail
+ * @author sohee
  */
 function getSignUp(userInfo) {
 	return defaultInstance.post('/api/v1/users', userInfo);
@@ -54,6 +55,7 @@ function getSignUp(userInfo) {
  * 인증 코드 매칭이 완료되면, 임시 액세스 토큰을 발급받고 새로운 비밀번호로 변경하면 됨
  * @param {string} email
  * @returns header(code, message), body(...additionalProps)
+ * @author sohee
  */
 function getAccessToken(email) {
 	return defaultInstance.get(`/api/v1/users/${email}/token`);
@@ -65,6 +67,7 @@ function getAccessToken(email) {
  * 인증코드 안오면 api 만들어달라고 요청해야됨
  * @param {string} email
  * @returns header(code, message), body(...additionalProp)
+ * @author sohee
  */
 function getCheckAuthCode(email) {
 	return defaultInstance.get(`/api/v1/users/auth-code&email=${email}`);
