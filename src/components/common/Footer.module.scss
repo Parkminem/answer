@@ -1,0 +1,32 @@
+.footer {
+	display: flex;
+	background: #e0e0e0;
+	padding: 55px 321px 66px 360px;
+	justify-content: space-between;
+	font-weight: 700;
+	&__left {
+		p {
+			color: #888;
+			line-height: 28px;
+			letter-spacing: -0.04em;
+			font-size: 16px;
+		}
+		img {
+			margin-top: 12px;
+			user-select: none;
+		}
+	}
+	&__right {
+		h2 {
+			font-size: 20px;
+			letter-spacing: -0.04em;
+			color: #000000;
+			margin-bottom: 24px;
+		}
+		p {
+			font-size: 20px;
+			letter-spacing: -0.04em;
+			color: #8b8b8b;
+		}
+	}
+}
