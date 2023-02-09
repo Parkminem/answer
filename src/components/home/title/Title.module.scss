@@ -1,0 +1,44 @@
+* {
+	background-color: transparent;
+}
+
+.title {
+	position: relative;
+	width: 100%;
+	height: 991px;
+	background-image: url(/src/assets/images/image/title01.png);
+	&__sub {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		text-align: center;
+		top: 118px;
+		left: 705px;
+		&_title {
+			position: absolute;
+			width: 366px;
+			height: 41px;
+			left: 71px;
+			font-family: 'Noto Sans KR';
+			font-style: normal;
+			font-weight: 500;
+			font-size: 28px;
+			line-height: 41px;
+			letter-spacing: -0.04em;
+			color: #ffffff;
+		}
+		&_img {
+			position: absolute;
+			background-image: url(/src/assets/images/image/title02.png);
+			width: 509px;
+			height: 82px;
+		}
+	}
+	&__banner {
+		position: absolute;
+		width: 1355px;
+		height: 595px;
+		left: 421px;
+		top: 158px;
+	}
+}
