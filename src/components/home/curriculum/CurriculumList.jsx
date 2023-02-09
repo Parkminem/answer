@@ -1,4 +1,6 @@
 import React from 'react';
+import styles from '@/components/home/curriculum/CurriculumList.module.scss';
+import classNames from 'classnames/bind';
 import curriculum01 from '@/assets/images/image/curriculum01.png';
 import curriculum02 from '@/assets/images/image/curriculum02.png';
 import curriculum03 from '@/assets/images/image/curriculum03.png';
@@ -58,18 +60,22 @@ const info = [
 ];
 
 const CurriculumList = () => {
+	const cx = classNames.bind(styles);
 	return (
-		<div>
-			<ul>
+		<div className={cx('curriculum-list-box')}>
+			<ul className={cx('curriculum-list-box__list')}>
 				{info.map((i) => {
 					return (
-						<li key={i.id}>
-							<div className="" style={{ backgroundImage: `url(${i.bg})` }}>
-								<div className="">
-									<span>{i.onoff}</span>
+						<li key={i.id} className={cx('curriculum-list-box__item')}>
+							<div
+								className={cx('curriculum-list-box__item__wrap')}
+								style={{ backgroundImage: `url(${i.bg})` }}
+							>
+								<div className={cx('curriculum-list-box__item__text-box')}>
+									<span className={cx('onoff')}>{i.onoff}</span>
 									<p>{i.text01}</p>
 									<p>{i.text02}</p>
-									<span>{i.period}</span>
+									<span className={cx('period')}>{i.period}</span>
 								</div>
 							</div>
 						</li>
