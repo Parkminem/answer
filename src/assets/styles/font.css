@@ -40,7 +40,7 @@ button,
 }
 @font-face {
 	font-family: 'RixYeoljeongdo_Pro_Regular';
-	src: url('@/assets/styles/font/RixYeoljeongdo_Pro_Regular.ttf');
+	src: url('@/assets/styles/font/RixYeoljeongdo_Pro_Regular.otf');
 }
 
 .font_current {
