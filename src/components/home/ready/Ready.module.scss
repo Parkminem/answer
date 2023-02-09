@@ -1,0 +1,48 @@
+.ready {
+	position: relative;
+	background-color: #e5faff;
+	height: 1220px;
+
+	.container {
+		padding-top: 130px;
+		.left_wrap {
+			position: absolute;
+			width: 565px;
+			height: 321px;
+			left: 351px;
+			img {
+				position: relative;
+				left: 50px;
+				margin-bottom: 10px;
+			}
+			.title {
+				font-family: 'RixYeoljeongdo_Pro_Regular';
+				font-style: normal;
+				font-weight: 400;
+				font-size: 96px;
+				line-height: 113px;
+				width: 412px;
+				height: 113px;
+				color: #312fd2;
+			}
+
+			.sub_title {
+				width: 565px;
+				height: 160px;
+				font-family: 'Gmarket Sans';
+				font-weight: 400;
+				font-size: 64px;
+				line-height: 80px;
+				color: #333333;
+				margin-top: 20px;
+			}
+		}
+		.right_wrap {
+			padding-top: 267px;
+			position: absolute;
+			width: 908px;
+			height: 720px;
+			left: 688px;
+		}
+	}
+}

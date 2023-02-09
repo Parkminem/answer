@@ -3,7 +3,6 @@ import style from '@/components/home/title/Title.module.scss';
 import title01 from '@/assets/images/image/title01.png';
 import title02 from '@/assets/images/image/title02.png';
 import title03 from '@/assets/images/image/title03.png';
-import title04 from '@/assets/images/image/title04.png';
 import title05 from '@/assets/images/image/title05.png';
 
 const Title = () => {
@@ -21,7 +20,7 @@ const Title = () => {
 				<button>
 					<span>면접 피드백 시작하기 &gt;</span>
 				</button>
-				<img src={title05} alt="" />
+				<img src={title05} alt="마우스 커서" />
 			</div>
 		</section>
 	);
