@@ -68,18 +68,26 @@ const Join = () => {
 	};
 
 	//중복 확인 함수... api가 없음(유저 목록 조회api가 있는데 이건 모든 유저 목록을 받아오는 듯..?)
-	const emailDuplicate = (e) => {
+	const emailDuplicate = async (e) => {
 		e.preventDefault();
-		setEmailCheck(true);
+		await userApi
+			.getUserCheck(email)
+			.then((res) => {
+				// 없으면 뭐가 오는건지..? res 제대로 확인해야함...
+				setEmailCheck(true);
+			})
+			.catch((err) => {
+				//에러 코드 확인..
+			});
 	};
 
 	return (
 		<div className={cx('join-wrap')}>
-			<form className={cx('join')} id="form" onSubmit={joinHandler}>
+			<div className={cx('join')}>
 				<div className={cx('join__title-box')}>
 					<h1>Join</h1>
 				</div>
-				<div className={cx('join__form-box')}>
+				<form className={cx('join__form-box')} id="form" onSubmit={joinHandler}>
 					<div className={cx('join__form-box__email-box')}>
 						<AuthInput type="email" placeholder="이메일" name="userEmail" onChange={emailHandler} />
 						<button onClick={emailDuplicate}>
@@ -97,8 +105,8 @@ const Join = () => {
 							<span>회원가입</span>
 						</button>
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	);
 };
