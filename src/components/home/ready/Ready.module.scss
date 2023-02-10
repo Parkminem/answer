@@ -1,15 +1,14 @@
 .ready {
-	position: relative;
 	background-color: #e5faff;
 	height: 1220px;
 
 	.container {
-		padding-top: 130px;
+		padding: 162px 324px 103px 351px;
+		box-sizing: border-box;
+
 		.left_wrap {
-			position: absolute;
 			width: 565px;
 			height: 321px;
-			left: 351px;
 			img {
 				position: relative;
 				left: 50px;
@@ -38,11 +37,7 @@
 			}
 		}
 		.right_wrap {
-			padding-top: 267px;
-			position: absolute;
-			width: 908px;
-			height: 720px;
-			left: 688px;
+			text-align: right;
 		}
 	}
 }
