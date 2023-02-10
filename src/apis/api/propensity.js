@@ -13,7 +13,8 @@ function getPropensityReply(userCode, data) {
 
 /**
  * 성향 설문조사 문항 목록 조회 api
- * @returns code, questionContent, sequence
+ * @returns array{code, questionContent, sequence}
+ * @author sohee
  */
 function getPropensityList() {
 	return defaultInstance.get('/api/v1/propensity-questions');
@@ -23,11 +24,12 @@ function getPropensityList() {
  * 성향 설문 문항 생성 api
  * @param {json}data questionContent(string), sequence(string)
  * @returns code, ...data
+ * @author sohee
  */
-function getNewPropensity(data) {
+function getProducePropensity(data) {
 	return defaultInstance.post('/api/v1/propensity-question', data);
 }
 
-const propensityApi = { getPropensityReply, getPropensityList, getNewPropensity };
+const propensityApi = { getPropensityReply, getPropensityList, getProducePropensity };
 
 export default propensityApi;

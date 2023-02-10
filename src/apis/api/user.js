@@ -13,7 +13,7 @@ function getUserCheck(email) {
 /**
  * 유저 정보 수정 api
  * @param {string} email
- * @param {json}userInfo userEmail, password, role
+ * @param {json}userInfo userEmail(string), password(string), role('ROLE_USER')
  * @returns userCode, userEmail
  * @author sohee
  */
@@ -33,7 +33,7 @@ function getDeleteUser(email) {
 
 /**
  * 유저 목록 조회 api
- * @returns userCode, userEmail
+ * @returns array{userCode, userEmail}
  * @author sohee
  */
 function getUserList() {
@@ -42,7 +42,7 @@ function getUserList() {
 
 /**
  * 회원가입 api
- * @param {json}userInfo userEmail, password, role
+ * @param {json}userInfo userEmail(string), password(string), role('ROLE_USER')
  * @returns userCode, userEmail
  * @author sohee
  */
