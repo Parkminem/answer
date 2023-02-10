@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from '@/pages/Join/Join.module.scss';
 import AuthInput from '@/components/AuthInput';
+import regFunc from '@/modules/reg';
 import userApi from '@/apis/api/user';
 
 const Join = () => {
@@ -31,7 +32,10 @@ const Join = () => {
 	 */
 	const joinHandler = (e) => {
 		e.preventDefault();
+		// if(regFunc.mailReg(email)){
 
+		// }
+		console.log(email, regFunc.mailReg.test(email));
 		// const form = document.getElementById('form');
 		// const formData = new FormData(form);
 		// formData.append('role', 'ROLE_USER');
