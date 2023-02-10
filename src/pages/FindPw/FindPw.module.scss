@@ -1,0 +1,30 @@
+.find-wrap {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.find {
+	text-align: center;
+	&__form-box {
+		&__email-box {
+			display: flex;
+			position: relative;
+			button {
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
+		}
+		&__pw-box {
+			position: relative;
+			span {
+				position: absolute;
+				top: 0;
+				right: 0;
+				user-select: none;
+			}
+		}
+	}
+}

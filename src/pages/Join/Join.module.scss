@@ -1,0 +1,21 @@
+.join-wrap {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.join {
+		text-align: center;
+		&__form-box {
+			&__email-box {
+				position: relative;
+				display: flex;
+				button {
+					position: absolute;
+					right: 0;
+					top: 0;
+				}
+			}
+		}
+	}
+}
