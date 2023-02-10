@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from '@/pages/Join/Join.module.scss';
 import AuthInput from '@/components/AuthInput';
-import regFunc from '@/modules/reg';
+import { regx } from '@/modules/reg';
 import userApi from '@/apis/api/user';
 
 const Join = () => {
@@ -10,6 +10,7 @@ const Join = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [pwCheck, setPwCheck] = useState('');
+	const [emailCheck, setEmailCheck] = useState(false);
 
 	/**
 	 * 회원가입 api 전송하기 전에 검증을 위해 value값을 받아놓음
@@ -30,21 +31,47 @@ const Join = () => {
 	 * 회원 가입
 	 * @author sohee
 	 */
-	const joinHandler = (e) => {
+	const joinHandler = async (e) => {
 		e.preventDefault();
-		// if(regFunc.mailReg(email)){
-
-		// }
-		console.log(email, regFunc.mailReg.test(email));
-		// const form = document.getElementById('form');
-		// const formData = new FormData(form);
-		// formData.append('role', 'ROLE_USER');
-		// console.log(...formData);
-
-		// userApi.getSignUp(formData).then((res) => {});
+		if (!regx.emailValid(email)) {
+			alert('이메일을 입력해주세요.');
+			return false;
+		}
+		if (!regx.passwordValid(password)) {
+			alert('비밀번호는 영문, 숫자, 특수문자 포함 8 ~ 32자까지 입니다.');
+			return false;
+		}
+		if (password !== pwCheck) {
+			alert('비밀번호가 동일하지 않습니다.');
+			return false;
+		}
+		if (!emailCheck) {
+			alert('이메일 중복 확인 해주세요.');
+			return false;
+		}
+		if (email.length === 0 || password.length === 0 || pwCheck.length === 0) {
+			alert('모든 칸을 입력해주세요');
+			return false;
+		} else {
+			const form = document.getElementById('form');
+			const formData = new FormData(form);
+			formData.append('role', 'ROLE_USER');
+			await userApi
+				.getSignUp(formData)
+				.then((res) => {
+					//200 받으면... 어디로?
+				})
+				.catch((err) => {
+					//에러 코드 확인해서.. alert 띄워야하는지..?
+				});
+		}
 	};
 
 	//중복 확인 함수... api가 없음(유저 목록 조회api가 있는데 이건 모든 유저 목록을 받아오는 듯..?)
+	const emailDuplicate = (e) => {
+		e.preventDefault();
+		setEmailCheck(true);
+	};
 
 	return (
 		<div className={cx('join-wrap')}>
@@ -55,7 +82,7 @@ const Join = () => {
 				<div className={cx('join__form-box')}>
 					<div className={cx('join__form-box__email-box')}>
 						<AuthInput type="email" placeholder="이메일" name="userEmail" onChange={emailHandler} />
-						<button>
+						<button onClick={emailDuplicate}>
 							<span>
 								중복
 								<br />

@@ -1,11 +1,12 @@
-/**
- * 이메일 검증 함수
- * @author sohee
- */
-const mailReg = new RegExp(
-	"([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])",
-);
+const emailRegx = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/; // 이메일 정규식
+const passwordRegx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&.])[A-Za-z\d$@$!%*#?&.]{8,32}$/; // 비밀번호 정규식 ( 영문, 숫자, 특수문자 8~32자 )
 
-const regFunc = { mailReg };
+export const regx = {
+	emailValid(email) {
+		return emailRegx.test(email);
+	},
 
-export default regFunc;
+	passwordValid(password) {
+		return passwordRegx.test(password);
+	},
+};
