@@ -6,6 +6,11 @@ import AuthInput from '@/components/AuthInput';
 
 const Login = () => {
 	const cx = classNames.bind(styles);
+
+	/**
+	 * 로그인
+	 * @author sohee
+	 */
 	const loginHandler = (e) => {
 		e.preventDefault();
 		const form = document.getElementById('form');
@@ -14,7 +19,7 @@ const Login = () => {
 	};
 	return (
 		<div className={cx('login-wrap')}>
-			<form className={cx('login')} id="form">
+			<form className={cx('login')} id="form" onSubmit={loginHandler}>
 				<div className={cx('login__title-box')}>
 					<h1>Login</h1>
 				</div>

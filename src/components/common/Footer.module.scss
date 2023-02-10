@@ -1,9 +1,10 @@
 .footer {
 	display: flex;
 	background: #e0e0e0;
-	padding: 55px 321px 66px 360px;
+	padding: 55px 19% 66px 19%;
 	justify-content: space-between;
 	font-weight: 700;
+	word-break: keep-all;
 	&__left {
 		p {
 			color: #888;

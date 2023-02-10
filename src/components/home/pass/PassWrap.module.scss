@@ -6,7 +6,8 @@
 	}
 }
 .pass-answer-box {
-	text-align: center;
+	display: flex;
+	justify-content: center;
 	img {
 		margin: 41px 0;
 	}
