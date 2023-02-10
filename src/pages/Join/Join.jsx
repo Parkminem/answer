@@ -5,15 +5,22 @@ import AuthInput from '@/components/AuthInput';
 
 const Join = () => {
 	const cx = classNames.bind(styles);
+	const joinHandler = (e) => {
+		e.preventDefault();
+		const form = document.getElementById('form');
+		const formData = new FormData(form);
+		formData.append('role', 'ROLE_USER');
+		console.log(...formData);
+	};
 	return (
 		<div className={cx('join-wrap')}>
-			<div className={cx('join')}>
+			<form className={cx('join')} id="form">
 				<div className={cx('join__title-box')}>
 					<h1>Join</h1>
 				</div>
 				<div className={cx('join__form-box')}>
 					<div className={cx('join__form-box__email-box')}>
-						<AuthInput type="email" placeholder="이메일" />
+						<AuthInput type="email" placeholder="이메일" name="userEmail" />
 						<button>
 							<span>
 								중복
@@ -22,15 +29,15 @@ const Join = () => {
 							</span>
 						</button>
 					</div>
-					<AuthInput type="password" placeholder="패스워드" />
+					<AuthInput type="password" placeholder="패스워드" name="password" />
 					<AuthInput type="password" placeholder="패스워드 확인" />
 					<div className={cx('join__form-box__btn-box')}>
-						<button>
+						<button onClick={joinHandler}>
 							<span>회원가입</span>
 						</button>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 	);
 };
