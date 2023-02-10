@@ -1,5 +1,5 @@
 .expection {
-	position: relative;
+	box-sizing: border-box;
 	background-color: #e8eaf7;
 	height: 1480px;
 	display: flex;
@@ -7,13 +7,13 @@
 	align-items: center;
 
 	.container {
+		position: relative;
 		width: 1529px;
 		height: 1216px;
 		background: #ffffff;
 		box-shadow: 0px 4px 32px rgba(0, 0, 0, 0.1);
 		border-radius: 48px;
 		text-align: center;
-		// margin-top: 115px;
 
 		.inner {
 			margin-top: 104px;
@@ -40,35 +40,75 @@
 					font-size: 72px;
 				}
 			}
+			.bottom {
+				.file_image {
+					margin-top: 180px;
+				}
+				.desc01 {
+					position: absolute;
+					top: 554px;
+					left: 128px;
+					text-align: left;
+					img {
+						position: relative;
+						top: -75px;
+						left: 180px;
+					}
+				}
 
-			.file_image {
-				margin-top: 180px;
-			}
-			.desc01 {
-				position: absolute;
-				top: 669px;
-				left: 330px;
-				font-weight: 900;
-				font-size: 32px;
-				color: #000000;
-			}
+				.desc02 {
+					position: absolute;
+					top: 510px;
+					right: 255px;
+					text-align: right;
 
-			.desc02 {
-				position: absolute;
-				top: 625px;
-				right: 444px;
-			}
+					.paragraph {
+						transform: translate(150px, 0);
+					}
+					img {
+						position: relative;
+						top: -75px;
+						right: 310px;
+					}
+				}
 
-			.desc03 {
-				position: absolute;
-				top: 904px;
-				left: 348px;
-			}
+				.desc03 {
+					position: absolute;
+					top: 904px;
+					left: 146px;
+					text-align: left;
+					img {
+						position: relative;
+						top: -145px;
+						left: 133px;
+					}
+				}
 
-			.desc04 {
-				position: absolute;
-				top: 1093px;
-				right: 421px;
+				.desc04 {
+					position: absolute;
+					top: 978px;
+					right: 232px;
+					text-align: right;
+					.paragraph {
+						transform: translate(113px, 0);
+					}
+					img {
+						position: relative;
+						top: -155px;
+						right: 215px;
+					}
+				}
+				p {
+					font-weight: 400;
+					font-size: 18px;
+					color: #999999;
+					text-align: left;
+				}
+				h3 {
+					font-weight: 900;
+					font-size: 32px;
+					color: #000000;
+				}
 			}
 		}
 	}

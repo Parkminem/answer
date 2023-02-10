@@ -11,7 +11,8 @@ const Ready = () => {
 					<img src={ready_strong} alt="면접 준비 강조점" />
 					<div className={style.title}>면접 준비</div>
 					<div className={style.sub_title}>
-						어떻게 준비해야 할지 <strong>모르겠다면?</strong>
+						<p>어떻게 준비해야 할지</p>
+						<strong>모르겠다면?</strong>
 					</div>
 				</div>
 				<div className={style.right_wrap}>
