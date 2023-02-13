@@ -4,3 +4,8 @@ export const timer = atom({
 	key: 'timer',
 	default: 180,
 });
+
+export const certificationNumber = atom({
+	key: 'certificationNumber',
+	default: '',
+});

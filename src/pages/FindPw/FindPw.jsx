@@ -6,13 +6,13 @@ import AuthInput from '@/components/AuthInput';
 import AuthTimer from '@/components/AuthTimer';
 import { regx } from '@/modules/reg';
 import userApi from '@/apis/api/user';
-import { timer } from '@/store/auth';
+import { timer, certificationNumber } from '@/store/auth';
 
 const FindPw = () => {
 	const [count, setCount] = useRecoilState(timer);
+	const [checkNum, setCheckNum] = useRecoilState(certificationNumber);
 	const cx = classNames.bind(styles);
 	const [email, setEmail] = useState('');
-	const [certificationNumber, setCertificationNumber] = useState();
 	const [firstCheck, setFirstCheck] = useState(true);
 	const emailHandler = (e) => {
 		setEmail(e.target.value);
@@ -23,22 +23,29 @@ const FindPw = () => {
 	 * @author sohee
 	 */
 	const sendCertificationNumber = async () => {
-		// if (regx.emailValid(email)) {
-		// 	await userApi
-		// 		.getCheckAuthCode(email)
-		// 		.then((res) => {
-		// setCount(179);
-		// 			//res 어떻게 오는지 보고 setCertificationNumber 사용하여 저장
-		// 			//res 한번 오면 firstCheck 변경
-		// 		})
-		// 		.catch((err) => {
-		// 			//어떻게 오는지 보고 alert 띄우면 되나..?
-		// 		});
-		// } else {
-		// 	alert('이메일을 정확히 입력해주세요.');
-		// }
+		if (regx.emailValid(email)) {
+			await userApi
+				.getCheckAuthCode(email)
+				.then((res) => {
+					setCount(179);
+					setCheckNum('인증번호');
+					//res 한번 오면 firstCheck 변경
+				})
+				.catch((err) => {
+					//어떻게 오는지 보고 alert 띄우면 되나..?
+				});
+		} else {
+			alert('이메일을 정확히 입력해주세요.');
+		}
 	};
 
+	/**
+	 * 인증번호 확인
+	 * @author sohee
+	 */
+	const confirmCertificationNumber = async () => {
+		// await
+	};
 	return (
 		<div className={cx('find-wrap')}>
 			<div className={cx('find')}>
@@ -58,7 +65,7 @@ const FindPw = () => {
 						<AuthTimer />
 					</div>
 					<div className={cx('login__form-box__btn-box')}>
-						<button>
+						<button onClick={confirmCertificationNumber}>
 							<span>인증번호 확인</span>
 						</button>
 					</div>

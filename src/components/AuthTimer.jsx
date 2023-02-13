@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { timer } from '@/store/auth';
 
+/**
+ * 인증번호 타이머 컴포넌트 : atom으로 초 관리, 재발송 마다 초를 다시 세팅(부모 컴포넌트)
+ * @author sohee
+ */
 const AuthTimer = () => {
 	const [count, setCount] = useRecoilState(timer);
 
