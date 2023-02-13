@@ -1,13 +1,12 @@
 import Router from '@/router';
 import { RecoilRoot } from 'recoil';
 import GlobalStyles from '@/assets/styles/GlobalStyles';
-import '@/assets/styles/font.css';
 
 function App() {
 	return (
 		<RecoilRoot>
+			<GlobalStyles />
 			<div className="App">
-				<GlobalStyles />
 				<Router />
 			</div>
 		</RecoilRoot>

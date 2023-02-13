@@ -7,12 +7,12 @@
 }
 .review__title-box {
 	h1 {
-		letter-spacing: -0.04em;
 		font-family: 'GmarketSansBold';
 		color: #000;
 		font-size: 72px;
 		user-select: none;
 		word-break: keep-all;
+		font-weight: 700;
 		strong {
 			color: #312fd2;
 			font-family: 'GmarketSansBold';
@@ -34,17 +34,15 @@
 		padding: 56px 0 0 28px;
 		color: #fff;
 		user-select: none;
+		line-height: 29px;
 		h2 {
 			font-weight: 500;
 			font-size: 36px;
-			letter-spacing: -0.04em;
 			font-family: 'GmarketSansBold';
-			line-height: 1;
 			margin-bottom: 20px;
 		}
 		p {
 			font-size: 20px;
-			letter-spacing: -0.04em;
 			opacity: 0.8;
 		}
 	}

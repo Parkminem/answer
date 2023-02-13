@@ -8,7 +8,7 @@ export default function DefaultLayout() {
 		<>
 			{/* <Header /> */}
 			<Outlet />
-			{/* <Footer /> */}
+			<Footer />
 		</>
 	);
 }
