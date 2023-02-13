@@ -1,0 +1,16 @@
+.login-wrap {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.login {
+	text-align: center;
+	&__form-box {
+		&__link-box {
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+}

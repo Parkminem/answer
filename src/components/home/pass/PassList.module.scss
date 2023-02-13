@@ -1,5 +1,5 @@
 .pass-list-wrap {
-	padding: 124px 408px 140px 418px;
+	padding: 130px 0;
 	position: relative;
 }
 .pass-list {
@@ -22,6 +22,7 @@
 		top: 50%;
 		transform: translateY(-50%);
 		position: absolute;
+		z-index: 1;
 		button {
 			display: flex;
 			width: 84px;

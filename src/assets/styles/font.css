@@ -3,16 +3,6 @@
 /*** tag_definition ***/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Open+Sans&display=swap');
 @import url('https://fonts.cdnfonts.com/css/current');
-body,
-th,
-td,
-input,
-select,
-textarea,
-button,
-* {
-	font-family: 'Noto Sans KR', '맑은 고딕', 'Malgun Gothic', sans-serif, '돋움', 'Dotum', '굴림', 'Gulim';
-}
 
 @font-face {
 	font-family: 'ROKAFSlabSerifBold';

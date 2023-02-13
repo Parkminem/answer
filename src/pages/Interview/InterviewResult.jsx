@@ -33,44 +33,44 @@ const InterviewResult = () => {
 	const resetKeySentence = useResetRecoilState(keySentenceState);
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		interviewReplyCode ?? navigate('/interviewtest');
+	// useEffect(() => {
+	// 	interviewReplyCode ?? navigate('/interviewtest');
 
-		defaultInstance.get(`/api/v1/interview-replies/${interviewReplyCode}/interview-feedbacks`).then((res) => {
-			console.log(JSON.parse(res.data.content));
-			for (let i of JSON.parse(res.data.content)[3].keySentence) {
-				console.log(i);
-			}
-			setAnswersSummary(...JSON.parse(res.data.content)[1].AnswersSummary);
-			setNoticeableAnswers(
-				produce(noticeableAnswers, (draft) => {
-					for (let i of JSON.parse(res.data.content)[2].noticeableAnswers) {
-						draft.push(i);
-					}
-				}),
-			);
-			setKeySentence(
-				produce(keySentence, (draft) => {
-					for (let i of JSON.parse(res.data.content)[3].keySentence) {
-						draft.push(i);
-					}
-				}),
-			);
-			setWordFreq(
-				produce(wordFreq, (draft) => {
-					for (let i of JSON.parse(res.data.content)[4].wordFreq) {
-						draft.push(i);
-					}
-				}),
-			);
-		});
-		return () => {
-			resetWordFreq();
-			resetNoticeableAnswers();
-			resetAnswersSummary();
-			resetKeySentence();
-		};
-	}, []);
+	// 	defaultInstance.get(`/api/v1/interview-replies/${interviewReplyCode}/interview-feedbacks`).then((res) => {
+	// 		console.log(JSON.parse(res.data.content));
+	// 		for (let i of JSON.parse(res.data.content)[3].keySentence) {
+	// 			console.log(i);
+	// 		}
+	// 		setAnswersSummary(...JSON.parse(res.data.content)[1].AnswersSummary);
+	// 		setNoticeableAnswers(
+	// 			produce(noticeableAnswers, (draft) => {
+	// 				for (let i of JSON.parse(res.data.content)[2].noticeableAnswers) {
+	// 					draft.push(i);
+	// 				}
+	// 			}),
+	// 		);
+	// 		setKeySentence(
+	// 			produce(keySentence, (draft) => {
+	// 				for (let i of JSON.parse(res.data.content)[3].keySentence) {
+	// 					draft.push(i);
+	// 				}
+	// 			}),
+	// 		);
+	// 		setWordFreq(
+	// 			produce(wordFreq, (draft) => {
+	// 				for (let i of JSON.parse(res.data.content)[4].wordFreq) {
+	// 					draft.push(i);
+	// 				}
+	// 			}),
+	// 		);
+	// 	});
+	// 	return () => {
+	// 		resetWordFreq();
+	// 		resetNoticeableAnswers();
+	// 		resetAnswersSummary();
+	// 		resetKeySentence();
+	// 	};
+	// }, []);
 
 	return (
 		<>

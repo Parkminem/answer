@@ -19,6 +19,7 @@
 	&__text-box {
 		text-align: center;
 		letter-spacing: -0.04em;
+		word-break: keep-all;
 		&__title {
 			font-family: 'GmarketSansBold';
 			color: #000;
@@ -30,13 +31,14 @@
 			color: #8b8ae6;
 			font-size: 42px;
 			margin-top: 70px;
-			line-height: 0;
+			line-height: 1;
 		}
 		&__sub-title {
 			font-family: 'GmarketSansBold';
 			color: #312fd2;
 			font-size: 88px;
 			margin-top: 11px;
+			line-height: 1;
 		}
 	}
 }

@@ -1,10 +1,10 @@
 .curriculum-list-box {
 	&__list {
-		margin: 0 auto;
 		flex-wrap: wrap;
 		display: flex;
 		width: 1450px;
 		justify-content: center;
+		margin-top: 120px;
 	}
 	&__item {
 		padding: 20px;
