@@ -27,6 +27,7 @@
 			font-weight: 700;
 			font-size: 36px;
 			opacity: 0.8;
+			line-height: 52px;
 		}
 
 		.name {
@@ -37,21 +38,20 @@
 			.name_position {
 				font-weight: 400;
 				font-size: 42px;
+				margin-left: 25px;
 			}
 		}
 
 		.recode_box {
 			width: 564px;
-			height: 288px;
 			border-radius: 8px;
-			background: #000000;
-			opacity: 0.45;
+			background-color: rgba(0, 0, 0, 0.45);
 			display: flex;
 			flex-direction: column;
-			margin-right: 65px;
+			margin: 32px 65px 0 0;
+
 			.recode_content {
 				margin: 28px 150px 32px 34px;
-
 				.history {
 					background: #ffffff;
 					border-radius: 20px;
@@ -69,6 +69,9 @@
 					color: #ffffff;
 					text-align: left;
 					margin-top: 22px;
+					line-height: 34px;
+					font-weight: 500;
+					font-size: 20px;
 				}
 			}
 		}

@@ -24,6 +24,7 @@
 					font-weight: 400;
 					font-size: 32px;
 					padding: 15px 45px 15px 45px;
+					letter-spacing: -0.04em;
 				}
 
 				.sub_title {
@@ -31,6 +32,8 @@
 					color: #000000;
 					font-weight: 700;
 					font-size: 68px;
+					line-height: 98px;
+					letter-spacing: -0.04em;
 				}
 
 				.answer {
@@ -38,6 +41,7 @@
 					color: #312fd2;
 					font-weight: 900;
 					font-size: 72px;
+					line-height: 104px;
 				}
 			}
 			.bottom {
@@ -46,24 +50,36 @@
 				}
 				.desc01 {
 					position: absolute;
-					top: 554px;
+					top: 520px;
 					left: 128px;
 					text-align: left;
+					line-height: 46px;
+					.paragraph {
+						margin-top: 8px;
+					}
+					p {
+						line-height: 26px;
+					}
 					img {
 						position: relative;
 						top: -75px;
-						left: 180px;
+						left: 195px;
 					}
 				}
 
 				.desc02 {
 					position: absolute;
-					top: 510px;
+					top: 480px;
 					right: 255px;
 					text-align: right;
+					line-height: 46px;
+					p {
+						line-height: 26px;
+					}
 
 					.paragraph {
 						transform: translate(150px, 0);
+						margin-top: 8px;
 					}
 					img {
 						position: relative;
@@ -74,9 +90,16 @@
 
 				.desc03 {
 					position: absolute;
-					top: 904px;
+					top: 874px;
 					left: 146px;
 					text-align: left;
+					line-height: 46px;
+					.paragraph {
+						margin-top: 8px;
+					}
+					p {
+						line-height: 26px;
+					}
 					img {
 						position: relative;
 						top: -145px;
@@ -86,11 +109,16 @@
 
 				.desc04 {
 					position: absolute;
-					top: 978px;
-					right: 232px;
+					top: 938px;
+					right: 236px;
 					text-align: right;
+					line-height: 46px;
+					p {
+						line-height: 26px;
+					}
 					.paragraph {
 						transform: translate(113px, 0);
+						margin-top: 8px;
 					}
 					img {
 						position: relative;
