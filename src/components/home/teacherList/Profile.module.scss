@@ -1,0 +1,76 @@
+.profile {
+	position: relative;
+	width: 1228px;
+	height: 672px;
+	background-color: #f5f8ff;
+	display: flex;
+	border: 2px solid rgba(175, 176, 187, 0.6);
+	border-radius: 20px;
+	margin-top: 169px;
+
+	.photo {
+		width: 571px;
+		height: 609px;
+		margin: 63px 43px 0 39px;
+		overflow: hidden;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	.right_box {
+		display: flex;
+		align-items: baseline;
+		justify-content: center;
+		flex-direction: column;
+
+		.subject {
+			color: #8e8e8e;
+			font-weight: 700;
+			font-size: 36px;
+			opacity: 0.8;
+		}
+
+		.name {
+			font-weight: 700;
+			font-size: 80px;
+			color: #000000;
+			margin-bottom: 32px;
+			.name_position {
+				font-weight: 400;
+				font-size: 42px;
+			}
+		}
+
+		.recode_box {
+			width: 564px;
+			height: 288px;
+			border-radius: 8px;
+			background: #000000;
+			opacity: 0.45;
+			display: flex;
+			flex-direction: column;
+			margin-right: 65px;
+			.recode_content {
+				margin: 28px 150px 32px 34px;
+
+				.history {
+					background: #ffffff;
+					border-radius: 20px;
+					width: 132px;
+					height: 36px;
+					font-weight: 700;
+					font-size: 20px;
+					letter-spacing: -0.04em;
+					line-height: 29px;
+					color: #5b5b5b;
+					text-align: center;
+					padding-top: 3px;
+				}
+				.recode {
+					color: #ffffff;
+					text-align: left;
+					margin-top: 22px;
+				}
+			}
+		}
+	}
+}

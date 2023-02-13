@@ -6,6 +6,8 @@ import ReviewWrap from '@/components/home/review/ReviewWrap';
 import PassWrap from '@/components/home/pass/PassWrap';
 import Ready from '@/components/home/ready/Ready';
 import Expection from '@/components/home/expection/Expection';
+import Feedback from '@/components/home/feedback/Feedback';
+import TeacherList from '@/components/home/teacherList/TeacherList';
 
 export default function Home() {
 	return (
@@ -13,7 +15,9 @@ export default function Home() {
 			<Title />
 			<Ready />
 			<Expection />
-			{/* <CurriculumWrap /> */}
+			<Feedback />
+			<TeacherList />
+			<CurriculumWrap />
 			<ConsultingWrap />
 			<ReviewWrap />
 			<PassWrap />
