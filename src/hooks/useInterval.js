@@ -1,5 +1,9 @@
 import { useRef, useEffect } from 'react';
 
+/**
+ * setInterval 대용
+ * @author sohee
+ */
 function useInterval(callback, delay) {
 	const savedCallback = useRef();
 

@@ -27,7 +27,7 @@ const FindPw = () => {
 		// 	await userApi
 		// 		.getCheckAuthCode(email)
 		// 		.then((res) => {
-		setCount(179);
+		// setCount(179);
 		// 			//res 어떻게 오는지 보고 setCertificationNumber 사용하여 저장
 		// 			//res 한번 오면 firstCheck 변경
 		// 		})

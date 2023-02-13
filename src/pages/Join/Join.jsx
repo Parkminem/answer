@@ -59,6 +59,7 @@ const Join = () => {
 			await userApi
 				.getSignUp(formData)
 				.then((res) => {
+					console.log(res);
 					//200 받으면... 어디로?
 				})
 				.catch((err) => {
@@ -70,9 +71,11 @@ const Join = () => {
 	//중복 확인 함수... api가 없음(유저 목록 조회api가 있는데 이건 모든 유저 목록을 받아오는 듯..?)
 	const emailDuplicate = async (e) => {
 		e.preventDefault();
+		setEmail(encodeURIComponent(email));
 		await userApi
 			.getUserCheck(email)
 			.then((res) => {
+				console.log(res);
 				// 없으면 뭐가 오는건지..? res 제대로 확인해야함...
 				setEmailCheck(true);
 			})
