@@ -4,13 +4,20 @@ import teacher01 from '@/assets/images/image/teacher01.png';
 import teacher02 from '@/assets/images/image/teacher02.png';
 import data from '@/data/data';
 import Profile from './Profile';
+import TeacherCard from './TeacherCard';
 
 const TeacherList = () => {
 	const teacherList = data;
 	const [selectedTeacher, setSelectedTeacher] = useState(teacherList[1]);
+	const [isSelected, setIsSelected] = useState(false);
 
 	const selectTeacher = (idx) => {
 		setSelectedTeacher(teacherList[idx]);
+		setIsSelected(() => {
+			const newTeacherList = { ...teacherList };
+			teacherList.map((teacher) => (teacher.is_selected = false));
+			newTeacherList[idx].is_selected = true;
+		});
 	};
 
 	return (
@@ -31,7 +38,7 @@ const TeacherList = () => {
 					{teacherList.map((teacher, idx) => {
 						return (
 							<li key={teacher.name} onClick={() => selectTeacher(idx)}>
-								<img src={teacher.image_list} alt="list image" />
+								<TeacherCard imageList={teacher.image_list} isSelected={teacher.is_selected} />
 							</li>
 						);
 					})}
