@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { useRecoilState } from 'recoil';
 import styles from '@/pages/FindPw/FindPw.module.scss';
@@ -6,16 +6,21 @@ import AuthInput from '@/components/AuthInput';
 import AuthTimer from '@/components/AuthTimer';
 import { regx } from '@/modules/reg';
 import userApi from '@/apis/api/user';
-import { timer, certificationNumber, userEmail } from '@/store/auth';
+import { timerState, certificationNumberState, userEmailState } from '@/store/auth';
 
 const FindPw = () => {
-	const [count, setCount] = useRecoilState(timer);
-	const [checkNum, setCheckNum] = useRecoilState(certificationNumber);
-	const [saveUserEmail, setSaveUserEmail] = useRecoilState(userEmail);
+	const [count, setCount] = useRecoilState(timerState);
+	const [checkNum, setCheckNum] = useRecoilState(certificationNumberState);
+	const [saveUserEmail, setSaveUserEmail] = useRecoilState(userEmailState);
 	const cx = classNames.bind(styles);
 	const [email, setEmail] = useState('');
 	const [num, setNum] = useState('');
 	const [firstCheck, setFirstCheck] = useState(true);
+	const emailRef = useRef();
+
+	useEffect(() => {
+		emailRef.current.focus();
+	}, []);
 
 	const emailHandler = (e) => {
 		setEmail(e.target.value);
@@ -70,7 +75,7 @@ const FindPw = () => {
 				</div>
 				<div className={cx('find__form-box')}>
 					<div className={cx('find__form-box__email-box')}>
-						<AuthInput type="email" placeholder="이메일" onChange={emailHandler} />
+						<AuthInput type="email" placeholder="이메일" onChange={emailHandler} ref={emailRef} />
 						<button onClick={sendCertificationNumber}>
 							{firstCheck && <span>인증번호 발송</span>}
 							{!firstCheck && <span>인증번호 재발송</span>}

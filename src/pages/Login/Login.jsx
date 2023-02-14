@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import styles from '@/pages/Login/Login.module.scss';
@@ -7,7 +7,11 @@ import authApi from '@/apis/api/auth';
 
 const Login = () => {
 	const cx = classNames.bind(styles);
+	const idRef = useRef();
 
+	useEffect(() => {
+		idRef.current.focus();
+	}, []);
 	/**
 	 * 로그인
 	 * @author sohee
@@ -33,7 +37,7 @@ const Login = () => {
 					<h1>Login</h1>
 				</div>
 				<div className={cx('login__form-box')}>
-					<AuthInput type="email" placeholder="이메일" name="email" />
+					<AuthInput type="email" placeholder="이메일" name="email" ref={idRef} />
 					<AuthInput type="password" placeholder="패스워드" name="password" />
 					<div className={cx('login__form-box__btn-box')}>
 						<button onClick={loginHandler}>
