@@ -23,7 +23,7 @@ defaultInstance.interceptors.response.use(
 		return res;
 	},
 	function (err) {
-		//액세스 토큰이 만료 된 경우, 여기서 저장된 리프레쉬 토큰을 이용해서 액세스 토큰 다시 받아서 넣어줌...
+		//액세스 토큰이 만료 된 경우, 여기서 저장된 리프레쉬 토큰을 이용해서 액세스 토큰 다시 받아서 로컬스토리지에 넣어줌...
 		if (err.respons?.data.status === 403) {
 			switch (err.response.data.code) {
 				case '코드네임':

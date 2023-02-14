@@ -6,11 +6,12 @@ import AuthInput from '@/components/AuthInput';
 import AuthTimer from '@/components/AuthTimer';
 import { regx } from '@/modules/reg';
 import userApi from '@/apis/api/user';
-import { timer, certificationNumber } from '@/store/auth';
+import { timer, certificationNumber, userEmail } from '@/store/auth';
 
 const FindPw = () => {
 	const [count, setCount] = useRecoilState(timer);
 	const [checkNum, setCheckNum] = useRecoilState(certificationNumber);
+	const [userEmail, setUserEmail] = useRecoilState(userEmail);
 	const cx = classNames.bind(styles);
 	const [email, setEmail] = useState('');
 	const [num, setNum] = useState('');
@@ -34,6 +35,7 @@ const FindPw = () => {
 				.then((res) => {
 					setCount(179);
 					setCheckNum('res.인증번호');
+					setUserEmail(email);
 					//res 한번 오면 firstCheck 변경(false)
 				})
 				.catch((err) => {
@@ -50,7 +52,12 @@ const FindPw = () => {
 	 */
 	const confirmCertificationNumber = () => {
 		if (num === checkNum) {
-			//비밀번호를 알려줘야되는데 알려주는 api 없음...
+			if (userEmail === email) {
+				// 회원정보 수정 페이지로 이동?
+			} else {
+				//유저가 인증번호를 발송하고, 메일 주소를 변경한 후, 인증번호 확인을 눌렀을 때
+				alert('메일주소를 다시 확인해주세요.');
+			}
 		} else {
 			alert('인증번호가 일치하지 않습니다.');
 		}

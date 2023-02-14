@@ -9,3 +9,8 @@ export const certificationNumber = atom({
 	key: 'certificationNumber',
 	default: '',
 });
+
+export const userEmail = atom({
+	key: 'userEmail',
+	default: '',
+});
