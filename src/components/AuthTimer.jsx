@@ -15,7 +15,7 @@ const AuthTimer = () => {
 			clearInterval(counter);
 			if (count > 0) {
 				counter = setInterval(() => {
-					setCount(count - 1);
+					setCount((prev) => prev - 1);
 				}, 1000);
 				return () => clearInterval(counter);
 			} else if (count === 0) {
