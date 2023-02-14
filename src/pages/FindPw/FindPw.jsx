@@ -11,7 +11,7 @@ import { timerState, certificationNumberState, userEmailState } from '@/store/au
 const FindPw = () => {
 	const [count, setCount] = useRecoilState(timerState);
 	const [checkNum, setCheckNum] = useRecoilState(certificationNumberState);
-	const [saveUserEmail, setSaveUserEmail] = useRecoilState(userEmailState);
+	const [userEmail, setUserEmail] = useRecoilState(userEmailState);
 	const cx = classNames.bind(styles);
 	const [email, setEmail] = useState('');
 	const [num, setNum] = useState('');
@@ -40,7 +40,7 @@ const FindPw = () => {
 				.then((res) => {
 					setCount(179);
 					setCheckNum('res.인증번호');
-					setSaveUserEmail(email);
+					setUserEmail(email);
 					//res 한번 오면 firstCheck 변경(false)
 				})
 				.catch((err) => {
@@ -57,7 +57,7 @@ const FindPw = () => {
 	 */
 	const confirmCertificationNumber = () => {
 		if (num === checkNum) {
-			if (saveUserEmail === email) {
+			if (userEmail === email) {
 				// 회원정보 수정 페이지로 이동?
 			} else {
 				//유저가 인증번호를 발송하고, 메일 주소를 변경한 후, 인증번호 확인을 눌렀을 때
