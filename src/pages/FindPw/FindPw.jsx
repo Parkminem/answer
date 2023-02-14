@@ -13,9 +13,14 @@ const FindPw = () => {
 	const [checkNum, setCheckNum] = useRecoilState(certificationNumber);
 	const cx = classNames.bind(styles);
 	const [email, setEmail] = useState('');
+	const [num, setNum] = useState('');
 	const [firstCheck, setFirstCheck] = useState(true);
+
 	const emailHandler = (e) => {
 		setEmail(e.target.value);
+	};
+	const certificationNumberHandler = (e) => {
+		setNum(e.target.value);
 	};
 
 	/**
@@ -28,8 +33,8 @@ const FindPw = () => {
 				.getCheckAuthCode(email)
 				.then((res) => {
 					setCount(179);
-					setCheckNum('인증번호');
-					//res 한번 오면 firstCheck 변경
+					setCheckNum('res.인증번호');
+					//res 한번 오면 firstCheck 변경(false)
 				})
 				.catch((err) => {
 					//어떻게 오는지 보고 alert 띄우면 되나..?
@@ -43,8 +48,12 @@ const FindPw = () => {
 	 * 인증번호 확인
 	 * @author sohee
 	 */
-	const confirmCertificationNumber = async () => {
-		// await
+	const confirmCertificationNumber = () => {
+		if (num === checkNum) {
+			//비밀번호를 알려줘야되는데 알려주는 api 없음...
+		} else {
+			alert('인증번호가 일치하지 않습니다.');
+		}
 	};
 	return (
 		<div className={cx('find-wrap')}>
@@ -61,7 +70,11 @@ const FindPw = () => {
 						</button>
 					</div>
 					<div className={cx('find__form-box__pw-box')}>
-						<AuthInput type="text" placeholder="인증번호를 입력해주세요" />
+						<AuthInput
+							type="text"
+							placeholder="인증번호를 입력해주세요"
+							onChange={certificationNumberHandler}
+						/>
 						<AuthTimer />
 					</div>
 					<div className={cx('login__form-box__btn-box')}>
