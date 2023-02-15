@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from '@/pages/Join/Join.module.scss';
 import AuthInput from '@/components/AuthInput';
@@ -11,6 +11,11 @@ const Join = () => {
 	const [password, setPassword] = useState('');
 	const [pwCheck, setPwCheck] = useState('');
 	const [emailCheck, setEmailCheck] = useState(false);
+	const emailRef = useRef();
+
+	useEffect(() => {
+		emailRef.current.focus();
+	}, []);
 
 	/**
 	 * 회원가입 api 전송하기 전에 검증을 위해 value값을 받아놓음
@@ -92,7 +97,13 @@ const Join = () => {
 				</div>
 				<form className={cx('join__form-box')} id="form" onSubmit={joinHandler}>
 					<div className={cx('join__form-box__email-box')}>
-						<AuthInput type="email" placeholder="이메일" name="userEmail" onChange={emailHandler} />
+						<AuthInput
+							type="email"
+							placeholder="이메일"
+							name="userEmail"
+							onChange={emailHandler}
+							ref={emailRef}
+						/>
 						<button onClick={emailDuplicate}>
 							<span>
 								중복

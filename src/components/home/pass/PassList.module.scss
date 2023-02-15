@@ -55,7 +55,6 @@
 			color: #312fd2;
 			font-weight: 700;
 			font-size: 28px;
-			letter-spacing: -0.04em;
 			margin-bottom: 24px;
 			text-overflow: ellipsis;
 			overflow: hidden;
@@ -70,7 +69,7 @@
 			font-size: 20px;
 			margin-bottom: 36px;
 			word-break: keep-all;
-			line-height: 1.8;
+			line-height: 36px;
 			overflow: hidden;
 			-webkit-box-orient: vertical;
 			display: -webkit-box;
@@ -78,7 +77,6 @@
 			user-select: none;
 		}
 		span {
-			letter-spacing: -0.04em;
 			color: #999999;
 			font-weight: 500;
 			font-size: 18px;
