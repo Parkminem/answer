@@ -1,11 +1,11 @@
 import React from 'react';
-import BreadCrumb from '@/components/myPage/Breadcrumb';
+import SectionCard from '@/components/UI/SectionCard';
 
 const Feedback = () => {
 	return (
-		<div className="hi">
-			<BreadCrumb />
-		</div>
+		<SectionCard>
+			<div className="">안녕하세요</div>
+		</SectionCard>
 	);
 };
 

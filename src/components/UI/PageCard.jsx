@@ -5,9 +5,9 @@ import styles from '@/components/UI/PageCard.module.scss';
 const PageCard = ({ children }) => {
 	const cx = classNames.bind(styles);
 	return (
-		<section className={cx('page-wrap')}>
+		<div className={cx('page-wrap')}>
 			<div className={cx('page__container')}>{children}</div>
-		</section>
+		</div>
 	);
 };
 

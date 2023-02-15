@@ -1,17 +1,134 @@
 .sidebar {
-	margin-top: 50px;
+	margin: 50px 58px 0 0;
+	min-width: 288px;
 }
 .sidebar__top {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	h1 {
 		font-weight: 700;
 		font-size: 48px;
 		margin-bottom: 28px;
 	}
-	.__info-box {
+	&__info-box {
 		background: #ffffff;
 		border: 1px solid rgba(0, 0, 0, 0.1);
 		border-radius: 8px;
-		.__img-box {
+		padding: 32px 0 40px 0;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+.sidebar__info-box {
+	&__img-box {
+		position: relative;
+		text-align: center;
+		margin-bottom: 20px;
+		button {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			background-color: #ffffff;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);
+			border-radius: 100%;
+			width: 36px;
+			height: 36px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+	&__name-box {
+		text-align: center;
+		h2 {
+			color: #333;
+			font-weight: 500;
+			font-size: 20px;
+			margin-bottom: 10px;
+			strong {
+				font-weight: 700;
+				font-size: 28px;
+				margin-right: 8px;
+			}
+		}
+		p {
+			font-size: 12px;
+			font-weight: 500;
+			color: #999;
+		}
+	}
+}
+.sidebar__gnb {
+	margin: 40px 0 160px 0;
+	&__depth01 {
+		> a {
+			margin-bottom: 16px;
+			background-color: #fff;
+			border: 1px solid rgba(0, 0, 0, 0.1);
+			border-radius: 36px;
+			color: #666;
+			font-weight: 500;
+			font-size: 28px;
+			width: 256px;
+			height: 72px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		&.active {
+			> a {
+				background: #9da9f3;
+				color: #fff;
+			}
+		}
+	}
+	&__depth02 {
+		li {
+			padding-left: 20px;
+			font-weight: 400;
+			margin-bottom: 16px;
+			color: #333333;
+			font-size: 20px;
+			&.active {
+				font-weight: 700;
+			}
+			a {
+				width: 100%;
+				display: inline-block;
+			}
+		}
+	}
+}
+.sidebar__bot {
+	background: rgba(255, 255, 255, 0.6);
+	border-radius: 4px;
+	width: 100%;
+	padding: 15px 30px;
+	h1 {
+		font-weight: 400;
+		color: #333;
+		font-size: 36px;
+		margin-bottom: 15px;
+		strong {
+			font-weight: 700;
+		}
+	}
+	&__tel-box {
+		p {
+			color: #666;
+			font-size: 16px;
+			font-weight: 400;
+			margin-bottom: 6px;
+		}
+		h2 {
+			color: #1d27bc;
+			opacity: 0.8;
+			font-weight: 700;
+			font-size: 40px;
+			margin-top: 15px;
 		}
 	}
 }

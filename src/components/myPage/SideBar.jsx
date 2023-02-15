@@ -24,37 +24,37 @@ const SideBar = () => {
 						</h2>
 						<p>나의 목표, 또는 한 줄 소개를 적어보세요.</p>
 					</div>
-					<div className={cx('sidebar__gnb')}>
-						<ul className={cx('sidebar__gnb__list')}>
-							<li className={cx('sidebar__gnb__depth01')}>
-								<Link to="">
-									<span>회원 정보</span>
-								</Link>
-								<ul className={cx('sidebar__gnb__depth02')}>
-									<li>
-										<Link to="">회원 정보 수정</Link>
-									</li>
-								</ul>
-							</li>
-							<li className={cx('sidebar__gnb__depth01')}>
-								<Link to="">
-									<span>면접 진단 내역</span>
-								</Link>
-								<ul className={cx('sidebar__gnb__depth02')}>
-									<li>
-										<Link to="">
-											<span>면접 진단 내용</span>
-										</Link>
-									</li>
-									<li>
-										<Link to="">
-											<span>면접 피드백</span>
-										</Link>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
+				</div>
+				<div className={cx('sidebar__gnb')}>
+					<ul className={cx('sidebar__gnb__list')}>
+						<li className={cx('sidebar__gnb__depth01', 'active')}>
+							<Link to="">
+								<span>회원 정보</span>
+							</Link>
+							<ul className={cx('sidebar__gnb__depth02')}>
+								<li className={cx('active')}>
+									<Link to="">· 회원 정보 수정</Link>
+								</li>
+							</ul>
+						</li>
+						<li className={cx('sidebar__gnb__depth01')}>
+							<Link to="">
+								<span>면접 진단 내역</span>
+							</Link>
+							<ul className={cx('sidebar__gnb__depth02')}>
+								<li>
+									<Link to="">
+										<span>· 면접 진단 내용</span>
+									</Link>
+								</li>
+								<li>
+									<Link to="">
+										<span>· 면접 피드백</span>
+									</Link>
+								</li>
+							</ul>
+						</li>
+					</ul>
 				</div>
 			</div>
 			<div className={cx('sidebar__bot')}>
@@ -64,8 +64,8 @@ const SideBar = () => {
 				<div className={cx('sidebar__bot__tel-box')}>
 					<p>9:00 ~ 18:00 (월-금)</p>
 					<p>점심시간 12:00 ~ 13:00</p>
+					<h2>1234 - 1234</h2>
 				</div>
-				<h2>1234 - 1234</h2>
 			</div>
 		</div>
 	);
