@@ -1,0 +1,17 @@
+.sidebar {
+	margin-top: 50px;
+}
+.sidebar__top {
+	h1 {
+		font-weight: 700;
+		font-size: 48px;
+		margin-bottom: 28px;
+	}
+	.__info-box {
+		background: #ffffff;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		border-radius: 8px;
+		.__img-box {
+		}
+	}
+}

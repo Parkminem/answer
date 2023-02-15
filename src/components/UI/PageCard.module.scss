@@ -1,0 +1,12 @@
+.page-wrap {
+	width: 100%;
+	padding: 40px 200px;
+	min-height: calc(100vh - 262px - 234px);
+}
+.page__container {
+	background-color: rgba(221, 224, 248, 0.6);
+	width: 100%;
+	padding: 40px 108px 44px 58px;
+	display: flex;
+	justify-content: space-between;
+}
