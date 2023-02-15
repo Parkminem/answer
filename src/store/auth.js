@@ -14,3 +14,8 @@ export const userEmailState = atom({
 	key: 'userEmail',
 	default: '',
 });
+
+export const changPwState = atom({
+	key: 'changePw',
+	default: false,
+});
