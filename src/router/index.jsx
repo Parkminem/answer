@@ -10,6 +10,7 @@ import Feedback from '@/components/myPage/Feedback';
 import InterviewResult from '@/pages/Interview/InterviewResult';
 import InterviewTest from '@/pages/Interview/InterviewTest';
 import InterviewTestDetail from '@/pages/Interview/InterviewTestDetail';
+import Modify from '@/components/myPage/Modify';
 
 export default function Router() {
 	return (
@@ -23,7 +24,7 @@ export default function Router() {
 				</Route>
 				<Route path="mypage" element={<PageLayout />}>
 					<Route path="feedback" element={<Feedback />} />
-					<Route path="" />
+					<Route path="modify" element={<Modify />} />
 					<Route path="" />
 					<Route path="" />
 					<Route path="" />
