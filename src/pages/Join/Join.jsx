@@ -94,28 +94,24 @@ const Join = () => {
 		<AuthCard>
 			<div className={cx('join-wrap')}>
 				<div className={cx('join')}>
-					<div className={cx('join__title-box')}>
-						<h1>Join</h1>
-					</div>
 					<form className={cx('join__form-box')} id="form" onSubmit={joinHandler}>
 						<div className={cx('join__form-box__email-box')}>
 							<AuthInput
 								type="email"
-								placeholder="이메일"
+								placeholder="아이디"
 								name="userEmail"
 								onChange={emailHandler}
 								ref={emailRef}
 							/>
 							<button onClick={emailDuplicate}>
-								<span>
-									중복
-									<br />
-									확인
-								</span>
+								<span>중복 확인</span>
 							</button>
+							<div className={cx('usable')}>
+								<p>사용 가능한 아이디 입니다.</p>
+							</div>
 						</div>
-						<AuthInput type="password" placeholder="패스워드" name="password" onChange={passwordHandler} />
-						<AuthInput type="password" placeholder="패스워드 확인" onChange={pwCheckHandler} />
+						<AuthInput type="password" placeholder="비밀번호" name="password" onChange={passwordHandler} />
+						<AuthInput type="password" placeholder="비밀번호 확인" onChange={pwCheckHandler} />
 						<div className={cx('join__form-box__btn-box')}>
 							<button onClick={joinHandler}>
 								<span>회원가입</span>
