@@ -4,27 +4,14 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background-color: #dde0f8;
 }
 .find {
-	text-align: center;
-	&__form-box {
-		&__email-box {
-			display: flex;
-			position: relative;
-			button {
-				position: absolute;
-				top: 0;
-				right: 0;
-			}
-		}
-		&__pw-box {
-			position: relative;
-			span {
-				position: absolute;
-				top: 0;
-				right: 0;
-				user-select: none;
-			}
-		}
-	}
+	background-color: #fff;
+	border-radius: 60px;
+	width: 996px;
+	height: 734px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }

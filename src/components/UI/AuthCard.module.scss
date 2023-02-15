@@ -1,0 +1,54 @@
+.auth-wrap {
+	background: #dde0f8;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	height: 100vh;
+}
+.auth-box {
+	background-color: #ffffff;
+	border-radius: 60px;
+	width: 996px;
+	height: 794px;
+	&__tap-box {
+		font-weight: 700;
+		font-size: 48px;
+		color: rgba(255, 255, 255, 0.8);
+		display: flex;
+		&__login-box,
+		&__join-box {
+			text-align: center;
+			width: 50%;
+			background-color: #7576e1;
+			&.active {
+				color: #312fd2;
+			}
+			a {
+				width: 100%;
+				display: inline-block;
+				padding: 25px 0;
+			}
+		}
+		&__login-box {
+			border-radius: 60px 0 50px 0;
+		}
+		&__join-box {
+			border-radius: 0 60px 0 50px;
+		}
+		&__login-box.active {
+			border-radius: 60px 0 0 0;
+			a {
+				border-radius: 60px 50px 0 0;
+				background-color: #fff;
+			}
+		}
+		&__join-box.active {
+			border-radius: 0 60px 0 0;
+			a {
+				border-radius: 50px 60px 0 0;
+				background-color: #fff;
+			}
+		}
+	}
+}

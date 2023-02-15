@@ -1,21 +1,61 @@
 .join-wrap {
-	width: 100vw;
-	height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	.join {
-		text-align: center;
-		&__form-box {
-			&__email-box {
-				position: relative;
+		padding: 120px 0;
+		width: 522px;
+	}
+}
+
+.join__form-box {
+	text-align: center;
+	&__email-box {
+		position: relative;
+		display: flex;
+		margin-bottom: 24px;
+		button {
+			padding: 0;
+			min-width: 108px;
+			height: 74px;
+			font-weight: 500;
+			font-size: 20px;
+			color: #fff;
+			background-color: #7576e1;
+			border-radius: 16px;
+			margin-left: 15px;
+		}
+		.usable {
+			position: absolute;
+			bottom: 5px;
+			left: 30px;
+			color: #7576e1;
+			p {
+				font-weight: 500;
+				font-size: 16px;
 				display: flex;
-				button {
-					position: absolute;
-					right: 0;
-					top: 0;
+				align-items: center;
+				&::before {
+					content: '';
+					display: block;
+					width: 5px;
+					height: 5px;
+					border-radius: 100%;
+					background-color: #7576e1;
+					margin-right: 5px;
 				}
 			}
+		}
+	}
+	&__btn-box {
+		button {
+			width: 360px;
+			height: 75px;
+			background: #312fd2;
+			border-radius: 60px;
+			color: #ffffff;
+			font-weight: 700;
+			font-size: 28px;
 		}
 	}
 }

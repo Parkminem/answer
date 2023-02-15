@@ -1,11 +1,12 @@
 import React from 'react';
-import SectionCard from '@/components/UI/SectionCard';
+import InterviewTab from '@/components/InterviewTab';
 
 const Feedback = () => {
 	return (
-		<SectionCard>
-			<div className="">안녕하세요</div>
-		</SectionCard>
+		<>
+			<InterviewTab />
+			<section className="">안녕하세요</section>
+		</>
 	);
 };
 
