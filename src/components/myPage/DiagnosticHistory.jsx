@@ -1,10 +1,11 @@
 import React from 'react';
 import style from '@/components/myPage/DiagnosticHistory.module.scss';
-import SectionCard from '../UI/SectionCard';
+import InterviewTab from '../InterviewTab';
 
 export default function DiagnosticHistory() {
 	return (
-		<SectionCard>
+		<>
+			<InterviewTab />
 			<div className={style.diagnostic_history}>
 				<table>
 					<tr>
@@ -15,6 +16,6 @@ export default function DiagnosticHistory() {
 					<td>2023년 01월 01일</td>
 				</table>
 			</div>
-		</SectionCard>
+		</>
 	);
 }

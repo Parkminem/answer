@@ -54,4 +54,11 @@ const teacherList = [
 		is_selected: false,
 	},
 ];
-export default teacherList;
+
+const interviewData = [
+	{
+		type: '공무원',
+		data: '2023년 01월 01일',
+	},
+];
+export default { teacherList, interviewData };

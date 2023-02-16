@@ -1,0 +1,76 @@
+.diagnostic {
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-bottom: 112px;
+
+	.container {
+		margin: 48px 107px;
+
+		p {
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 23px;
+			letter-spacing: -0.04em;
+
+			color: #999999;
+		}
+
+		.title {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 20px;
+
+			.auth {
+				margin-right: 28px;
+			}
+			h1 {
+				font-weight: 700;
+				font-size: 28px;
+				line-height: 41px;
+				letter-spacing: -0.04em;
+				color: #333333;
+			}
+			h2 {
+				font-weight: 500;
+				font-size: 20px;
+				line-height: 29px;
+				letter-spacing: -0.04em;
+				color: #999999;
+			}
+
+			.content_info {
+				display: flex;
+			}
+		}
+		hr {
+			margin-top: 20px;
+			border: 1px solid #dedede;
+		}
+		.url_copy {
+			display: flex;
+			justify-content: end;
+			margin-top: 20px;
+
+			p {
+				margin-right: 13px;
+			}
+
+			button {
+				background: #f5f5f5;
+				border: 1px solid #c9c9c9;
+				border-radius: 4px;
+				font-weight: 400;
+				font-size: 12px;
+				line-height: 17px;
+				display: flex;
+				letter-spacing: -0.04em;
+				color: #999999;
+			}
+		}
+		.content_box {
+			margin: 20px 0 231px 0;
+		}
+	}
+}

@@ -12,6 +12,7 @@ import InterviewTest from '@/pages/Interview/InterviewTest';
 import InterviewTestDetail from '@/pages/Interview/InterviewTestDetail';
 import Modify from '@/components/myPage/Modify';
 import DiagnosticHistory from '@/components/myPage/DiagnosticHistory';
+import DiagnosticDetail from '@/components/myPage/DiagnosticDetail';
 
 export default function Router() {
 	return (
@@ -27,7 +28,7 @@ export default function Router() {
 					<Route path="feedback" element={<Feedback />} />
 					<Route path="modify" element={<Modify />} />
 					<Route path="diagnostic_history" element={<DiagnosticHistory />} />
-					<Route path="" />
+					<Route path="diagnostic_detail" element={<DiagnosticDetail />} />
 					<Route path="" />
 				</Route>
 				<Route path="login" element={<Login />} />
