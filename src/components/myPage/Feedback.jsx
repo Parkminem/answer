@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from '@/components/myPage/Feedback.module.scss';
 import InterviewTab from '@/components/InterviewTab';
+import TeacherModal from '@/components/myPage/TeacherModal';
 
 const Feedback = () => {
 	const cx = classNames.bind(styles);
+	const [modal, setModal] = useState(false);
+
+	const onClose = () => {
+		setModal(false);
+	};
+	const onOpen = () => {
+		setModal(true);
+	};
 	return (
 		<>
 			<InterviewTab />
+			{modal && <TeacherModal onConfirm={onClose} />}
 			<section className={cx('feedback')}>
 				<div className={cx('feedback-inner')}>
 					<div className={cx('feedback__title-box')}>
@@ -15,7 +25,7 @@ const Feedback = () => {
 						<p>나의 면접 예상 점수는 몇 점일까?</p>
 					</div>
 					<div className={cx('feedback__recommend-box')}>
-						<button>
+						<button onClick={onOpen}>
 							<span>면접 진단 전문가 추천</span>
 						</button>
 					</div>
