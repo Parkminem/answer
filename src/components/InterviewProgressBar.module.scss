@@ -1,0 +1,25 @@
+.progress {
+	display: flex;
+	align-items: center;
+	span {
+		color: #666666;
+		font-weight: 500;
+		font-size: 20px;
+		display: inline-block;
+		margin-right: 12px;
+	}
+	&__bar {
+		height: 20px;
+		background-color: #ebecfb;
+		border-radius: 10px;
+		flex-grow: 1;
+		display: flex;
+		div {
+			flex-grow: 1;
+			border-radius: 10px;
+			&:first-child {
+				background-color: #9da9f3;
+			}
+		}
+	}
+}

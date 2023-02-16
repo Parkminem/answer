@@ -7,9 +7,7 @@ import Login from '@/pages/Login/Login';
 import Join from '@/pages/Join/Join';
 import FindPw from '@/pages/FindPw/FindPw';
 import Feedback from '@/components/myPage/Feedback';
-import InterviewResult from '@/pages/Interview/InterviewResult';
-import InterviewTest from '@/pages/Interview/InterviewTest';
-import InterviewTestDetail from '@/pages/Interview/InterviewTestDetail';
+import Interview from '@/pages/Interview/Interview';
 
 export default function Router() {
 	return (
@@ -17,16 +15,10 @@ export default function Router() {
 			<Routes>
 				<Route path="/" element={<DefaultLayout />}>
 					<Route path="" element={<Home />} />
-					<Route path="interviewtest" element={<InterviewTest />} />
-					<Route path="interviewtest/detail" element={<InterviewTestDetail />} />
-					<Route path="interviewtest/result" element={<InterviewResult />} />
+					<Route path="interview" element={<Interview />} />
 				</Route>
 				<Route path="mypage" element={<PageLayout />}>
 					<Route path="feedback" element={<Feedback />} />
-					<Route path="" />
-					<Route path="" />
-					<Route path="" />
-					<Route path="" />
 				</Route>
 				<Route path="login" element={<Login />} />
 				<Route path="join" element={<Join />} />
