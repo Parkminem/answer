@@ -1,0 +1,31 @@
+.content {
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+	.title {
+		display: flex;
+		&_number {
+			font-weight: 500;
+			font-size: 28px;
+			line-height: 28px;
+			letter-spacing: -0.04em;
+			color: #aeb6fe;
+		}
+		&_title {
+			font-weight: 700;
+			font-size: 20px;
+			line-height: 29px;
+			letter-spacing: -0.04em;
+			color: #333333;
+			margin-left: 13px;
+		}
+	}
+	textarea {
+		width: 100%;
+		height: 208px;
+		resize: none;
+		margin-top: 26px;
+		border: 1px solid #999999;
+		border-radius: 2px;
+	}
+}

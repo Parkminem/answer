@@ -54,4 +54,17 @@ const teacherList = [
 		is_selected: false,
 	},
 ];
-export default teacherList;
+
+const diagnostic_detail = [
+	{ id: 1, type: '공무원', date: '2023년 01월 01일' },
+	{ id: 2, type: '공무원', date: '2023년 01월 01일' },
+	{ id: 3, type: '공무원', date: '2023년 01월 01일' },
+	{ id: 4, type: '공무원', date: '2023년 01월 01일' },
+	{ id: 5, type: '공무원', date: '2023년 01월 01일' },
+	{ id: 6, type: '공무원', date: '2023년 01월 01일' },
+	{ id: 7, type: '공무원', date: '2023년 01월 01일' },
+	{ id: 8, type: '공무원', date: '2023년 01월 01일' },
+	{ id: 9, type: '공무원', date: '2023년 01월 01일' },
+	{ id: 10, type: '공무원', date: '2023년 01월 01일' },
+];
+export default { teacherList, diagnostic_detail };
