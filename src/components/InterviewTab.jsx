@@ -8,7 +8,14 @@ const InterviewTab = () => {
 	const { pathname } = useLocation();
 	return (
 		<div className={cx('interview-tap')}>
-			<div className={cx('interview-tap__desc', pathname === '/mypage/diagnostic_history' ? 'active' : '')}>
+			<div
+				className={cx(
+					'interview-tap__desc',
+					pathname === '/mypage/diagnostic_history' || pathname === '/mypage/diagnostic_detail'
+						? 'active'
+						: '',
+				)}
+			>
 				<Link to="/mypage/diagnostic_history">
 					<span>면접 진단 내용</span>
 				</Link>

@@ -11,7 +11,9 @@ export default function DiagnosticDetail() {
 				<div className={style.container}>
 					<p>이전에 작성한 면접 진단 내용을 확인할 수 있습니다.</p>
 					<div className={style.title}>
-						<h1>공무원</h1>
+						<ul className={style.type}>
+							<li className={style.type}>공무원</li>
+						</ul>
 						<div className={style.content_info}>
 							<h2 className={style.auth}>작성자 &nbsp; | &nbsp; 김앤써</h2>
 							<h2 className={style.date}>작성일 &nbsp; | &nbsp; 2023.01.01</h2>

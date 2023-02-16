@@ -22,16 +22,20 @@
 			justify-content: space-between;
 			margin-top: 20px;
 
-			.auth {
-				margin-right: 28px;
-			}
-			h1 {
+			.type {
 				font-weight: 700;
 				font-size: 28px;
 				line-height: 41px;
 				letter-spacing: -0.04em;
 				color: #333333;
+				list-style-type: disc;
+				margin-left: 15px;
 			}
+
+			.auth {
+				margin-right: 28px;
+			}
+
 			h2 {
 				font-weight: 500;
 				font-size: 20px;
