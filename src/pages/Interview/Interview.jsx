@@ -26,15 +26,15 @@ const Interview = () => {
 					<Tendency />
 				</div> */}
 				{/* 성향 설문 객관식 3개 */}
-				<div className={cx('tendency-wrap')}>
+				{/* <div className={cx('tendency-wrap')}>
 					<Tendency />
 					<Tendency />
 					<Tendency />
-				</div>
+				</div> */}
 				{/* 이전,다음 버튼 */}
 				{/* <InterviewBtns /> */}
 				{/* 완료 버튼 */}
-				<InterviewEndBtns />
+				{/* <InterviewEndBtns /> */}
 			</div>
 		</PageCard>
 	);
