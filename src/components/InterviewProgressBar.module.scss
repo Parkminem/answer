@@ -1,6 +1,7 @@
 .progress {
 	display: flex;
 	align-items: center;
+	margin-bottom: 70px;
 	span {
 		color: #666666;
 		font-weight: 500;
@@ -12,14 +13,13 @@
 		height: 20px;
 		background-color: #ebecfb;
 		border-radius: 10px;
-		flex-grow: 1;
-		display: flex;
-		div {
-			flex-grow: 1;
+		width: 100%;
+		span {
+			width: 13%;
+			display: inline-block;
+			background-color: #9da9f3;
+			height: 20px;
 			border-radius: 10px;
-			&:first-child {
-				background-color: #9da9f3;
-			}
 		}
 	}
 }

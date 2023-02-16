@@ -7,19 +7,9 @@ const InterviewProgressBar = () => {
 	return (
 		<div className={cx('progress')}>
 			<span>13%</span>
-			<div className={cx('progress__bar')}>
-				<div className=""></div>
-				<div className=""></div>
-				<div className=""></div>
-				<div className=""></div>
-				<div className=""></div>
-				<div className=""></div>
-				<div className=""></div>
-				<div className=""></div>
-				<div className=""></div>
-				<div className=""></div>
-				<div className=""></div>
-				<div className=""></div>
+			<div className={cx('progress__bar', 'ing')}>
+				{/* span의 width를 자바스크립트로 style변화 주기 */}
+				<span></span>
 			</div>
 		</div>
 	);
