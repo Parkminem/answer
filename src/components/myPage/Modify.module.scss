@@ -33,18 +33,29 @@
 				margin: 52px 60px;
 			}
 
-			input {
-				width: 50%;
-				height: 54px;
-				margin-top: 16px;
-				border: 2px solid #8384e5;
-				border: 2px solid #999999;
-				border-radius: 27px;
-				text-align: center;
-				font-weight: 400;
-				font-size: 20px;
-				line-height: 29px;
-				letter-spacing: -0.04em;
+			form {
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				justify-content: center;
+				align-items: center;
+
+				input {
+					width: 50%;
+					height: 54px;
+					margin-top: 16px;
+					border: 2px solid #8384e5;
+					border: 2px solid #999999;
+					border-radius: 27px;
+					text-align: center;
+					font-weight: 400;
+					font-size: 20px;
+					line-height: 29px;
+					letter-spacing: -0.04em;
+					&:focus {
+						border: 2px solid #8384e5;
+					}
+				}
 			}
 
 			button {

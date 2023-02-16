@@ -1,8 +1,11 @@
 import React from 'react';
 import style from '@/components/myPage/DiagnosticHistory.module.scss';
-import InterviewTab from '../InterviewTab';
+import InterviewTab from '@/components/InterviewTab';
+import data from '@/data/data';
 
 export default function DiagnosticHistory() {
+	const tableData = data.diagnostic_detail;
+
 	return (
 		<>
 			<InterviewTab />
@@ -15,10 +18,14 @@ export default function DiagnosticHistory() {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>공무원</td>
-							<td>2023년 01월 01일</td>
-						</tr>
+						{tableData.map((item) => {
+							return (
+								<tr key={item.id}>
+									<td>{item.type}</td>
+									<td>{item.date}</td>
+								</tr>
+							);
+						})}
 					</tbody>
 				</table>
 			</div>
