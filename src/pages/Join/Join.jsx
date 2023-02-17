@@ -65,27 +65,25 @@ const Join = () => {
 		if (email.length === 0 || password.length === 0 || pwCheck.length === 0) {
 			alert('모든 칸을 입력해주세요');
 			return false;
-		} else {
-			const formData = {
-				userEmail: email,
-				password: password,
-			};
-			await userApi
-				.getSignUp(formData)
-				.then((res) => {
-					if (res.status === 201) {
-						navigate('/');
-					}
-				})
-				.catch((err) => {
-					console.log(err);
-				});
 		}
+		const formData = {
+			userEmail: email,
+			password: password,
+		};
+		await userApi
+			.getSignUp(formData)
+			.then((res) => {
+				if (res.status === 201) {
+					navigate('/login', { replace: true });
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	//중복 확인 함수... api가 없음(유저 목록 조회api가 있는데 이건 모든 유저 목록을 받아오는 듯..?)
 	const emailDuplicate = async (e) => {
-		e.preventDefault();
 		setEmail(email);
 		await userApi
 			.getCheckEmail(email)
@@ -114,7 +112,7 @@ const Join = () => {
 								onChange={emailHandler}
 								ref={emailRef}
 							/>
-							<button onClick={emailDuplicate}>
+							<button onClick={emailDuplicate} type="button">
 								<span>중복 확인</span>
 							</button>
 							<div className={cx('usable')} style={{ opacity: opacity }}>
@@ -126,7 +124,12 @@ const Join = () => {
 							</div>
 						</div>
 						<AuthInput type="password" placeholder="비밀번호" name="password" onChange={passwordHandler} />
-						<AuthInput type="password" placeholder="비밀번호 확인" onChange={pwCheckHandler} />
+						<AuthInput
+							type="password"
+							placeholder="비밀번호 확인"
+							onChange={pwCheckHandler}
+							onSubmit={joinHandler}
+						/>
 						<div className={cx('join__form-box__btn-box')}>
 							<button onClick={joinHandler}>
 								<span>회원가입</span>

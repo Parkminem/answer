@@ -18,9 +18,9 @@ export default function Header() {
 						<li>
 							<a href="">세움스피치학원</a>
 						</li>
-						<a href="">
-							<li>회사소개</li>
-						</a>
+						<li>
+							<a href="">회사소개</a>
+						</li>
 					</ul>
 					<ul className={style.menu__right}>
 						<li>
