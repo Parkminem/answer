@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from '@/pages/Join/Join.module.scss';
 import AuthInput from '@/components/AuthInput';
@@ -8,6 +9,7 @@ import userApi from '@/apis/api/user';
 
 const Join = () => {
 	const cx = classNames.bind(styles);
+	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [pwCheck, setPwCheck] = useState('');
@@ -64,16 +66,19 @@ const Join = () => {
 			alert('모든 칸을 입력해주세요');
 			return false;
 		} else {
-			const form = document.getElementById('form');
-			const formData = new FormData(form);
-			formData.append('role', 'ROLE_USER');
+			const formData = {
+				userEmail: email,
+				password: password,
+			};
 			await userApi
 				.getSignUp(formData)
 				.then((res) => {
-					console.log(res);
+					if (res.status === 201) {
+						navigate('/');
+					}
 				})
 				.catch((err) => {
-					//에러 코드 확인해서.. alert 띄워야하는지..?
+					console.log(err);
 				});
 		}
 	};

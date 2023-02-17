@@ -48,7 +48,7 @@ function getCheckEmail(email) {
  * @author sohee
  */
 function getSignUp(userInfo) {
-	return defaultInstance.post('/api/v1/users', encodeURIComponent(JSON.stringify(userInfo)));
+	return defaultInstance.post('/api/v1/users', userInfo);
 }
 
 /**
