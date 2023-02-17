@@ -24,10 +24,10 @@ const dummy02 = [
 
 const Interview = () => {
 	const cx = classNames.bind(styles);
-	const [now, setNow] = useState(false);
+	const [now, setNow] = useState(true);
 	const [next01, setNext01] = useState(false);
-	const [next02, setNext02] = useState(true);
-	const [progress, setProgress] = useState(0);
+	const [next02, setNext02] = useState(false);
+	const [progress, setProgress] = useState(13);
 	const [title, setTitle] = useState({
 		count: 5,
 		text: '마지막으로, 입사 후 포부를 알려주세요.',
@@ -92,7 +92,7 @@ const Interview = () => {
 			<InterviewSideBar title={title} />
 			<div className={cx('container')}>
 				<InterviewProgressBar width={progress} />
-				<InterviewFrontPart />
+				{now && <InterviewFrontPart />}
 				{/* 성향 설문 객관식 5개 */}
 				{next01 && (
 					<div className={cx('tendency-wrap')}>
