@@ -50,8 +50,7 @@
 		ul {
 			position: absolute;
 			width: 100%;
-			opacity: 0;
-			transition: all 0.25s ease-in-out;
+			display: none;
 			li {
 				&:not(&:last-child) {
 					button {
@@ -98,7 +97,7 @@
 				}
 			}
 			ul {
-				opacity: 100;
+				display: block;
 			}
 		}
 	}

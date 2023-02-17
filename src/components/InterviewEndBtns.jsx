@@ -2,12 +2,12 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import styles from '@/components/InterviewEndBtns.module.scss';
 
-const InterviewEndBtns = () => {
+const InterviewEndBtns = (props) => {
 	const cx = classNames.bind(styles);
 	return (
 		<div className={cx('btns')}>
 			<div className={cx('btns__btn', 'prev-box')}>
-				<button className={cx('prev')}>
+				<button className={cx('prev')} onClick={props.onClick}>
 					<span>&lt;&nbsp;&nbsp;&nbsp;이전</span>
 				</button>
 			</div>
