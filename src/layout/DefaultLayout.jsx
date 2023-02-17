@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import { Outlet } from 'react-router-dom';
 
 export default function DefaultLayout() {
-	const { pathname } = useLocation();
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState();
 	useEffect(() => {
 		const token = localStorage.getItem('user');
 		if (token) {
@@ -14,7 +12,7 @@ export default function DefaultLayout() {
 		} else {
 			setIsLoggedIn(false);
 		}
-	}, [pathname]);
+	}, [isLoggedIn]);
 	return (
 		<>
 			<Header loginState={isLoggedIn} />

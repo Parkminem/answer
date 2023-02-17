@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import style from '@/components/common/Header.module.scss';
 import logo from '@/assets/images/common/main_logo.png';
 import NavBar from './NavBar';
 
-export default function Header(props) {
+const Header = (props) => {
 	const logoutHandler = () => {
 		window.localStorage.removeItem('user');
 		window.location.href = '/';
@@ -55,4 +55,5 @@ export default function Header(props) {
 			<NavBar />
 		</header>
 	);
-}
+};
+export default React.memo(Header);
