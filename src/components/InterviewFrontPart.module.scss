@@ -1,0 +1,60 @@
+.front_part {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+
+	.question {
+		display: flex;
+		transform: translateX(50px);
+		&_number {
+			font-family: 'GmarketSansBold';
+			font-weight: 500;
+			font-size: 28px;
+			line-height: 28px;
+			letter-spacing: -0.04em;
+			color: #312fd2;
+		}
+		&_sentence {
+			font-size: 20px;
+			line-height: 29px;
+			font-weight: 700;
+			letter-spacing: -0.04em;
+			color: #333333;
+		}
+	}
+	.textarea_box {
+		width: 834px;
+		height: 320px;
+		background: #f1f1f1;
+		border-radius: 16px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transform: translateX(15px);
+		margin: 26.5px 0 45px 0;
+		transform: translateX(30px);
+		textarea {
+			width: 796px;
+			height: 300px;
+			resize: none;
+			border: 1px solid #999999;
+			border-radius: 2px;
+			font-weight: 400;
+			font-size: 20px;
+			line-height: 29px;
+			letter-spacing: -0.04em;
+		}
+	}
+	p {
+		position: absolute;
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 23px;
+		text-align: right;
+		letter-spacing: -0.04em;
+		color: #c9c9c9;
+		right: 35px;
+		bottom: 60px;
+	}
+}
