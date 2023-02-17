@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from '@/components/InterviewFrontPart.module.scss';
 
 export default function InterviewFrontPart() {
@@ -9,8 +9,11 @@ export default function InterviewFrontPart() {
 				<span className={style.question_sentence}>&nbsp;입사후 포부</span>
 			</div>
 			<div className={style.textarea_box}>
-				<textarea name="interview_content" id=""></textarea>
+				<form action="">
+					<textarea name="interview_content" id="interview_content"></textarea>
+				</form>
 			</div>
+			<p>10/2000자</p>
 		</div>
 	);
 }
