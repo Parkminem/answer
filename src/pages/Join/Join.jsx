@@ -11,7 +11,8 @@ const Join = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [pwCheck, setPwCheck] = useState('');
-	const [emailCheck, setEmailCheck] = useState(false);
+	const [emailCheck, setEmailCheck] = useState(true);
+	const [opacity, setOpacity] = useState(100);
 	const emailRef = useRef();
 
 	useEffect(() => {
@@ -79,15 +80,18 @@ const Join = () => {
 		e.preventDefault();
 		setEmail(encodeURIComponent(email));
 		await userApi
-			.getUserCheck(email)
+			.getCheckEmail(email)
 			.then((res) => {
 				console.log(res);
-				// 없으면 뭐가 오는건지..? res 제대로 확인해야함...
-				setEmailCheck(true);
+				// if (res.data) {
+				// 	setEmailCheck(true);
+				// 	setOpacity(100);
+				// } else {
+				// 	setEmailCheck(false);
+				// 	setOpacity(100);
+				// }
 			})
-			.catch((err) => {
-				//에러 코드 확인..
-			});
+			.catch((err) => console.log(err));
 	};
 
 	return (
@@ -98,7 +102,7 @@ const Join = () => {
 						<div className={cx('join__form-box__email-box')}>
 							<AuthInput
 								type="email"
-								placeholder="아이디"
+								placeholder="이메일"
 								name="userEmail"
 								onChange={emailHandler}
 								ref={emailRef}
@@ -106,8 +110,12 @@ const Join = () => {
 							<button onClick={emailDuplicate}>
 								<span>중복 확인</span>
 							</button>
-							<div className={cx('usable')}>
-								<p>사용 가능한 아이디 입니다.</p>
+							<div className={cx('usable')} style={{ opacity: opacity }}>
+								{emailCheck ? (
+									<p className={cx('ok')}>사용 가능한 이메일 입니다.</p>
+								) : (
+									<p className={cx('no')}>이미 가입되어 있는 이메일입니다.</p>
+								)}
 							</div>
 						</div>
 						<AuthInput type="password" placeholder="비밀번호" name="password" onChange={passwordHandler} />

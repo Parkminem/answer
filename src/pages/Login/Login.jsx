@@ -37,11 +37,11 @@ const Login = () => {
 			<div className={cx('login-wrap')}>
 				<form className={cx('login')} id="form" onSubmit={loginHandler}>
 					<div className={cx('login__form-box')}>
-						<AuthInput type="email" name="email" ref={idRef} placeholder="아이디" />
+						<AuthInput type="email" name="email" ref={idRef} placeholder="이메일" />
 						<AuthInput type="password" name="password" ref={pwRef} placeholder="비밀번호" />
 						<div className={cx('login__form-box__btn-box')}>
 							<button onClick={loginHandler}>
-								<span>로그인</span>
+								<span>이메일</span>
 							</button>
 						</div>
 						<div className={cx('login__form-box__link-box')}>
