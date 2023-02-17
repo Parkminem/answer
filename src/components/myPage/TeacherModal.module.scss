@@ -1,0 +1,126 @@
+.backdrop {
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.6);
+	position: fixed;
+	z-index: 100;
+}
+.modal {
+	background-color: #fff;
+	border-radius: 8px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 101;
+	width: 36.7%;
+	&-wrap {
+		margin: 30px;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	&__close {
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 102;
+	}
+	&__card {
+		&-wrap {
+			margin-bottom: 50px;
+			width: 630px !important;
+			display: flex;
+			padding: 80px 64px 0 22px;
+			align-items: center;
+		}
+		&__img-box {
+			position: relative;
+			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.12);
+			border-radius: 2px;
+			padding: 12px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-right: 70px;
+			height: 310px;
+			&__img {
+				background-color: #a5d7ff;
+				padding: 0 13px;
+			}
+			&__text-box {
+				position: absolute;
+				bottom: 20px;
+				background-color: #ffffff;
+				box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+				border-radius: 2px;
+				text-align: center;
+				width: 80%;
+				padding: 15px 0 10px 0;
+				&__text {
+					margin-bottom: 20px;
+					span {
+						color: #1983d8;
+						font-weight: 700;
+						font-size: 8px;
+					}
+					h2 {
+						font-weight: 700;
+						font-size: 12px;
+						margin-top: 8px;
+					}
+					p {
+						font-weight: 500;
+						font-size: 8px;
+						color: #999999;
+						margin-top: 6px;
+					}
+				}
+				a {
+					text-decoration-line: underline;
+					color: #333333;
+					font-weight: 500;
+					font-size: 8px;
+				}
+			}
+		}
+		&__graph-box {
+			flex-grow: 1;
+			width: 100%;
+			h1 {
+				color: #333333;
+				font-weight: 700;
+				font-size: 16px;
+				margin-bottom: 20px;
+			}
+			&__img-box {
+				text-align: right;
+			}
+			&__desc {
+				margin-top: 30px;
+				p {
+					color: #666656;
+					font-weight: 400;
+					font-size: 12px;
+					line-height: 28px;
+				}
+			}
+		}
+	}
+	&__btns {
+		width: 30%;
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 30px;
+		.btn {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 36px;
+			height: 36px;
+			box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+			border-radius: 100%;
+		}
+	}
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import style from '@/components/common/NavBar.module.scss';
 import img01 from '@/assets/images/image/menu.png';
 
@@ -8,7 +9,7 @@ export default function NavBar() {
 			<div className={style.container}>
 				<ul className={style.menu}>
 					<li>
-						<a href="">면접 진단하기</a>
+						<Link to="/interview">면접 진단하기</Link>
 					</li>
 					<li>
 						<a href="">커뮤니티</a>
@@ -20,7 +21,7 @@ export default function NavBar() {
 						<a href="">나의 피드백</a>
 					</li>
 					<li>
-						<a href="">마이페이지</a>
+						<Link to="/mypage/modify">마이페이지</Link>
 					</li>
 					<li className={style.all}>
 						<img src={img01} alt="" />

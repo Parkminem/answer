@@ -9,9 +9,9 @@ export default function Modify() {
 				<div className={style.content_box}>
 					<h1 className={style.title}>회원 정보 수정</h1>
 					<form>
-						<input type="text" placeholder="123123@example.com" />
-						<input type="new-password" placeholder="비밀번호" />
-						<input type="new-password" placeholder="비밀번호 확인" />
+						<input type="text" placeholder="123123@example.com" readOnly />
+						<input type="password" name="new-password" placeholder="비밀번호" />
+						<input type="password" name="new-password" placeholder="비밀번호 확인" />
 					</form>
 					<button>회원 정보 수정</button>
 				</div>

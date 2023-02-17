@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import style from '@/components/common/Header.module.scss';
 import logo from '@/assets/images/common/main_logo.png';
 import NavBar from './NavBar';
@@ -8,7 +9,9 @@ export default function Header() {
 		<header className={style.header}>
 			<div className={style.container}>
 				<div className={style.logo}>
-					<img src={logo} alt="logo" />
+					<Link to="/">
+						<img src={logo} alt="logo" />
+					</Link>
 				</div>
 				<div className={style.menu}>
 					<ul className={style.menu__left}>
@@ -21,10 +24,10 @@ export default function Header() {
 					</ul>
 					<ul className={style.menu__right}>
 						<li>
-							<a href="">로그인</a>
+							<Link to="/login">로그인</Link>
 						</li>
 						<li>
-							<a href="">회원가입</a>
+							<Link to="/join">회원가입</Link>
 						</li>
 						<li>
 							<a href="">고객센터</a>

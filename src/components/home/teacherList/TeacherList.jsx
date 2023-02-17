@@ -7,10 +7,9 @@ import Profile from './Profile';
 import TeacherCard from './TeacherCard';
 
 const TeacherList = () => {
-	const teacherList = data;
+	const teacherList = data.teacherList;
 	const [selectedTeacher, setSelectedTeacher] = useState(teacherList[1]);
 	const [isSelected, setIsSelected] = useState(false);
-
 	const selectTeacher = (idx) => {
 		setSelectedTeacher(teacherList[idx]);
 		setIsSelected(() => {
