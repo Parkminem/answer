@@ -25,9 +25,9 @@ export default function DiagnosticDetail() {
 						<button>주소복사</button>
 					</div>
 					<div className={style.content_box}>
-						<DiagnosticContent number={1} title={'1분 자기 소개'} />
-						<DiagnosticContent number={2} title={'성격의 장단점'} />
-						<DiagnosticContent number={3} title={'향후 포부'} />
+						<DiagnosticContent number={1} title={'1분 자기 소개'} value={'자기 소개!'} />
+						<DiagnosticContent number={2} title={'성격의 장단점'} value={'성격의 장단점!'} />
+						<DiagnosticContent number={3} title={'향후 포부'} value={'향후 포부!'} />
 					</div>
 				</div>
 			</div>
