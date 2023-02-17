@@ -23,8 +23,30 @@ const dummy02 = [
 
 const Interview = () => {
 	const cx = classNames.bind(styles);
+	const [now, setNow] = useState(true);
 	const [next01, setNext01] = useState(false);
 	const [next02, setNext02] = useState(false);
+
+	//첫번째 페이지로 이동
+	const firstPage = () => {
+		setNow(true);
+		setNext01(false);
+		setNext02(false);
+	};
+
+	//두번째 페이지로 이동
+	const secondPage = () => {
+		setNow(false);
+		setNext01(true);
+		setNext02(false);
+	};
+
+	//마지막 페이지로 이동
+	const lastPage = () => {
+		setNow(false);
+		setNext01(false);
+		setNext02(true);
+	};
 	return (
 		<PageCard>
 			<InterviewSideBar />
@@ -37,17 +59,14 @@ const Interview = () => {
 					})}
 				</div>
 				{/* 성향 설문 객관식 3개 */}
-				{/* <div className={cx('tendency-wrap')}>
-				{
-					dummy02.map((item)=>{
-						return <Tendency item={item} key={item.id}/>
-					})
-				}
-				</div> */}
-				{/* 이전,다음 버튼 */}
-				<InterviewBtns />
-				{/* 완료 버튼 */}
-				{/* <InterviewEndBtns /> */}
+				{next02 && (
+					<div className={cx('tendency-wrap')}>
+						{dummy02.map((item) => {
+							return <Tendency item={item} key={item.id} />;
+						})}
+					</div>
+				)}
+				{next02 ? <InterviewEndBtns /> : <InterviewBtns />}
 			</div>
 		</PageCard>
 	);

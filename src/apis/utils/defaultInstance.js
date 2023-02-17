@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const defaultInstance = axios.create({ baseURL: 'http://210.99.35.26:8081' });
+const defaultInstance = axios.create({ baseURL: 'http://210.99.35.26:7071' });
 
 defaultInstance.interceptors.request.use(
 	function (config) {

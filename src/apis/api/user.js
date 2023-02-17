@@ -3,7 +3,7 @@ import defaultInstance from '@/apis/utils/defaultInstance';
 /**
  * 특정 유저 조회 api
  * @param {string} email
- * @returns usercode, userEmail
+ * @returns usercode, userEmail, regiDate
  * @author sohee
  */
 function getUserCheck(email) {
@@ -14,7 +14,7 @@ function getUserCheck(email) {
  * 유저 정보 수정 api
  * @param {string} email
  * @param {json}userInfo userEmail(string), password(string), role('ROLE_USER')
- * @returns userCode, userEmail
+ * @returns userEmail, role, regiDate
  * @author sohee
  */
 function getEditUserInfo(email, userInfo) {
@@ -23,27 +23,28 @@ function getEditUserInfo(email, userInfo) {
 
 /**
  * 유저 탈퇴 api
- * @param {string} email
- * @returns userCode, userEmail
+ * @param {string} userCode
+ * @returns userEmail, role, regiDate
  * @author sohee
  */
-function getDeleteUser(email) {
-	return defaultInstance.delete(`/api/v1/users/${email}`);
+function getDeleteUser(userCode) {
+	return defaultInstance.delete(`/api/v1/users/${userCode}`);
 }
 
 /**
- * 유저 목록 조회 api
- * @returns array{userCode, userEmail}
+ * 이메일 중복체크 api
+ * @param {string} email
+ * @returns boolean
  * @author sohee
  */
-function getUserList() {
-	return defaultInstance.get('/api/v1/users');
+function getCheckEmail(email) {
+	return defaultInstance.get(`/api/v1/users/email-duplication-check&email=${email}`);
 }
 
 /**
  * 회원가입 api
  * @param {json}userInfo userEmail(string), password(string), role('ROLE_USER')
- * @returns userCode, userEmail
+ * @returns userEmail, role, regiDate
  * @author sohee
  */
 function getSignUp(userInfo) {
@@ -77,7 +78,7 @@ const userApi = {
 	getUserCheck,
 	getEditUserInfo,
 	getDeleteUser,
-	getUserList,
+	getCheckEmail,
 	getSignUp,
 	getAccessToken,
 	getCheckAuthCode,

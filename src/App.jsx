@@ -6,7 +6,7 @@ function App() {
 	return (
 		<RecoilRoot>
 			<GlobalStyles />
-			<div className="App">
+			<div className="App" style={{ minWidth: '1920px' }}>
 				<Router />
 			</div>
 		</RecoilRoot>
