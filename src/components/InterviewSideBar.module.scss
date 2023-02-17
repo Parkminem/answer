@@ -26,6 +26,12 @@
 			&__span {
 				color: #c9c9c9;
 			}
+			&.selected {
+				.sidebar__select-box__default__span {
+					color: #333333;
+					font-weight: 700;
+				}
+			}
 		}
 		button {
 			width: 100%;

@@ -9,7 +9,9 @@ export default function Header() {
 		<header className={style.header}>
 			<div className={style.container}>
 				<div className={style.logo}>
-					<img src={logo} alt="logo" />
+					<Link to="/">
+						<img src={logo} alt="logo" />
+					</Link>
 				</div>
 				<div className={style.menu}>
 					<ul className={style.menu__left}>
