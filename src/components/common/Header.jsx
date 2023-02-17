@@ -4,7 +4,11 @@ import style from '@/components/common/Header.module.scss';
 import logo from '@/assets/images/common/main_logo.png';
 import NavBar from './NavBar';
 
-export default function Header() {
+export default function Header(props) {
+	const logoutHandler = () => {
+		window.localStorage.removeItem('user');
+		window.location.href = '/';
+	};
 	return (
 		<header className={style.header}>
 			<div className={style.container}>
@@ -23,12 +27,25 @@ export default function Header() {
 						</li>
 					</ul>
 					<ul className={style.menu__right}>
-						<li>
-							<Link to="/login">로그인</Link>
-						</li>
-						<li>
-							<Link to="/join">회원가입</Link>
-						</li>
+						{props.loginState ? (
+							<>
+								<li>
+									<a style={{ cursor: 'pointer' }} onClick={logoutHandler}>
+										로그아웃
+									</a>
+								</li>
+							</>
+						) : (
+							<>
+								<li>
+									<Link to="/login">로그인</Link>
+								</li>
+								<li>
+									<Link to="/join">회원가입</Link>
+								</li>
+							</>
+						)}
+
 						<li>
 							<a href="">고객센터</a>
 						</li>
