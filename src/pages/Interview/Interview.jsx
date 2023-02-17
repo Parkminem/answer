@@ -7,6 +7,7 @@ import Tendency from '@/components/Tendency';
 import InterviewBtns from '@/components/InterviewBtns';
 import InterviewEndBtns from '@/components/InterviewEndBtns';
 import styles from '@/pages/Interview/Interview.module.scss';
+import InterviewFrontPart from '@/components/InterviewFrontPart';
 
 const dummy01 = [
 	{ id: 6, text: '나는 타인과 대화하는 것에 어려움이 없다.' },
@@ -30,12 +31,13 @@ const Interview = () => {
 			<InterviewSideBar />
 			<div className={cx('container')}>
 				<InterviewProgressBar />
+				<InterviewFrontPart />
 				{/* 성향 설문 객관식 5개 */}
-				<div className={cx('tendency-wrap')}>
+				{/* <div className={cx('tendency-wrap')}>
 					{dummy01.map((item) => {
 						return <Tendency item={item} key={item.id} />;
 					})}
-				</div>
+				</div> */}
 				{/* 성향 설문 객관식 3개 */}
 				{/* <div className={cx('tendency-wrap')}>
 				{
