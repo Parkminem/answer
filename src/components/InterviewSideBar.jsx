@@ -10,23 +10,19 @@ const InterviewSideBar = ({ title }) => {
 	const [select, setSelect] = useState(false);
 	const [selectItem, setSelectItem] = useState('진단 항목을 선택해주세요.');
 	const [selected, setSelected] = useState(false);
-	const [interviewType, setInterviewType] = useState(null);
-	const [error, setError] = useState(null);
-	const [loding, setLoding] = useState(false);
+	const [interviewTypes, setInterviewTypes] = useState(null);
 
 	useEffect(() => {
 		const fetchTypes = async () => {
 			try {
-				setError(null);
-				setInterviewType(null);
-				setLoding(true);
+				setInterviewTypes(null);
 				const response = await interviewApi.getInterviewType();
-				setInterviewType(response.data);
-			} catch (e) {
-				setError(e);
+				setInterviewTypes(response.data);
+			} catch (error) {
+				console.log(error);
 			}
-			setLoding(false);
 		};
+		//인터뷰 타입들을 불러오는 함수
 		fetchTypes();
 	}, []);
 
@@ -41,8 +37,7 @@ const InterviewSideBar = ({ title }) => {
 		setSelect(false);
 	};
 
-	if (loding) return <div>로딩중..</div>;
-	if (error) return <div>에러가 발생했습니다</div>;
+	console.log(interviewTypes);
 
 	return (
 		<div className={cx('sidebar')}>
@@ -56,11 +51,11 @@ const InterviewSideBar = ({ title }) => {
 						<img src={dropdownImg} alt="드롭다운" />
 					</div>
 					<ul>
-						{interviewType &&
-							interviewType.map((type) => (
+						{interviewTypes &&
+							interviewTypes.map((type) => (
 								<li key={type.interviewTypeCode}>
-									<button onClick={selectedHandler}>
-										<span>{type.interviewType}</span>
+									<button data-object={type.interviewType} onClick={selectedHandler}>
+										<span data-object={type.interviewType}>{type.interviewType}</span>
 									</button>
 								</li>
 							))}
