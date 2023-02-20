@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styles from '@/components/EditPassword.module.scss';
 import AuthInput from '@/components/AuthInput';
 import userApi from '@/apis/api/user';
-import { userEmailState } from '@/store/auth';
+import { userEmailState, changPwState } from '@/store/auth';
 import { regx } from '@/modules/reg';
 
 const EditPassword = () => {
@@ -13,6 +13,7 @@ const EditPassword = () => {
 	const navigate = useNavigate();
 	const [newPassword, setNewPassword] = useState('');
 	const [checkPassword, setCheckPassword] = useState('');
+	const setChangePw = useSetRecoilState(changPwState);
 	const email = useRecoilValue(userEmailState);
 
 	const newPasswordHandler = (e) => {
@@ -41,6 +42,7 @@ const EditPassword = () => {
 					.getEditUserInfo(email, userInfo)
 					.then((res) => {
 						navigate('/login');
+						setChangePw(false);
 						window.localStorage.removeItem('user');
 					})
 					.catch((err) => console.log(err));
