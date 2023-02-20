@@ -38,18 +38,27 @@ const FindPassword = () => {
 	const sendCertificationNumber = async () => {
 		if (regx.emailValid(email)) {
 			await userApi
-				.getCheckAuthCode(email)
+				.getAccessToken(email)
 				.then((res) => {
-					const code = res.data.body.code;
-					if (code) {
-						setCheckNum(res.data.body.code);
-						setCount(179);
-						setFirstCheck(false);
-						setUserEmail(email);
-					}
+					const token = res.data.body.token;
+					window.localStorage.setItem('user', token);
+					userApi
+						.getCheckAuthCode(email)
+						.then((res) => {
+							const code = res.data.body.code;
+							if (code) {
+								setCheckNum(res.data.body.code);
+								setCount(179);
+								setFirstCheck(false);
+								setUserEmail(email);
+							}
+						})
+						.catch((err) => {
+							console.log(err);
+						});
 				})
 				.catch((err) => {
-					console.log(err);
+					alert('가입되지 않은 이메일입니다.');
 				});
 		} else {
 			alert('이메일을 정확히 입력해주세요.');

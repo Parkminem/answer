@@ -32,8 +32,6 @@ const EditPassword = () => {
 			} else if (!regx.passwordValid(newPassword)) {
 				alert('비밀번호는 영문, 숫자, 특수문자 포함 8 ~ 32자까지 입니다.');
 			} else {
-				const token = await (await userApi.getAccessToken(email)).data.body.token;
-				window.localStorage.setItem('user', token);
 				const userInfo = {
 					userEmail: email,
 					password: newPassword,

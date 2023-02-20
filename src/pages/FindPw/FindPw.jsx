@@ -20,6 +20,7 @@ const FindPw = () => {
 					setChangePw(false);
 					setCount(180);
 					setCheckNum('');
+					window.localStorage.removeItem('user');
 				}
 			},
 			[history],

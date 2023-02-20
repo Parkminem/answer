@@ -61,7 +61,7 @@ const Header = () => {
 					</ul>
 				</div>
 			</div>
-			<NavBar />
+			<NavBar token={token} />
 		</header>
 	);
 };
