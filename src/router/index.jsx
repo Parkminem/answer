@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import PrivateRouter from '@/router/PrivateRouter';
 import DefaultLayout from '@/layout/DefaultLayout';
 import PageLayout from '@/layout/PageLayout';
 import Home from '@/pages/Home/Home';
@@ -18,14 +19,16 @@ export default function Router() {
 			<Routes>
 				<Route path="/" element={<DefaultLayout />}>
 					<Route path="" element={<Home />} />
-					<Route path="interview" element={<Interview />} />
 				</Route>
-				<Route path="mypage" element={<PageLayout />}>
-					<Route path="feedback" element={<Feedback />} />
-					<Route path="modify" element={<Modify />} />
-					<Route path="diagnostic_history" element={<DiagnosticHistory />} />
-					<Route path="diagnostic_detail" element={<DiagnosticDetail />} />
-					<Route path="" />
+				<Route element={<PrivateRouter authentication={true} />}>
+					<Route path="interview" element={<Interview />} />
+					<Route path="mypage" element={<PageLayout />}>
+						<Route path="feedback" element={<Feedback />} />
+						<Route path="modify" element={<Modify />} />
+						<Route path="diagnostic_history" element={<DiagnosticHistory />} />
+						<Route path="diagnostic_detail" element={<DiagnosticDetail />} />
+						<Route path="" />
+					</Route>
 				</Route>
 				<Route path="login" element={<Login />} />
 				<Route path="join" element={<Join />} />
