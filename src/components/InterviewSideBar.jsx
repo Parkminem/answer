@@ -43,7 +43,6 @@ const InterviewSideBar = ({ title }) => {
 
 	if (loding) return <div>로딩중..</div>;
 	if (error) return <div>에러가 발생했습니다</div>;
-	if (!interviewType) return null;
 
 	return (
 		<div className={cx('sidebar')}>
@@ -57,33 +56,14 @@ const InterviewSideBar = ({ title }) => {
 						<img src={dropdownImg} alt="드롭다운" />
 					</div>
 					<ul>
-						{interviewType.map((type) => {
-							<li key={type.interviewTypeCode}>
-								<button onClick={selectedHandler}>
-									<span>{type.interviewType}</span>
-								</button>
-							</li>;
-						})}
-						{/* <li>
-							<button data-object="공무원" onClick={selectedHandler}>
-								<span data-object="공무원">공무원</span>
-							</button>
-						</li>
-						<li>
-							<button data-object="대학·입시" onClick={selectedHandler}>
-								<span data-object="대학·입시">대학·입시</span>
-							</button>
-						</li>
-						<li>
-							<button data-object="간호사" onClick={selectedHandler}>
-								<span data-object="간호사">간호사</span>
-							</button>
-						</li>
-						<li>
-							<button data-object="일반 면접" onClick={selectedHandler}>
-								<span data-object="일반 면접">일반 면접</span>
-							</button>
-						</li> */}
+						{interviewType &&
+							interviewType.map((type) => (
+								<li key={type.interviewTypeCode}>
+									<button onClick={selectedHandler}>
+										<span>{type.interviewType}</span>
+									</button>
+								</li>
+							))}
 					</ul>
 				</div>
 				<div className={cx('sidebar__info-box')}>
