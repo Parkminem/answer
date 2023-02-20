@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import style from '@/components/myPage/DiagnosticHistory.module.scss';
 import InterviewTab from '@/components/InterviewTab';
-import data from '@/data/data';
 import { useNavigate } from 'react-router-dom';
 import interviewApi from '@/apis/api/interview';
 
 export default function DiagnosticHistory() {
-	const tableData = data.diagnostic_detail;
 	const [empty, setEmpty] = useState(true);
 	const [list, setList] = useState();
 	const navigate = useNavigate();
 
-	const onDetail = () => {
-		navigate('/mypage/diagnostic_detail');
+	//상세 페이지로 이동
+	const detailHandler = (e) => {
+		const replyCode = e.target.dataset.code;
+		navigate(`/mypage/diagnostic_detail?code=${replyCode}`);
 	};
 
+	/**
+	 * 면접 내역 리스트 불러오기
+	 * @author sohee
+	 */
 	useEffect(() => {
 		const code = localStorage.getItem('code');
 		interviewApi
-			.getUserAnswerList(code)
+			.getUserAnswerList(1)
 			.then((res) => {
 				if (res.data === '') {
 					setEmpty(true);
@@ -30,6 +34,11 @@ export default function DiagnosticHistory() {
 			.catch((err) => console.log(err));
 	}, []);
 
+	/**
+	 * 날짜 표시 년,월,일 로 변경
+	 * @param {date객체} date
+	 * @returns yyyy년 mm월 dd일
+	 */
 	const formatDate = (date) => {
 		const yyyy = date.getFullYear();
 		const year = yyyy > 10 ? yyyy : `0${yyyy}`;
@@ -39,11 +48,13 @@ export default function DiagnosticHistory() {
 		const day = dd > 10 ? dd : `0${dd}`;
 		return `${year}년 ${month}월 ${day}일`;
 	};
+
 	return (
 		<>
 			<InterviewTab />
 			<div className={style.diagnostic_history}>
 				{!empty ? (
+					//리스트 있을 때
 					<table>
 						<thead>
 							<tr>
@@ -54,15 +65,22 @@ export default function DiagnosticHistory() {
 						<tbody>
 							{list.map((item) => {
 								return (
-									<tr key={item.interviewReplyCode} onClick={() => onDetail()}>
-										<td>{item.interviewType}</td>
-										<td>{formatDate(new Date(item.replyDate))}</td>
+									<tr
+										key={item.interviewReplyCode}
+										onClick={detailHandler}
+										data-code={item.interviewReplyCode}
+									>
+										<td data-code={item.interviewReplyCode}>{item.interviewType}</td>
+										<td data-code={item.interviewReplyCode}>
+											{formatDate(new Date(item.replyDate))}
+										</td>
 									</tr>
 								);
 							})}
 						</tbody>
 					</table>
 				) : (
+					//리스트 없을 때
 					<>
 						<table>
 							<thead>

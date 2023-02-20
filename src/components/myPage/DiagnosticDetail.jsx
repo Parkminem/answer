@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import style from '@/components/myPage/DiagnosticDetail.module.scss';
-import InterviewTab from '../InterviewTab';
-import DiagnosticContent from './DiagnosticContent';
+import InterviewTab from '@/components/InterviewTab';
+import DiagnosticContent from '@/components/myPage/DiagnosticContent';
+import interviewApi from '@/apis/api/interview';
 
 export default function DiagnosticDetail() {
+	const [searchParams] = useSearchParams();
+	const [answer, setAnswer] = useState();
+
+	useEffect(() => {
+		const code = searchParams.get('code');
+		interviewApi
+			.getDetailAnswer(code)
+			.then((res) => {
+				setAnswer(res.data);
+			})
+			.catch((err) => console.log(err));
+	}, []);
 	return (
 		<>
 			<InterviewTab />
@@ -16,7 +30,7 @@ export default function DiagnosticDetail() {
 						</ul>
 						<div className={style.content_info}>
 							<h2 className={style.auth}>작성자 &nbsp; | &nbsp; 김앤써</h2>
-							<h2 className={style.date}>작성일 &nbsp; | &nbsp; 2023.01.01</h2>
+							<h2 className={style.date}>작성일 &nbsp; | &nbsp; 2020년 10월 10일</h2>
 						</div>
 					</div>
 					<hr width="100%" />
@@ -25,9 +39,16 @@ export default function DiagnosticDetail() {
 						<button>주소복사</button>
 					</div>
 					<div className={style.content_box}>
-						<DiagnosticContent number={1} title={'1분 자기 소개'} value={'자기 소개!'} />
-						<DiagnosticContent number={2} title={'성격의 장단점'} value={'성격의 장단점!'} />
-						<DiagnosticContent number={3} title={'향후 포부'} value={'향후 포부!'} />
+						{answer.map((item, idx) => {
+							return (
+								<DiagnosticContent
+									key={idx}
+									number={idx + 1}
+									title={item.questionContent}
+									value={item.interviewReplyContent}
+								/>
+							);
+						})}
 					</div>
 				</div>
 			</div>
