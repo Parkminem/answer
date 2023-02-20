@@ -7,7 +7,7 @@ import defaultInstance from '@/apis/utils/defaultInstance';
  * @author sohee
  */
 function getUserAnswerList(userCode) {
-	return defaultInstance.get(`/api/v1/users/${userCode}/interview-replies`);
+	return defaultInstance.get(`/api/v1/users/${encodeURIComponent(userCode)}/interview-replies`);
 }
 
 /**

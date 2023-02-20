@@ -19,15 +19,16 @@ export default function Router() {
 			<Routes>
 				<Route path="/" element={<DefaultLayout />}>
 					<Route path="" element={<Home />} />
+					<Route element={<PrivateRouter authentication={true} />}>
+						<Route path="/interview" element={<Interview />} />
+					</Route>
 				</Route>
 				<Route element={<PrivateRouter authentication={true} />}>
-					<Route path="interview" element={<Interview />} />
 					<Route path="mypage" element={<PageLayout />}>
 						<Route path="feedback" element={<Feedback />} />
 						<Route path="modify" element={<Modify />} />
 						<Route path="diagnostic_history" element={<DiagnosticHistory />} />
 						<Route path="diagnostic_detail" element={<DiagnosticDetail />} />
-						<Route path="" />
 					</Route>
 				</Route>
 				<Route path="login" element={<Login />} />
