@@ -19,7 +19,7 @@ export default function NavBar(props) {
 			<div className={style.container}>
 				<ul className={style.menu}>
 					<li>
-						<a onClick={() => naviHandler('interview')}>면접 진단하기</a>
+						<a onClick={() => naviHandler('/interview')}>면접 진단하기</a>
 					</li>
 					<li>
 						<a href="">커뮤니티</a>

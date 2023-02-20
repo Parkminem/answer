@@ -11,7 +11,7 @@ const Tendency = ({ item }) => {
 				<p>{item.text}</p>
 			</div>
 			<div className={cx('tendency-select-box')}>
-				<span className={cx('agree')}>동의</span>
+				<span className={cx('agree')}>매우 그렇다</span>
 				<ul>
 					<li>
 						<span className={cx('hidden')}></span>
@@ -46,24 +46,10 @@ const Tendency = ({ item }) => {
 						<button>
 							<span></span>
 						</button>
-						<span></span>
-					</li>
-					<li>
-						<span></span>
-						<button>
-							<span></span>
-						</button>
-						<span></span>
-					</li>
-					<li>
-						<span></span>
-						<button>
-							<span></span>
-						</button>
 						<span className={cx('hidden')}></span>
 					</li>
 				</ul>
-				<span className={cx('disagree')}>비동의</span>
+				<span className={cx('disagree')}>매우 그렇지 않다</span>
 			</div>
 		</div>
 	);
