@@ -4,11 +4,18 @@ import style from '@/components/common/Header.module.scss';
 import logo from '@/assets/images/common/main_logo.png';
 import NavBar from './NavBar';
 
-const Header = (props) => {
+const Header = () => {
+	const { pathname } = useLocation();
+	let token = window.localStorage.getItem('user');
+
 	const logoutHandler = () => {
 		window.localStorage.removeItem('user');
 		window.location.href = '/';
 	};
+
+	useEffect(() => {
+		token = window.localStorage.getItem('user');
+	}, [pathname]);
 	return (
 		<header className={style.header}>
 			<div className={style.container}>
@@ -27,7 +34,7 @@ const Header = (props) => {
 						</li>
 					</ul>
 					<ul className={style.menu__right}>
-						{props.loginState ? (
+						{token ? (
 							<>
 								<li>
 									<a style={{ cursor: 'pointer' }} onClick={logoutHandler}>

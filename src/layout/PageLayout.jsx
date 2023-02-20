@@ -7,18 +7,9 @@ import SectionCard from '@/components/UI/SectionCard';
 import { Outlet } from 'react-router-dom';
 
 export default function PageLayout() {
-	const [isLoggedIn, setIsLoggedIn] = useState();
-	useEffect(() => {
-		const token = localStorage.getItem('user');
-		if (token) {
-			setIsLoggedIn(true);
-		} else {
-			setIsLoggedIn(false);
-		}
-	}, [isLoggedIn]);
 	return (
 		<>
-			<Header loginState={isLoggedIn} />
+			<Header />
 			<PageCard>
 				<SideBar />
 				<SectionCard>
