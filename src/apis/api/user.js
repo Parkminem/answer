@@ -12,13 +12,13 @@ function getUserCheck(email) {
 
 /**
  * 유저 정보 수정 api
- * @param {string} email
+ * @param {string} userCode
  * @param {json}userInfo userEmail(string), password(string), role('ROLE_USER')
  * @returns userEmail, role, regiDate
  * @author sohee
  */
-function getEditUserInfo(email, userInfo) {
-	return defaultInstance.put(`/api/v1/users/${encodeURIComponent(email)}`, userInfo);
+function getEditUserInfo(userCode, userInfo) {
+	return defaultInstance.put(`/api/v1/users/${userCode}`, userInfo);
 }
 
 /**

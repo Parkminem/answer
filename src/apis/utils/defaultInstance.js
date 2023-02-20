@@ -6,12 +6,9 @@ const defaultInstance = axios.create({ baseURL: 'http://210.99.35.26:7071', 'Con
 
 defaultInstance.interceptors.request.use(
 	function (config) {
-		const accToken = localStorage.getItem('user');
-		if (accToken) {
-			const token = JSON.parse(accToken).token;
-			if (token) {
-				config.headers['Authorization'] = `Bearer ${token}`;
-			}
+		const token = localStorage.getItem('user');
+		if (token) {
+			config.headers['Authorization'] = `Bearer ${token}`;
 		}
 		return config;
 	},

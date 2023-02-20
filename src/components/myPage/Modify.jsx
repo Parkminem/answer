@@ -6,9 +6,8 @@ import { regx } from '@/modules/reg';
 export default function Modify() {
 	const [password, setPassword] = useState('');
 	const [newPassword, setNewPassword] = useState('');
+	const code = window.localStorage.getItem('code');
 	const email = window.localStorage.getItem('user_mail');
-
-	console.log(JSON.parse(email));
 	const passwordHandler = (e) => {
 		setPassword(e.target.value);
 	};
@@ -30,7 +29,7 @@ export default function Modify() {
 					password,
 				};
 				await userApi
-					.getEditUserInfo(email, userInfo)
+					.getEditUserInfo(code, userInfo)
 					.then((res) => {
 						console.log(res);
 					})
