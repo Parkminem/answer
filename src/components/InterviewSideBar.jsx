@@ -2,12 +2,33 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from '@/components/InterviewSideBar.module.scss';
 import dropdownImg from '@/assets/images/common/dropdown.png';
+import interviewApi from '@/apis/api/interview';
+import { useEffect } from 'react';
 
 const InterviewSideBar = ({ title }) => {
 	const cx = classNames.bind(styles);
 	const [select, setSelect] = useState(false);
 	const [selectItem, setSelectItem] = useState('진단 항목을 선택해주세요.');
 	const [selected, setSelected] = useState(false);
+	const [interviewType, setInterviewType] = useState(null);
+	const [error, setError] = useState(null);
+	const [loding, setLoding] = useState(false);
+
+	useEffect(() => {
+		const fetchTypes = async () => {
+			try {
+				setError(null);
+				setInterviewType(null);
+				setLoding(true);
+				const response = await interviewApi.getInterviewType();
+				setInterviewType(response.data);
+			} catch (e) {
+				setError(e);
+			}
+			setLoding(false);
+		};
+		fetchTypes();
+	}, []);
 
 	//셀렉트바 열고닫는함수
 	const selectHandler = () => {
@@ -19,6 +40,11 @@ const InterviewSideBar = ({ title }) => {
 		setSelected(true);
 		setSelect(false);
 	};
+
+	if (loding) return <div>로딩중..</div>;
+	if (error) return <div>에러가 발생했습니다</div>;
+	if (!interviewType) return null;
+
 	return (
 		<div className={cx('sidebar')}>
 			<div className={cx('sidebar-wrap')}>
@@ -31,7 +57,14 @@ const InterviewSideBar = ({ title }) => {
 						<img src={dropdownImg} alt="드롭다운" />
 					</div>
 					<ul>
-						<li>
+						{interviewType.map((type) => {
+							<li key={type.interviewTypeCode}>
+								<button onClick={selectedHandler}>
+									<span>{type.interviewType}</span>
+								</button>
+							</li>;
+						})}
+						{/* <li>
 							<button data-object="공무원" onClick={selectedHandler}>
 								<span data-object="공무원">공무원</span>
 							</button>
@@ -50,7 +83,7 @@ const InterviewSideBar = ({ title }) => {
 							<button data-object="일반 면접" onClick={selectedHandler}>
 								<span data-object="일반 면접">일반 면접</span>
 							</button>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 				<div className={cx('sidebar__info-box')}>
