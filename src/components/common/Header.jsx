@@ -1,10 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import style from '@/components/common/Header.module.scss';
 import logo from '@/assets/images/common/main_logo.png';
 import NavBar from './NavBar';
 
-export default function Header() {
+const Header = () => {
+	const { pathname } = useLocation();
+	let token = window.localStorage.getItem('user');
+
+	const logoutHandler = () => {
+		window.localStorage.removeItem('user');
+		window.localStorage.removeItem('user_mail');
+		window.localStorage.removeItem('code');
+		window.location.href = '/';
+	};
+
+	useEffect(() => {
+		token = window.localStorage.getItem('user');
+	}, [pathname]);
 	return (
 		<header className={style.header}>
 			<div className={style.container}>
@@ -18,17 +31,30 @@ export default function Header() {
 						<li>
 							<a href="">세움스피치학원</a>
 						</li>
-						<a href="">
-							<li>회사소개</li>
-						</a>
+						<li>
+							<a href="">회사소개</a>
+						</li>
 					</ul>
 					<ul className={style.menu__right}>
-						<li>
-							<Link to="/login">로그인</Link>
-						</li>
-						<li>
-							<Link to="/join">회원가입</Link>
-						</li>
+						{token ? (
+							<>
+								<li>
+									<a style={{ cursor: 'pointer' }} onClick={logoutHandler}>
+										로그아웃
+									</a>
+								</li>
+							</>
+						) : (
+							<>
+								<li>
+									<Link to="/login">로그인</Link>
+								</li>
+								<li>
+									<Link to="/join">회원가입</Link>
+								</li>
+							</>
+						)}
+
 						<li>
 							<a href="">고객센터</a>
 						</li>
@@ -38,4 +64,5 @@ export default function Header() {
 			<NavBar />
 		</header>
 	);
-}
+};
+export default React.memo(Header);

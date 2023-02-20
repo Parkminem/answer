@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from '@/pages/Join/Join.module.scss';
 import AuthInput from '@/components/AuthInput';
@@ -8,11 +9,12 @@ import userApi from '@/apis/api/user';
 
 const Join = () => {
 	const cx = classNames.bind(styles);
+	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [pwCheck, setPwCheck] = useState('');
-	const [emailCheck, setEmailCheck] = useState(true);
-	const [opacity, setOpacity] = useState(100);
+	const [emailCheck, setEmailCheck] = useState(false);
+	const [opacity, setOpacity] = useState(0);
 	const emailRef = useRef();
 
 	useEffect(() => {
@@ -26,6 +28,10 @@ const Join = () => {
 	 */
 	const emailHandler = (e) => {
 		setEmail(e.target.value);
+		if (emailCheck) {
+			setEmailCheck(false);
+			setOpacity(0);
+		}
 	};
 	const passwordHandler = (e) => {
 		setPassword(e.target.value);
@@ -49,7 +55,7 @@ const Join = () => {
 			return false;
 		}
 		if (password !== pwCheck) {
-			alert('비밀번호가 동일하지 않습니다.');
+			alert('비밀번호가 일치하지 않습니다.');
 			return false;
 		}
 		if (!emailCheck) {
@@ -59,37 +65,36 @@ const Join = () => {
 		if (email.length === 0 || password.length === 0 || pwCheck.length === 0) {
 			alert('모든 칸을 입력해주세요');
 			return false;
-		} else {
-			const form = document.getElementById('form');
-			const formData = new FormData(form);
-			formData.append('role', 'ROLE_USER');
-			await userApi
-				.getSignUp(formData)
-				.then((res) => {
-					console.log(res);
-					//200 받으면... 어디로?
-				})
-				.catch((err) => {
-					//에러 코드 확인해서.. alert 띄워야하는지..?
-				});
 		}
+		const formData = {
+			userEmail: email,
+			password: password,
+		};
+		await userApi
+			.getSignUp(formData)
+			.then((res) => {
+				if (res.status === 201) {
+					navigate('/login', { replace: true });
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	//중복 확인 함수... api가 없음(유저 목록 조회api가 있는데 이건 모든 유저 목록을 받아오는 듯..?)
 	const emailDuplicate = async (e) => {
-		e.preventDefault();
-		setEmail(encodeURIComponent(email));
+		setEmail(email);
 		await userApi
 			.getCheckEmail(email)
 			.then((res) => {
-				console.log(res);
-				// if (res.data) {
-				// 	setEmailCheck(true);
-				// 	setOpacity(100);
-				// } else {
-				// 	setEmailCheck(false);
-				// 	setOpacity(100);
-				// }
+				if (res.data) {
+					setEmailCheck(true);
+					setOpacity(100);
+				} else {
+					setEmailCheck(false);
+					setOpacity(100);
+				}
 			})
 			.catch((err) => console.log(err));
 	};
@@ -107,7 +112,7 @@ const Join = () => {
 								onChange={emailHandler}
 								ref={emailRef}
 							/>
-							<button onClick={emailDuplicate}>
+							<button onClick={emailDuplicate} type="button">
 								<span>중복 확인</span>
 							</button>
 							<div className={cx('usable')} style={{ opacity: opacity }}>
@@ -119,7 +124,12 @@ const Join = () => {
 							</div>
 						</div>
 						<AuthInput type="password" placeholder="비밀번호" name="password" onChange={passwordHandler} />
-						<AuthInput type="password" placeholder="비밀번호 확인" onChange={pwCheckHandler} />
+						<AuthInput
+							type="password"
+							placeholder="비밀번호 확인"
+							onChange={pwCheckHandler}
+							onSubmit={joinHandler}
+						/>
 						<div className={cx('join__form-box__btn-box')}>
 							<button onClick={joinHandler}>
 								<span>회원가입</span>

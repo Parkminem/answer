@@ -18,7 +18,7 @@ function getUserCheck(email) {
  * @author sohee
  */
 function getEditUserInfo(email, userInfo) {
-	return defaultInstance.put(`/api/v1/users/${email}`, userInfo);
+	return defaultInstance.put(`/api/v1/users/${encodeURIComponent(email)}`, userInfo);
 }
 
 /**
@@ -38,7 +38,7 @@ function getDeleteUser(userCode) {
  * @author sohee
  */
 function getCheckEmail(email) {
-	return defaultInstance.get(`/api/v1/users/email-duplication-check&email=${email}`);
+	return defaultInstance.get(`/api/v1/users/email-duplication-check?email=${encodeURIComponent(email)}`);
 }
 
 /**
@@ -71,7 +71,7 @@ function getAccessToken(email) {
  * @author sohee
  */
 function getCheckAuthCode(email) {
-	return defaultInstance.get(`/api/v1/users/auth-code&email=${email}`);
+	return defaultInstance.get(`/api/v1/users/auth-code?email=${email}`);
 }
 
 const userApi = {

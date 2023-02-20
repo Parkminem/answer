@@ -9,12 +9,18 @@ import styles from '@/components/AuthInput.module.scss';
 const AuthInput = React.forwardRef((props, ref) => {
 	const cx = classNames.bind(styles);
 	const [focusing, setFocusing] = useState(false);
+	const enterDown = (e) => {
+		if (e.key === 'Enter') {
+			props.onSubmit();
+		}
+	};
 	return (
 		<div className={cx('input-box', focusing ? 'focus' : '')}>
 			<input
 				{...props}
 				className={styles.input}
 				onChange={props.onChange}
+				onKeyDown={() => enterDown}
 				ref={ref}
 				onFocus={() => setFocusing(true)}
 				onBlur={() => setFocusing(false)}
