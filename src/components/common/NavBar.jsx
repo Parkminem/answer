@@ -1,15 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import style from '@/components/common/NavBar.module.scss';
 import img01 from '@/assets/images/image/menu.png';
 
-export default function NavBar() {
+export default function NavBar(props) {
+	const navigate = useNavigate();
+
+	const naviHandler = (path) => {
+		if (props.token) navigate(path);
+		else {
+			alert('로그인 후 이용가능합니다.');
+			navigate('/login');
+		}
+	};
+
 	return (
 		<nav className={style.nav_bar}>
 			<div className={style.container}>
 				<ul className={style.menu}>
 					<li>
-						<Link to="/interview">면접 진단하기</Link>
+						<a onClick={() => naviHandler('interview')}>면접 진단하기</a>
 					</li>
 					<li>
 						<a href="">커뮤니티</a>
@@ -21,7 +31,7 @@ export default function NavBar() {
 						<a href="">나의 피드백</a>
 					</li>
 					<li>
-						<Link to="/mypage/modify">마이페이지</Link>
+						<a onClick={() => naviHandler('/mypage/modify')}>마이페이지</a>
 					</li>
 					<li className={style.all}>
 						<img src={img01} alt="" />
