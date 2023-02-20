@@ -27,7 +27,8 @@ const FindPassword = () => {
 		setEmail(e.target.value);
 	};
 	const certificationNumberHandler = (e) => {
-		setNum(e.target.value);
+		const trimNum = e.target.value.trim();
+		setNum(trimNum);
 	};
 
 	/**
@@ -39,13 +40,16 @@ const FindPassword = () => {
 			await userApi
 				.getCheckAuthCode(email)
 				.then((res) => {
-					setCount(179);
-					setCheckNum('res.인증번호');
-					setUserEmail(email);
-					//res 한번 오면 firstCheck 변경(false)
+					const code = res.data.body.code;
+					if (code) {
+						setCheckNum(res.data.body.code);
+						setCount(179);
+						setFirstCheck(false);
+						setUserEmail(email);
+					}
 				})
 				.catch((err) => {
-					//어떻게 오는지 보고 alert 띄우면 되나..?
+					console.log(err);
 				});
 		} else {
 			alert('이메일을 정확히 입력해주세요.');
@@ -57,17 +61,20 @@ const FindPassword = () => {
 	 * @author sohee
 	 */
 	const confirmCertificationNumber = () => {
-		setChangePw(true);
-		// if (num === checkNum) {
-		// 	if (userEmail === email) {
-		// 		// 회원정보 수정 페이지로 이동?
-		// 	} else {
-		// 		//유저가 인증번호를 발송하고, 메일 주소를 변경한 후, 인증번호 확인을 눌렀을 때
-		// 		alert('메일주소를 다시 확인해주세요.');
-		// 	}
-		// } else {
-		// 	alert('인증번호가 일치하지 않습니다.');
-		// }
+		if (count === 0) {
+			alert('인증번호를 재발송 해주세요.');
+		} else {
+			if (num === checkNum) {
+				if (userEmail === email) {
+					setChangePw(true);
+				} else {
+					//유저가 인증번호를 발송하고, 메일 주소를 변경한 후, 인증번호 확인을 눌렀을 때
+					alert('이메일을 확인해주세요.');
+				}
+			} else {
+				alert('인증번호가 일치하지 않습니다.');
+			}
+		}
 	};
 	return (
 		<>

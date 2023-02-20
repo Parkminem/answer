@@ -7,18 +7,18 @@ import defaultInstance from '@/apis/utils/defaultInstance';
  * @author sohee
  */
 function getUserCheck(email) {
-	return defaultInstance.get(`/api/v1/users/${email}`);
+	return defaultInstance.get(`/api/v1/users/${encodeURIComponent(email)}`);
 }
 
 /**
  * 유저 정보 수정 api
- * @param {string} userCode
+ * @param {string} userCode(또는 이메일)
  * @param {json}userInfo userEmail(string), password(string), role('ROLE_USER')
  * @returns userEmail, role, regiDate
  * @author sohee
  */
 function getEditUserInfo(userCode, userInfo) {
-	return defaultInstance.put(`/api/v1/users/${userCode}`, userInfo);
+	return defaultInstance.put(`/api/v1/users/${encodeURIComponent(userCode)}`, userInfo);
 }
 
 /**
@@ -59,7 +59,7 @@ function getSignUp(userInfo) {
  * @author sohee
  */
 function getAccessToken(email) {
-	return defaultInstance.get(`/api/v1/users/${email}/token`);
+	return defaultInstance.get(`/api/v1/users/${encodeURIComponent(email)}/token`);
 }
 
 /**
@@ -71,7 +71,7 @@ function getAccessToken(email) {
  * @author sohee
  */
 function getCheckAuthCode(email) {
-	return defaultInstance.get(`/api/v1/users/auth-code?email=${email}`);
+	return defaultInstance.get(`/api/v1/users/auth-code?email=${encodeURIComponent(email)}`);
 }
 
 const userApi = {

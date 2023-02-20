@@ -2,10 +2,13 @@ import React, { useRef, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Link, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+import { useSetRecoilState, useRecoilState } from 'recoil';
+import { history } from '@/router/history';
 import styles from '@/pages/Login/Login.module.scss';
 import AuthCard from '@/components/UI/AuthCard';
 import AuthInput from '@/components/AuthInput';
 import authApi from '@/apis/api/auth';
+import { timerState, certificationNumberState, changPwState } from '@/store/auth';
 
 const Login = () => {
 	const cx = classNames.bind(styles);
@@ -14,10 +17,27 @@ const Login = () => {
 	const pwRef = useRef();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const setCount = useSetRecoilState(timerState);
+	const setCheckNum = useSetRecoilState(certificationNumberState);
+	const [changePw, setChangePw] = useRecoilState(changPwState);
 
 	useEffect(() => {
 		idRef.current.focus();
 	}, []);
+
+	useEffect(() => {
+		const listen = history.listen(
+			(location) => {
+				if (history.action === 'POP') {
+					setChangePw(false);
+					setCount(180);
+					setCheckNum('');
+				}
+			},
+			[history],
+		);
+		return () => listen();
+	}, [history]);
 
 	const emailHandler = (e) => {
 		setEmail(e.target.value);

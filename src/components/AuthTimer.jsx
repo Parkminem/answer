@@ -24,7 +24,7 @@ const AuthTimer = () => {
 				return () => clearInterval(counter);
 			} else if (count === 0) {
 				resetNumber();
-				setCount(180);
+				// setCount(180);
 			}
 		}
 	}, [count]);
