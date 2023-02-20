@@ -21,17 +21,24 @@ defaultInstance.interceptors.response.use(
 		return res;
 	},
 	function (err) {
-		if (err.response?.data.status === 401) {
-			authApi
-				.getRefresh()
-				.then((res) => {
-					const token = res.data.body.token;
-					const decoded = jwt_decode(token);
-					window.localStorage.setItem('user', token);
-					window.localStorage.setItem('code', decoded.code);
-					window.localStorage.setItem('user_mail', decoded.sub);
-				})
-				.catch((err) => console.log(err));
+		const token = localStorage.getItem('user');
+		if (token) {
+			if (err.response?.data.status === 401) {
+				authApi
+					.getRefresh()
+					.then((res) => {
+						const token = res.data.body.token;
+						const decoded = jwt_decode(token);
+						window.localStorage.setItem('user', token);
+						window.localStorage.setItem('code', decoded.code);
+						window.localStorage.setItem('user_mail', decoded.sub);
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			} else {
+				return Promise.reject(err);
+			}
 		} else {
 			return Promise.reject(err);
 		}

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import style from '@/components/myPage/Modify.module.scss';
 import userApi from '@/apis/api/user';
 import { regx } from '@/modules/reg';
 
 export default function Modify() {
+	const navigate = useNavigate();
 	const [password, setPassword] = useState('');
 	const [newPassword, setNewPassword] = useState('');
 	const code = window.localStorage.getItem('code');
@@ -31,7 +33,10 @@ export default function Modify() {
 				await userApi
 					.getEditUserInfo(code, userInfo)
 					.then((res) => {
-						console.log(res);
+						if (res.status === 201) {
+							alert('비밀번호가 수정되었습니다.');
+							navigate('/');
+						}
 					})
 					.catch((err) => {
 						console.log(err);
