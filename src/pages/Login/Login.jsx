@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Link, useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 import styles from '@/pages/Login/Login.module.scss';
 import AuthCard from '@/components/UI/AuthCard';
 import AuthInput from '@/components/AuthInput';
@@ -39,7 +40,10 @@ const Login = () => {
 			.getLogin(formData)
 			.then((res) => {
 				const token = res.data.body.token;
+				const decoded = jwt_decode(token);
+				window.localStorage.setItem('user_mail', decoded.sub);
 				window.localStorage.setItem('user', token);
+				window.localStorage.setItem('code', decoded.code);
 				navigate('/');
 			})
 			.catch((err) => {

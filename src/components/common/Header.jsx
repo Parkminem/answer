@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import style from '@/components/common/Header.module.scss';
 import logo from '@/assets/images/common/main_logo.png';
@@ -10,6 +10,8 @@ const Header = () => {
 
 	const logoutHandler = () => {
 		window.localStorage.removeItem('user');
+		window.localStorage.removeItem('user_mail');
+		window.localStorage.removeItem('code');
 		window.location.href = '/';
 	};
 

@@ -18,7 +18,7 @@ function getUserCheck(email) {
  * @author sohee
  */
 function getEditUserInfo(email, userInfo) {
-	return defaultInstance.put(`/api/v1/users/${email}`, userInfo);
+	return defaultInstance.put(`/api/v1/users/${encodeURIComponent(email)}`, userInfo);
 }
 
 /**
