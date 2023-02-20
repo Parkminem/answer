@@ -12,13 +12,13 @@ function getUserCheck(email) {
 
 /**
  * 유저 정보 수정 api
- * @param {string} email
+ * @param {string} userCode
  * @param {json}userInfo userEmail(string), password(string), role('ROLE_USER')
  * @returns userEmail, role, regiDate
  * @author sohee
  */
-function getEditUserInfo(email, userInfo) {
-	return defaultInstance.put(`/api/v1/users/${email}`, userInfo);
+function getEditUserInfo(userCode, userInfo) {
+	return defaultInstance.put(`/api/v1/users/${userCode}`, userInfo);
 }
 
 /**
@@ -38,7 +38,7 @@ function getDeleteUser(userCode) {
  * @author sohee
  */
 function getCheckEmail(email) {
-	return defaultInstance.get(`/api/v1/users/email-duplication-check&email=${email}`);
+	return defaultInstance.get(`/api/v1/users/email-duplication-check?email=${encodeURIComponent(email)}`);
 }
 
 /**
@@ -71,7 +71,7 @@ function getAccessToken(email) {
  * @author sohee
  */
 function getCheckAuthCode(email) {
-	return defaultInstance.get(`/api/v1/users/auth-code&email=${email}`);
+	return defaultInstance.get(`/api/v1/users/auth-code?email=${email}`);
 }
 
 const userApi = {

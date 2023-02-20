@@ -11,12 +11,12 @@ const AuthCard = ({ children }) => {
 			<div className={cx('auth-box')}>
 				<div className={cx('auth-box__tap-box')}>
 					<div className={cx('auth-box__tap-box__login-box', pathname === '/login' ? 'active' : '')}>
-						<Link to="/login">
+						<Link to="/login" replace>
 							<span>Login</span>
 						</Link>
 					</div>
 					<div className={cx('auth-box__tap-box__join-box', pathname === '/join' ? 'active' : '')}>
-						<Link to="/join">
+						<Link to="/join" replace>
 							<span>Join</span>
 						</Link>
 					</div>

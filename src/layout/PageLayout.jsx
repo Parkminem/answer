@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import PageCard from '@/components/UI/PageCard';
