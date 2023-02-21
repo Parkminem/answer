@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import style from '@/components/InterviewFrontPart.module.scss';
 
-export default function InterviewFrontPart() {
+export default function InterviewFrontPart({ typeDetail }) {
 	return (
 		<div className={style.front_part}>
 			<div className={style.question}>
-				<span className={style.question_number}>Q5.</span>
-				<span className={style.question_sentence}>&nbsp;입사후 포부</span>
+				<span className={style.question_number}>
+					{typeDetail && typeDetail.responseInterviewQuestions[0].sequence}.
+				</span>
+				<span className={style.question_sentence}>
+					&nbsp;{typeDetail && typeDetail.responseInterviewQuestions[0].questionContent}
+				</span>
 			</div>
 			<div className={style.textarea_box}>
 				<form action="">

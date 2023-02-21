@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import styles from '@/components/InterviewSideBar.module.scss';
 import dropdownImg from '@/assets/images/common/dropdown.png';
 
-const InterviewSideBar = ({ title }) => {
+const InterviewSideBar = ({ title, types, typeDetail, fetchTypeDetail }) => {
 	const cx = classNames.bind(styles);
 	const [select, setSelect] = useState(false);
 	const [selectItem, setSelectItem] = useState('진단 항목을 선택해주세요.');
@@ -18,7 +18,15 @@ const InterviewSideBar = ({ title }) => {
 		setSelectItem(e.target.dataset.object);
 		setSelected(true);
 		setSelect(false);
+
+		types.map((type) => {
+			if (type.interviewType === e.target.dataset.object) {
+				const typeCode = type.interviewTypeCode;
+				fetchTypeDetail(typeCode);
+			}
+		});
 	};
+
 	return (
 		<div className={cx('sidebar')}>
 			<div className={cx('sidebar-wrap')}>
@@ -31,35 +39,25 @@ const InterviewSideBar = ({ title }) => {
 						<img src={dropdownImg} alt="드롭다운" />
 					</div>
 					<ul>
-						<li>
-							<button data-object="공무원" onClick={selectedHandler}>
-								<span data-object="공무원">공무원</span>
-							</button>
-						</li>
-						<li>
-							<button data-object="대학·입시" onClick={selectedHandler}>
-								<span data-object="대학·입시">대학·입시</span>
-							</button>
-						</li>
-						<li>
-							<button data-object="간호사" onClick={selectedHandler}>
-								<span data-object="간호사">간호사</span>
-							</button>
-						</li>
-						<li>
-							<button data-object="일반 면접" onClick={selectedHandler}>
-								<span data-object="일반 면접">일반 면접</span>
-							</button>
-						</li>
+						{types &&
+							types.map((type) => (
+								<li key={type.interviewTypeCode}>
+									<button data-object={type.interviewType} onClick={selectedHandler}>
+										<span data-object={type.interviewType}>{type.interviewType}</span>
+									</button>
+								</li>
+							))}
 					</ul>
 				</div>
 				<div className={cx('sidebar__info-box')}>
 					<div className={cx('sidebar__info-box__count')}>
-						<span className={cx('now')}>{title.count}</span>
+						<span className={cx('now')}>
+							{typeDetail && typeDetail.responseInterviewQuestions[0].sequence.slice(1)}
+						</span>
 						<span>/</span>
 						<span>38</span>
 					</div>
-					<h2>{title.text}</h2>
+					<h2>{typeDetail && typeDetail.responseInterviewQuestions[0].questionContent}</h2>
 					<div className={cx('sidebar__info-box__test-box')}>
 						<h3>면접 진단 테스트</h3>
 						<p>나의 면접 예상점수는 몇 점일까?</p>
