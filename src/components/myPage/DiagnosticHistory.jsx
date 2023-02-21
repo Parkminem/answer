@@ -12,7 +12,13 @@ export default function DiagnosticHistory() {
 	//상세 페이지로 이동
 	const detailHandler = (e) => {
 		const replyCode = e.target.dataset.code;
-		navigate(`/mypage/diagnostic_detail?code=${replyCode}`);
+		const type = e.target.dataset.type;
+		const date = e.target.dataset.date;
+		navigate(
+			`/mypage/diagnostic_detail?code=${replyCode}&type=${encodeURIComponent(type)}&date=${encodeURIComponent(
+				date,
+			)}`,
+		);
 	};
 
 	/**
@@ -69,9 +75,21 @@ export default function DiagnosticHistory() {
 										key={item.interviewReplyCode}
 										onClick={detailHandler}
 										data-code={item.interviewReplyCode}
+										data-type={item.interviewType}
+										data-date={item.replyDate}
 									>
-										<td data-code={item.interviewReplyCode}>{item.interviewType}</td>
-										<td data-code={item.interviewReplyCode}>
+										<td
+											data-code={item.interviewReplyCode}
+											data-type={item.interviewType}
+											data-date={item.replyDate}
+										>
+											{item.interviewType}
+										</td>
+										<td
+											data-code={item.interviewReplyCode}
+											data-type={item.interviewType}
+											data-date={item.replyDate}
+										>
 											{formatDate(new Date(item.replyDate))}
 										</td>
 									</tr>
