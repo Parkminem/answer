@@ -7,8 +7,8 @@ const Tendency = ({ item }) => {
 	return (
 		<div className={cx('tendency')}>
 			<div className={cx('tendency-question')}>
-				<span className={cx('tendency-question__num')}>Q{item.id}.</span>
-				<p>{item.text}</p>
+				<span className={cx('tendency-question__num')}>{item.sequence}.</span>
+				<p>{item.measure}</p>
 			</div>
 			<div className={cx('tendency-select-box')}>
 				<span className={cx('agree')}>동의</span>
