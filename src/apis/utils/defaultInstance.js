@@ -6,18 +6,19 @@ const defaultInstance = axios.create({ baseURL: 'http://210.99.35.26:7071', 'Con
 
 const getRefreshToken = async () => {
 	try {
-		const newToken = await authApi.getRefresh();
-		const token = await newToken.data.body.token;
+		const {
+			data: { token },
+		} = await authApi.getRefresh();
 		const decoded = await jwt_decode(token);
-		window.localStorage.setItem('user', token);
-		window.localStorage.setItem('code', decoded.code);
-		window.localStorage.setItem('user_mail', decoded.sub);
+		localStorage.setItem('user', token);
+		localStorage.setItem('code', decoded.code);
+		localStorage.setItem('user_mail', decoded.sub);
 		return token;
 	} catch (err) {
 		if (err.response.header.code === 500) {
-			window.localStorage.removeItem('user');
-			window.localStorage.removeItem('code');
-			window.localStorage.removeItem('user_mail');
+			localStorage.removeItem('user');
+			localStorage.removeItem('code');
+			localStorage.removeItem('user_mail');
 			alert('로그아웃 되었습니다. 다시 로그인 해주세요.');
 			window.location.href = '/';
 		}
