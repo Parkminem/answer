@@ -35,7 +35,12 @@ const Feedback = () => {
 					setSentence(contents[3].keySentence);
 					setWords(contents[4].wordFreq);
 				})
-				.catch((err) => console.log(err));
+				.catch((err) => {
+					if (err.response.status === 500) {
+						alert('피드백이 존재하지 않습니다.');
+						navigate(-1);
+					}
+				});
 		}
 		getFeedback();
 	}, []);

@@ -12,6 +12,7 @@ const Header = () => {
 		window.localStorage.removeItem('user');
 		window.localStorage.removeItem('user_mail');
 		window.localStorage.removeItem('code');
+		window.localStorage.removeItem('exp');
 		window.location.href = '/';
 	};
 

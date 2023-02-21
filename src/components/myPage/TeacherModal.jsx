@@ -45,7 +45,7 @@ const ModalOverlay = (props) => {
 		<div className={cx('modal')}>
 			<div className={cx('modal-wrap')}>
 				<div className={cx('modal__close')}>
-					<button onClick={() => console.log('click')}>
+					<button>
 						<img src={closeIcon} alt="닫기" onClick={props.onConfirm} />
 					</button>
 				</div>

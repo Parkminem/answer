@@ -29,7 +29,7 @@ export default function DiagnosticHistory() {
 		const code = localStorage.getItem('code');
 		async function getHistory() {
 			await interviewApi
-				.getUserAnswerList(1)
+				.getUserAnswerList(code)
 				.then((res) => {
 					if (res.data === '') {
 						setEmpty(true);
@@ -38,7 +38,7 @@ export default function DiagnosticHistory() {
 						setEmpty(false);
 					}
 				})
-				.catch((err) => console.log(err));
+				.catch((err) => {});
 		}
 		getHistory();
 	}, []);
@@ -111,13 +111,13 @@ export default function DiagnosticHistory() {
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>-</td>
-									<td>-</td>
+								<tr style={{ cursor: 'default' }}>
+									<td style={{ cursor: 'default' }}>-</td>
+									<td style={{ cursor: 'default' }}>-</td>
 								</tr>
-								<tr>
-									<td>-</td>
-									<td>-</td>
+								<tr style={{ cursor: 'default' }}>
+									<td style={{ cursor: 'default' }}>-</td>
+									<td style={{ cursor: 'default' }}>-</td>
 								</tr>
 							</tbody>
 						</table>

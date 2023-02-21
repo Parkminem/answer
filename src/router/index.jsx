@@ -13,7 +13,7 @@ import ScrollToTop from '@/router/ScrollTop';
 const Feedback = React.lazy(() => import('@/components/myPage/Feedback'));
 const DiagnosticHistory = React.lazy(() => import('@/components/myPage/DiagnosticHistory'));
 const DiagnosticDetail = React.lazy(() => import('@/components/myPage/DiagnosticDetail'));
-const Interview = React.lazy(() => import('@/pages/Interview'));
+const Interview = React.lazy(() => import('@/pages/Interview/Interview'));
 
 export default function Router() {
 	return (
@@ -65,7 +65,9 @@ export default function Router() {
 				<Route path="login" element={<Login />} />
 				<Route path="join" element={<Join />} />
 				<Route path="findpassword" element={<FindPw />} />
-				<Route path="*" element={<Home />} />
+				<Route path="/" element={<DefaultLayout />}>
+					<Route path="*" element={<Home />} />
+				</Route>
 			</Routes>
 		</BrowserRouter>
 	);
