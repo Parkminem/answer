@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import style from '@/components/myPage/DiagnosticDetail.module.scss';
 import InterviewTab from '@/components/InterviewTab';
 import DiagnosticContent from '@/components/myPage/DiagnosticContent';
@@ -7,8 +7,10 @@ import interviewApi from '@/apis/api/interview';
 import { formatDate } from '@/modules/date';
 
 export default function DiagnosticDetail() {
+	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 	const [answer, setAnswer] = useState();
+	const [replyCode, setReplyCode] = useState();
 	const [date, setDate] = useState();
 	const [type, setType] = useState();
 
@@ -16,15 +18,26 @@ export default function DiagnosticDetail() {
 		const code = searchParams.get('code');
 		const queryDate = searchParams.get('date');
 		const queryType = searchParams.get('type');
-		interviewApi
-			.getDetailAnswer(code)
-			.then((res) => {
-				setType(queryType);
-				setDate(formatDate(new Date(queryDate)));
-				setAnswer(res.data);
-			})
-			.catch((err) => console.log(err));
+		async function getDetail() {
+			await interviewApi
+				.getDetailAnswer(code)
+				.then((res) => {
+					setType(queryType);
+					setDate(formatDate(new Date(queryDate)));
+					setAnswer(res.data);
+					setReplyCode(code);
+				})
+				.catch((err) => console.log(err));
+		}
+		getDetail();
 	}, []);
+
+	/**
+	 * 피드백 페이지로 이동
+	 */
+	const feedbackHandler = () => {
+		navigate(`/mypage/feedback?code=${replyCode}&type=${type}&date=${encodeURIComponent(date)}`);
+	};
 	return (
 		<>
 			<InterviewTab title="면접 진단 내용" />
@@ -59,7 +72,7 @@ export default function DiagnosticDetail() {
 							})}
 					</div>
 					<div className={style['feedback-btn-box']}>
-						<button>
+						<button onClick={feedbackHandler}>
 							<span>면접 피드백&nbsp;&nbsp;&nbsp;&nbsp;&gt;</span>
 						</button>
 					</div>

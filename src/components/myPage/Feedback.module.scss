@@ -117,6 +117,10 @@ $listColors: (#065a9b, #1173c3, #1983d8, #2193e9, #3cabff);
 			&.top3 {
 				p {
 					line-height: 2;
+					span {
+						display: inline-block;
+						margin-right: 4px;
+					}
 				}
 			}
 			p {

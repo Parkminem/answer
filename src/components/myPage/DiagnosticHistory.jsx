@@ -27,17 +27,20 @@ export default function DiagnosticHistory() {
 	 */
 	useEffect(() => {
 		const code = localStorage.getItem('code');
-		interviewApi
-			.getUserAnswerList(1)
-			.then((res) => {
-				if (res.data === '') {
-					setEmpty(true);
-				} else {
-					setList(res.data);
-					setEmpty(false);
-				}
-			})
-			.catch((err) => console.log(err));
+		async function getHistory() {
+			await interviewApi
+				.getUserAnswerList(1)
+				.then((res) => {
+					if (res.data === '') {
+						setEmpty(true);
+					} else {
+						setList(res.data);
+						setEmpty(false);
+					}
+				})
+				.catch((err) => console.log(err));
+		}
+		getHistory();
 	}, []);
 
 	/**

@@ -12,10 +12,12 @@ import Modify from '@/components/myPage/Modify';
 import DiagnosticHistory from '@/components/myPage/DiagnosticHistory';
 import DiagnosticDetail from '@/components/myPage/DiagnosticDetail';
 import Interview from '@/pages/Interview/Interview';
+import ScrollToTop from '@/router/ScrollTop';
 
 export default function Router() {
 	return (
 		<BrowserRouter>
+			<ScrollToTop />
 			<Routes>
 				<Route path="/" element={<DefaultLayout />}>
 					<Route path="" element={<Home />} />
