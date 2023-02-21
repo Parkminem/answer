@@ -57,7 +57,7 @@ export default function DiagnosticHistory() {
 
 	return (
 		<>
-			<InterviewTab />
+			<InterviewTab title="면접 진단 내역" />
 			<div className={style.diagnostic_history}>
 				{!empty ? (
 					//리스트 있을 때

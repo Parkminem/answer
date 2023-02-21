@@ -4,12 +4,18 @@ $listColors: (#065a9b, #1173c3, #1983d8, #2193e9, #3cabff);
 	box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.06);
 	border-radius: 0px 0px 4px 4px;
 	padding: 70px 0 50px 0;
+	position: relative;
 	&-inner {
 		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		margin: 0 100px;
+	}
+	&__arrow-box {
+		position: absolute;
+		left: 45px;
+		top: 49px;
 	}
 	&__title-box {
 		text-align: center;

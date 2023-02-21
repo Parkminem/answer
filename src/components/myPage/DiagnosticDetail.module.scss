@@ -6,7 +6,7 @@
 	margin-bottom: 112px;
 
 	.container {
-		margin: 48px 107px;
+		margin: 48px 107px 115px 107px;
 
 		p {
 			font-weight: 400;
@@ -74,7 +74,23 @@
 			}
 		}
 		.content_box {
-			margin: 20px 0 231px 0;
+			margin: 20px 0 60px 0;
+		}
+	}
+}
+.feedback-btn-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	button {
+		background-color: #312fd2;
+		border-radius: 28px;
+		width: 190px;
+		height: 56px;
+		span {
+			font-weight: 700;
+			font-size: 20px;
+			color: #ffffff;
 		}
 	}
 }

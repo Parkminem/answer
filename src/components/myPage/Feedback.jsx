@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import styles from '@/components/myPage/Feedback.module.scss';
 import InterviewTab from '@/components/InterviewTab';
 import TeacherModal from '@/components/myPage/TeacherModal';
+import arrow from '@/assets/images/common/arrow_left_02.png';
 
 const Feedback = () => {
 	const cx = classNames.bind(styles);
@@ -16,9 +17,14 @@ const Feedback = () => {
 	};
 	return (
 		<>
-			<InterviewTab />
+			<InterviewTab title="면접 진단 내용" />
 			{modal && <TeacherModal onConfirm={onClose} />}
 			<section className={cx('feedback')}>
+				<div className={cx('feedback__arrow-box')}>
+					<button>
+						<img src={arrow} alt="이전" />
+					</button>
+				</div>
 				<div className={cx('feedback-inner')}>
 					<div className={cx('feedback__title-box')}>
 						<h1>면접 진단 테스트</h1>

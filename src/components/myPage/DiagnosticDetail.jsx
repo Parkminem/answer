@@ -4,27 +4,13 @@ import style from '@/components/myPage/DiagnosticDetail.module.scss';
 import InterviewTab from '@/components/InterviewTab';
 import DiagnosticContent from '@/components/myPage/DiagnosticContent';
 import interviewApi from '@/apis/api/interview';
+import { formatDate } from '@/modules/date';
 
 export default function DiagnosticDetail() {
 	const [searchParams] = useSearchParams();
 	const [answer, setAnswer] = useState();
 	const [date, setDate] = useState();
 	const [type, setType] = useState();
-
-	/**
-	 * 날짜 표시 년,월,일 로 변경
-	 * @param {date객체} date
-	 * @returns yyyy.mm.dd
-	 */
-	const formatDate = (date) => {
-		const yyyy = date.getFullYear();
-		const year = yyyy > 10 ? yyyy : `0${yyyy}`;
-		const mm = 1 + date.getMonth();
-		const month = mm > 10 ? mm : `0${mm}`;
-		const dd = date.getDate();
-		const day = dd > 10 ? dd : `0${dd}`;
-		return `${year}.${month}.${day}`;
-	};
 
 	useEffect(() => {
 		const code = searchParams.get('code');
@@ -41,7 +27,7 @@ export default function DiagnosticDetail() {
 	}, []);
 	return (
 		<>
-			<InterviewTab />
+			<InterviewTab title="면접 진단 내용" />
 			<div className={style.diagnostic}>
 				<div className={style.container}>
 					<p>이전에 작성한 면접 진단 내용을 확인할 수 있습니다.</p>
@@ -71,6 +57,11 @@ export default function DiagnosticDetail() {
 									/>
 								);
 							})}
+					</div>
+					<div className={style['feedback-btn-box']}>
+						<button>
+							<span>면접 피드백&nbsp;&nbsp;&nbsp;&nbsp;&gt;</span>
+						</button>
 					</div>
 				</div>
 			</div>

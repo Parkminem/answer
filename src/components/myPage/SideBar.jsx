@@ -43,17 +43,17 @@ const SideBar = () => {
 							<Link to="modify">
 								<span>회원 정보</span>
 							</Link>
-							<ul className={cx('sidebar__gnb__depth02')}>
+							{/* <ul className={cx('sidebar__gnb__depth02')}>
 								<li className={cx(pathname === '/mypage/modify' ? 'active' : '')}>
 									<Link to="modify">· 회원 정보 수정</Link>
 								</li>
-							</ul>
+							</ul> */}
 						</li>
 						<li className={cx('sidebar__gnb__depth01', interviewTap() ? 'active' : '')}>
 							<Link to="diagnostic_history">
 								<span>면접 진단 내역</span>
 							</Link>
-							<ul className={cx('sidebar__gnb__depth02')}>
+							{/* <ul className={cx('sidebar__gnb__depth02')}>
 								<li
 									className={cx(
 										pathname === '/mypage/diagnostic_history' ||
@@ -71,7 +71,7 @@ const SideBar = () => {
 										<span>· 면접 피드백</span>
 									</Link>
 								</li>
-							</ul>
+							</ul> */}
 						</li>
 					</ul>
 				</div>
