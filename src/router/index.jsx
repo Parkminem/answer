@@ -7,12 +7,13 @@ import Home from '@/pages/Home/Home';
 import Login from '@/pages/Login/Login';
 import Join from '@/pages/Join/Join';
 import FindPw from '@/pages/FindPw/FindPw';
-import Feedback from '@/components/myPage/Feedback';
 import Modify from '@/components/myPage/Modify';
-import DiagnosticHistory from '@/components/myPage/DiagnosticHistory';
-import DiagnosticDetail from '@/components/myPage/DiagnosticDetail';
-import Interview from '@/pages/Interview/Interview';
 import ScrollToTop from '@/router/ScrollTop';
+
+const Feedback = React.lazy(() => import('@/components/myPage/Feedback'));
+const DiagnosticHistory = React.lazy(() => import('@/components/myPage/DiagnosticHistory'));
+const DiagnosticDetail = React.lazy(() => import('@/components/myPage/DiagnosticDetail'));
+const Interview = React.lazy(() => import('@/pages/Interview'));
 
 export default function Router() {
 	return (
@@ -22,15 +23,43 @@ export default function Router() {
 				<Route path="/" element={<DefaultLayout />}>
 					<Route path="" element={<Home />} />
 					<Route element={<PrivateRouter authentication={true} />}>
-						<Route path="/interview" element={<Interview />} />
+						<Route
+							path="/interview"
+							element={
+								<React.Suspense fallback={<div></div>}>
+									<Interview />
+								</React.Suspense>
+							}
+						/>
 					</Route>
 				</Route>
 				<Route element={<PrivateRouter authentication={true} />}>
 					<Route path="mypage" element={<PageLayout />}>
-						<Route path="feedback" element={<Feedback />} />
+						<Route
+							path="feedback"
+							element={
+								<React.Suspense fallback={<div></div>}>
+									<Feedback />
+								</React.Suspense>
+							}
+						/>
 						<Route path="modify" element={<Modify />} />
-						<Route path="diagnostic_history" element={<DiagnosticHistory />} />
-						<Route path="diagnostic_detail" element={<DiagnosticDetail />} />
+						<Route
+							path="diagnostic_history"
+							element={
+								<React.Suspense fallback={<div></div>}>
+									<DiagnosticHistory />
+								</React.Suspense>
+							}
+						/>
+						<Route
+							path="diagnostic_detail"
+							element={
+								<React.Suspense fallback={<div></div>}>
+									<DiagnosticDetail />
+								</React.Suspense>
+							}
+						/>
 					</Route>
 				</Route>
 				<Route path="login" element={<Login />} />

@@ -114,25 +114,23 @@ const Feedback = () => {
 					</div>
 					<div className={cx('feedback__sentence-box')}>
 						<h3>답변 리스트</h3>
-						<div className={cx('feedback__sentence-box__desc')}>
-							{sentence &&
-								sentence.map((item, idx) => {
-									return (
-										<>
-											<p key={idx}>
-												<span className={cx('num')}>01.</span>
-												{item[0] + 1}번째 면접 질문의 {item[1] + 1}번째 문단입니다.
+						{sentence &&
+							sentence.map((item, idx) => {
+								return (
+									<div className={cx('feedback__sentence-box__desc')} key={idx}>
+										<p>
+											<span className={cx('num')}>01.</span>
+											{item[0] + 1}번째 면접 질문의 {item[1] + 1}번째 문단입니다.
+										</p>
+										<div className={cx('feedback__sentence-box__sentence')}>
+											<p>
+												<span className={cx('num', 'point')}>핵심 문장 ▶</span>
+												{item[2]}
 											</p>
-											<div className={cx('feedback__sentence-box__sentence')}>
-												<p>
-													<span className={cx('num', 'point')}>핵심 문장 ▶</span>
-													{item[2]}
-												</p>
-											</div>
-										</>
-									);
-								})}
-						</div>
+										</div>
+									</div>
+								);
+							})}
 					</div>
 				</div>
 			</section>
