@@ -3,3 +3,9 @@
 	flex-direction: column;
 	width: 74%;
 }
+
+@media all and (max-width: 401px) {
+	.container {
+		width: 100%;
+	}
+}

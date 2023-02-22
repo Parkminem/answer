@@ -18,7 +18,6 @@ const InterviewSkeleton = () => {
 			setSelected(false);
 		}
 	}, [type]);
-
 	return (
 		<PageCard>
 			<div className={cx('sidebar')}>

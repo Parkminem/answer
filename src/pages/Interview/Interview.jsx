@@ -46,7 +46,6 @@ const Interview = () => {
 			console.log(error);
 		}
 	};
-
 	return (
 		<PageCard>
 			<InterviewSideBar typeDetail={typeDetail} types={interviewTypes} fetchTypeDetail={fetchTypeDetail} />

@@ -8,7 +8,6 @@ export default function DiagnosticHistory() {
 	const [empty, setEmpty] = useState(true);
 	const [list, setList] = useState();
 	const navigate = useNavigate();
-
 	//상세 페이지로 이동
 	const detailHandler = (e) => {
 		const replyCode = e.target.dataset.code;

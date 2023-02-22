@@ -10,6 +10,7 @@ const InterviewSideBar = ({ title, types, typeDetail, fetchTypeDetail }) => {
 	const [select, setSelect] = useState(false);
 	const [selectItem, setSelectItem] = useState('진단 항목을 선택해주세요.');
 	const [selected, setSelected] = useState(false);
+	//스켈레톤 타입 atom set
 	const setTypeState = useSetRecoilState(typeState);
 
 	//셀렉트바 열고닫는함수
@@ -21,12 +22,12 @@ const InterviewSideBar = ({ title, types, typeDetail, fetchTypeDetail }) => {
 		setSelectItem(e.target.dataset.object);
 		setSelected(true);
 		setSelect(false);
-
+		//스켈레톤 타입
+		setTypeState(e.target.dataset.object);
 		types.map((type) => {
 			if (type.interviewType === e.target.dataset.object) {
 				const typeCode = type.interviewTypeCode;
 				fetchTypeDetail(typeCode);
-				setTypeState(typeCode);
 			}
 		});
 	};
