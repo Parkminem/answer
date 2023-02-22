@@ -29,3 +29,26 @@
 		}
 	}
 }
+
+@media all and (max-width: 400px) {
+	.input-box {
+		height: 52px;
+		border-radius: 2px;
+		padding: 0 16px;
+		border: 1px solid #dadada;
+		background: #ffffff;
+		&:not(&:last-child) {
+			margin-bottom: 8px;
+		}
+		input {
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 20px;
+			&::placeholder {
+				font-weight: 500;
+				font-size: 14px;
+				line-height: 20px;
+			}
+		}
+	}
+}
