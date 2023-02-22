@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { useRecoilState, useSetRecoilState } from 'recoil';
+import { Link } from 'react-router-dom';
 import styles from '@/components/FindPassword.module.scss';
 import AuthInput from '@/components/AuthInput';
 import AuthTimer from '@/components/AuthTimer';
 import { regx } from '@/modules/reg';
 import userApi from '@/apis/api/user';
 import { timerState, certificationNumberState, userEmailState, changPwState } from '@/store/auth';
+import logo from '@/assets/images/mobile/common/mobile_logo.png';
 
 const FindPassword = () => {
 	const [count, setCount] = useRecoilState(timerState);
@@ -87,6 +89,11 @@ const FindPassword = () => {
 	};
 	return (
 		<>
+			<div className={cx('mobile', 'logo')}>
+				<Link to="/">
+					<img src={logo} alt="로고" />
+				</Link>
+			</div>
 			<div className={cx('find__title-box')}>
 				<h1>비밀번호 찾기</h1>
 			</div>
