@@ -8,6 +8,7 @@ import Login from '@/pages/Login/Login';
 import Join from '@/pages/Join/Join';
 import FindPw from '@/pages/FindPw/FindPw';
 import Modify from '@/components/myPage/Modify';
+import InterviewSkeleton from '@/components/UI/InterviewSkeleton';
 import ScrollToTop from '@/router/ScrollTop';
 
 const Feedback = React.lazy(() => import('@/components/myPage/Feedback'));
@@ -26,9 +27,7 @@ export default function Router() {
 						<Route
 							path="/interview"
 							element={
-								<React.Suspense
-									fallback={<div style={{ minHeight: 'calc(100vh - 234px - 262px)' }}></div>}
-								>
+								<React.Suspense fallback={<InterviewSkeleton />}>
 									<Interview />
 								</React.Suspense>
 							}

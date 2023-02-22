@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useSetRecoilState } from 'recoil';
 import styles from '@/components/InterviewSideBar.module.scss';
 import dropdownImg from '@/assets/images/common/dropdown.png';
+import { typeState } from '@/store/interview';
 
 const InterviewSideBar = ({ title, types, typeDetail, fetchTypeDetail }) => {
 	const cx = classNames.bind(styles);
 	const [select, setSelect] = useState(false);
 	const [selectItem, setSelectItem] = useState('진단 항목을 선택해주세요.');
 	const [selected, setSelected] = useState(false);
+	const setTypeState = useSetRecoilState(typeState);
 
 	//셀렉트바 열고닫는함수
 	const selectHandler = () => {
@@ -23,6 +26,7 @@ const InterviewSideBar = ({ title, types, typeDetail, fetchTypeDetail }) => {
 			if (type.interviewType === e.target.dataset.object) {
 				const typeCode = type.interviewTypeCode;
 				fetchTypeDetail(typeCode);
+				setTypeState(typeCode);
 			}
 		});
 	};
