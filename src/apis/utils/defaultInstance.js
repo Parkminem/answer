@@ -7,13 +7,13 @@ const defaultInstance = axios.create({ baseURL: 'http://210.99.35.26:7071', 'Con
 const getRefreshToken = async () => {
 	try {
 		const {
-			data: { token },
+			data: { body },
 		} = await authApi.getRefresh();
-		const decoded = await jwt_decode(token);
-		localStorage.setItem('user', token);
+		const decoded = await jwt_decode(body.token);
+		localStorage.setItem('user', body.token);
 		localStorage.setItem('code', decoded.code);
 		localStorage.setItem('user_mail', decoded.sub);
-		return token;
+		return body.token;
 	} catch (err) {
 		if (err.response.header.code === 500) {
 			localStorage.removeItem('user');
@@ -57,47 +57,3 @@ defaultInstance.interceptors.response.use(
 	},
 );
 export default defaultInstance;
-
-// defaultInstance.interceptors.response.use(
-// 	function (res) {
-// 		return res;
-// 	},
-// 	function (err) {
-// 		const { config } = err;
-// 		const token = localStorage.getItem('user');
-// 		if (token) {
-// 			if (err.response?.data.status === 401) {
-// 				authApi
-// 					.getRefresh()
-// 					.then((res) => {
-// 						const token = res.data.body.token;
-// 						const decoded = jwt_decode(token);
-// 						window.localStorage.setItem('user', token);
-// 						window.localStorage.setItem('code', decoded.code);
-// 						window.localStorage.setItem('user_mail', decoded.sub);
-// 					})
-// 					.catch((err) => {
-// 						if (err.response.header.code == 500) {
-// 							window.localStorage.removeItem('user');
-// 							window.localStorage.removeItem('code');
-// 							window.localStorage.removeItem('user_mail');
-// 							alert('로그아웃 되었습니다. 다시 로그인 해주세요.');
-// 							window.location.href = '/';
-// 						}
-// 					});
-// 			} else if (err.response?.header.code == 500) {
-// 				window.localStorage.removeItem('user');
-// 				window.localStorage.removeItem('code');
-// 				window.localStorage.removeItem('user_mail');
-// 				alert('로그아웃 되었습니다. 다시 로그인 해주세요.');
-// 				window.location.href = '/';
-// 			} else {
-// 				return Promise.reject(err, '토큰 있음');
-// 			}
-// 		} else {
-// 			//토큰이 없는 상황(로그인 X)
-// 			return Promise.reject(err);
-// 		}
-// 		return defaultInstance;
-// 	},
-// );
