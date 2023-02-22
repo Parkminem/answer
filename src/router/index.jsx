@@ -26,7 +26,9 @@ export default function Router() {
 						<Route
 							path="/interview"
 							element={
-								<React.Suspense fallback={<div></div>}>
+								<React.Suspense
+									fallback={<div style={{ minHeight: 'calc(100vh - 234px - 262px)' }}></div>}
+								>
 									<Interview />
 								</React.Suspense>
 							}
