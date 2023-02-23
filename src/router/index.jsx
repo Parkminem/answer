@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import PrivateRouter from '@/router/PrivateRouter';
 import DefaultLayout from '@/layout/DefaultLayout';
 import PageLayout from '@/layout/PageLayout';
+import InterviewLayout from '@/layout/InterviewLayout';
 import Home from '@/pages/Home/Home';
 import Login from '@/pages/Login/Login';
 import Join from '@/pages/Join/Join';
@@ -23,9 +24,11 @@ export default function Router() {
 			<Routes>
 				<Route path="/" element={<DefaultLayout />}>
 					<Route path="" element={<Home />} />
-					<Route element={<PrivateRouter authentication={true} />}>
+				</Route>
+				<Route element={<PrivateRouter authentication={true} />}>
+					<Route path="interview" element={<InterviewLayout />}>
 						<Route
-							path="/interview"
+							path=""
 							element={
 								<React.Suspense fallback={<InterviewSkeleton />}>
 									<Interview />
@@ -33,8 +36,6 @@ export default function Router() {
 							}
 						/>
 					</Route>
-				</Route>
-				<Route element={<PrivateRouter authentication={true} />}>
 					<Route path="mypage" element={<PageLayout />}>
 						<Route
 							path="feedback"
