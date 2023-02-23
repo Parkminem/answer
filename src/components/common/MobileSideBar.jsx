@@ -74,7 +74,7 @@ const MobileSideBar = () => {
 						<li className={cx('side-bar__list__depth01')}>
 							<a onClick={dropdownHandler}>
 								<span>마이페이지</span>
-								<img src={down} alt="마이페이지" />
+								<img src={down} alt="마이페이지" className={cx(slide ? 'rotate' : '')} />
 							</a>
 							<ul className={cx('side-bar__list__depth02', slide ? 'open' : '')}>
 								<li>
