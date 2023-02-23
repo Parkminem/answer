@@ -30,7 +30,7 @@
 	}
 	&__profile-box {
 		display: flex;
-		align-items: flex-end;
+		align-items: center;
 		margin-bottom: 39px;
 		&__img-box {
 			position: relative;
@@ -50,16 +50,42 @@
 				border-radius: 100%;
 			}
 		}
-		h1 {
-			color: #333333;
-			font-weight: 500;
-			font-size: 16px;
-			line-height: 23px;
-			strong {
-				font-weight: 700;
-				font-size: 24px;
-				line-height: 35px;
-				margin-right: 8px;
+		&__text-box {
+			h1 {
+				color: #333333;
+				font-weight: 500;
+				font-size: 16px;
+				line-height: 23px;
+				margin-bottom: 7px;
+				strong {
+					font-weight: 700;
+					font-size: 24px;
+					line-height: 35px;
+					margin-right: 8px;
+				}
+			}
+			h2 {
+				color: #333333;
+				font-weight: 400;
+				font-size: 20px;
+				line-height: 29px;
+				margin-bottom: 13px;
+			}
+			button {
+				background: #f5f5f5;
+				border: 1px solid #c9c9c9;
+				border-radius: 10px;
+				width: 63px;
+				height: 21px;
+				&.login {
+					width: 53px;
+				}
+				span {
+					color: #999999;
+					font-weight: 500;
+					font-size: 12px;
+					line-height: 17px;
+				}
 			}
 		}
 	}

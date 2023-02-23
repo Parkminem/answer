@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import classNames from 'classnames/bind';
 import styles from '@/components/common/MobileSideBar.module.scss';
@@ -7,8 +7,8 @@ import logo from '@/assets/images/mobile/common/mobile_side_logo.png';
 import user from '@/assets/images/mobile/common/mobile_side_user.png';
 import editIcon from '@/assets/images/mobile/common/mobile_side_edit_icon.png';
 import go from '@/assets/images/mobile/common/mobile_side_go.png';
-import up from '@/assets/images/mobile/common/mobile_side_up.png';
 import down from '@/assets/images/mobile/common/mobile_side_down.png';
+import noUser from '@/assets/images/mobile/common/mobile_no_user.png';
 import { mobileSidebarState } from '@/store/style';
 
 const MobileSideBar = () => {
@@ -16,7 +16,16 @@ const MobileSideBar = () => {
 	const [slide, setSlide] = useState(false);
 	const [onOff, setOnOff] = useRecoilState(mobileSidebarState);
 	const { pathname } = useLocation();
+	const navigate = useNavigate();
+	let token = window.localStorage.getItem('user');
 
+	const logoutHandler = () => {
+		window.localStorage.removeItem('user');
+		window.localStorage.removeItem('user_mail');
+		window.localStorage.removeItem('code');
+		window.localStorage.removeItem('exp');
+		window.location.href = '/';
+	};
 	useEffect(() => {
 		setOnOff(false);
 	}, [pathname]);
@@ -34,17 +43,43 @@ const MobileSideBar = () => {
 						<img src={logo} alt="더 앤써" />
 					</Link>
 				</div>
-				<div className={cx('side-bar__profile-box')}>
-					<div className={cx('side-bar__profile-box__img-box')}>
-						<img src={user} alt="유저 이미지" />
-						<button>
-							<img src={editIcon} alt="수정" />
-						</button>
+				{token ? (
+					<div className={cx('side-bar__profile-box')}>
+						<div className={cx('side-bar__profile-box__img-box')}>
+							<img src={user} alt="유저 이미지" />
+							<button>
+								<img src={editIcon} alt="수정" />
+							</button>
+						</div>
+						<div className={cx('side-bar__profile-box__text-box')}>
+							<h1>
+								<strong>김앤써</strong>님
+							</h1>
+							<button onClick={logoutHandler}>
+								<span>로그아웃</span>
+							</button>
+						</div>
 					</div>
-					<h1>
-						<strong>김앤써</strong>님
-					</h1>
-				</div>
+				) : (
+					<div className={cx('side-bar__profile-box')}>
+						<div className={cx('side-bar__profile-box__img-box')}>
+							<img src={noUser} alt="유저 이미지" />
+							<button>
+								<img src={editIcon} alt="수정" />
+							</button>
+						</div>
+						<div className={cx('side-bar__profile-box__text-box')}>
+							<h2>로그인을 해주세요.</h2>
+							<button className={cx('login')} onClick={() => navigate('/login')}>
+								<span>로그인</span>
+							</button>
+							<button onClick={() => navigate('/join')}>
+								<span>회원가입</span>
+							</button>
+						</div>
+					</div>
+				)}
+
 				<nav className={cx('side-bar__gnb')}>
 					<ul className={cx('side-bar__list')}>
 						<li className={cx('side-bar__list__depth01')}>
