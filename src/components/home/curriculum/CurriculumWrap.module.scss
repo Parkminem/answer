@@ -5,3 +5,10 @@
 	flex-direction: column;
 	align-items: center;
 }
+
+@media all and (max-width: 400px) {
+	.curriculum-wrap {
+		padding: 40px 0 48px 0;
+		align-items: flex-start;
+	}
+}

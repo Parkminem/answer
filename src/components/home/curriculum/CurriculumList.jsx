@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '@/components/home/curriculum/CurriculumList.module.scss';
 import classNames from 'classnames/bind';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.min.css';
 import curriculum01 from '@/assets/images/image/curriculum01.png';
 import curriculum02 from '@/assets/images/image/curriculum02.png';
 import curriculum03 from '@/assets/images/image/curriculum03.png';
@@ -61,27 +63,57 @@ const info = [
 
 const CurriculumList = () => {
 	const cx = classNames.bind(styles);
+	const width = window.innerWidth;
+	const [mobile, setMobile] = useState(width);
+
+	const swiperParams = {
+		centeredSlides: true,
+		centerInsufficientSlides: true,
+		slidesPerView: 3,
+	};
 	return (
 		<div className={cx('curriculum-list-box')}>
-			<ul className={cx('curriculum-list-box__list')}>
-				{info.map((i) => {
-					return (
-						<li key={i.id} className={cx('curriculum-list-box__item')}>
-							<div
-								className={cx('curriculum-list-box__item__wrap')}
-								style={{ backgroundImage: `url(${i.bg})` }}
-							>
-								<div className={cx('curriculum-list-box__item__text-box')}>
-									<span className={cx('onoff')}>{i.onoff}</span>
-									<p>{i.text01}</p>
-									<p>{i.text02}</p>
-									<span className={cx('period')}>{i.period}</span>
+			{mobile < 401 ? (
+				<Swiper className={cx('swiper-list')} {...swiperParams}>
+					{info.map((i) => {
+						return (
+							<SwiperSlide key={i.id} className={cx('swiper-list__slide')}>
+								<div
+									className={cx('swiper-list__slide-box')}
+									style={{ backgroundImage: `url(${i.bg})` }}
+								>
+									<div className={cx('swiper-list__slide-box__text-box')}>
+										<span className={cx('onoff')}>{i.onoff}</span>
+										<p>{i.text01}</p>
+										<p>{i.text02}</p>
+										<span className={cx('period')}>{i.period}</span>
+									</div>
 								</div>
-							</div>
-						</li>
-					);
-				})}
-			</ul>
+							</SwiperSlide>
+						);
+					})}
+				</Swiper>
+			) : (
+				<ul className={cx('curriculum-list-box__list')}>
+					{info.map((i) => {
+						return (
+							<li key={i.id} className={cx('curriculum-list-box__item')}>
+								<div
+									className={cx('curriculum-list-box__item__wrap')}
+									style={{ backgroundImage: `url(${i.bg})` }}
+								>
+									<div className={cx('curriculum-list-box__item__text-box')}>
+										<span className={cx('onoff')}>{i.onoff}</span>
+										<p>{i.text01}</p>
+										<p>{i.text02}</p>
+										<span className={cx('period')}>{i.period}</span>
+									</div>
+								</div>
+							</li>
+						);
+					})}
+				</ul>
+			)}
 		</div>
 	);
 };
