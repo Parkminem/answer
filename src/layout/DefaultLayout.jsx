@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import { Outlet } from 'react-router-dom';
+import MobileFooter from '@/components/common/MobileFooter';
 
 export default function DefaultLayout() {
 	const width = window.innerWidth;
@@ -10,7 +11,7 @@ export default function DefaultLayout() {
 		<>
 			<Header />
 			<Outlet />
-			<Footer />
+			{mobile < 401 ? <MobileFooter /> : <Footer />}
 		</>
 	);
 }

@@ -7,6 +7,7 @@ import SideBar from '@/components/myPage/SideBar';
 import SectionCard from '@/components/UI/SectionCard';
 import MobilePageHeader from '@/components/common/MobilePageHeader';
 import MobileSideBar from '@/components/common/MobileSideBar';
+import MobileFooter from '@/components/common/MobileFooter';
 
 export default function PageLayout() {
 	const width = window.innerWidth;
@@ -22,7 +23,7 @@ export default function PageLayout() {
 					<Outlet />
 				</SectionCard>
 			</PageCard>
-			{mobile < 401 ? '' : <Footer />}
+			{mobile < 401 ? <MobileFooter /> : <Footer />}
 		</>
 	);
 }
