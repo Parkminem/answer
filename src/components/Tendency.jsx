@@ -9,6 +9,7 @@ const Tendency = ({ item }) => {
 	const valHandler = (e) => {
 		setVal(e.target.dataset.val);
 	};
+	// item && console.log(item);
 
 	return (
 		<div className={cx('tendency')}>

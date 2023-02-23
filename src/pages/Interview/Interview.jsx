@@ -13,21 +13,17 @@ import interviewApi from '@/apis/api/interview';
 const Interview = () => {
 	const cx = classNames.bind(styles);
 	const [now, setNow] = useState(true);
-	const [next01, setNext01] = useState(false);
-	const [next02, setNext02] = useState(false);
-	const [progress, setProgress] = useState(13);
+	const [tendency, setTendency] = useState(false);
+	const [tendency02, setTendency02] = useState(false);
+	const [progress, setProgress] = useState(3);
 	const [interviewTypes, setInterviewTypes] = useState();
 	const [typeDetail, setTypeDetail] = useState(null);
-	const [title, setTitle] = useState({
-		count: 5,
-		text: '마지막으로, 입사 후 포부를 알려주세요.',
-	});
+	const [questionIndex, setQuestionIndex] = useState(0);
 
 	useEffect(() => {
 		//면접 타입 조회
 		const fetchTypes = async () => {
 			try {
-				setInterviewTypes(null);
 				const res = await interviewApi.getInterviewType();
 				setInterviewTypes(res.data);
 			} catch (error) {
@@ -37,9 +33,11 @@ const Interview = () => {
 		fetchTypes();
 	}, []);
 
+	//면접 타입을 선택하면 문제를 받아오는 함수
 	const fetchTypeDetail = async (typeCode) => {
 		try {
-			setTypeDetail(null);
+			setQuestionIndex(0);
+			setProgress(3);
 			const res = await interviewApi.getDetailInterviewType(typeCode);
 			setTypeDetail(res.data);
 		} catch (error) {
@@ -47,83 +45,53 @@ const Interview = () => {
 		}
 	};
 
-	// //첫번째 페이지로 이동
-	// const firstPage = () => {
-	// 	setNow(true);
-	// 	setNext01(false);
-	// 	setNext02(false);
-	// 	setProgress(13);
-	// 	setTitle({
-	// 		count: 5,
-	// 		text: '마지막으로, 입사 후 포부를 알려주세요.',
-	// 	});
-	// };
+	const onNext = () => {
+		setQuestionIndex(questionIndex + 1);
+		setProgress(progress + 3.5);
+		const length = typeDetail && typeDetail.responseInterviewQuestions.length;
+		if (questionIndex + 1 >= length) {
+			setNow(false);
+			setTendency(true);
+		}
+	};
 
-	// //두번째 페이지로 이동
-	// const secondPage = () => {
-	// 	setNow(false);
-	// 	setNext01(true);
-	// 	setNext02(false);
-	// 	setProgress(18);
-	// 	setTitle({
-	// 		count: '6-10',
-	// 		text: '주어진 문항에 대한 답변을 선택해 주십시오.',
-	// 	});
-	// };
+	const onPrev = () => {
+		setQuestionIndex(questionIndex - 1);
+		setProgress(progress - 3.5);
+	};
 
-	// //마지막 페이지로 이동
-	// const lastPage = () => {
-	// 	setNow(false);
-	// 	setNext01(false);
-	// 	setNext02(true);
-	// 	setProgress(94);
-	// 	setTitle({
-	// 		count: '36-38',
-	// 		text: '주어진 문항에 대한 답변을 선택해 주십시오.',
-	// 	});
-	// };
-
-	// //다음 버튼
-	// const nextBtn = () => {
-	// 	if (next01) {
-	// 		return lastPage();
-	// 	} else {
-	// 		return secondPage();
-	// 	}
-	// };
-	// //이전 버튼
-	// const preBtn = () => {
-	// 	if (next01) {
-	// 		return firstPage();
-	// 	} else if (next02) {
-	// 		return secondPage();
-	// 	} else {
-	// 		return false;
-	// 	}
-	// };
 	return (
 		<PageCard>
-			<InterviewSideBar typeDetail={typeDetail} types={interviewTypes} fetchTypeDetail={fetchTypeDetail} />
+			<InterviewSideBar
+				types={interviewTypes}
+				typeDetail={typeDetail}
+				fetchTypeDetail={fetchTypeDetail}
+				questionIndex={questionIndex}
+			/>
 			<div className={cx('container')}>
 				<InterviewProgressBar width={progress} />
-				{typeDetail && <InterviewFrontPart typeDetail={typeDetail} />}
+				{now && typeDetail && <InterviewFrontPart typeDetail={typeDetail} questionIndex={questionIndex} />}
 				{/* 성향 설문 객관식 5개 */}
-				{next01 && (
+				{tendency && (
 					<div className={cx('tendency-wrap')}>
-						{typeDetail.responsePropensityQuestions.map((item) => {
-							return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
+						{typeDetail.responsePropensityQuestions.map((item, idx) => {
+							if (idx + 1 <= 5) {
+								return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
+							}
 						})}
 					</div>
 				)}
-				{/* 성향 설문 객관식 3개 */}
-				{next02 && (
+				{/* {tendency02 && (
 					<div className={cx('tendency-wrap')}>
-						{typeDetail.responsePropensityQuestions.map((item) => {
-							return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
+						{typeDetail.responsePropensityQuestions.map((item, idx) => {
+							if (5 < idx + 1 < 11) {
+								return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
+							}
 						})}
 					</div>
-				)}
-				{next02 ? <InterviewEndBtns /> : <InterviewBtns />}
+				)} */}
+
+				{tendency ? <InterviewEndBtns onPrev={onPrev} /> : <InterviewBtns onNext={onNext} onPrev={onPrev} />}
 			</div>
 		</PageCard>
 	);

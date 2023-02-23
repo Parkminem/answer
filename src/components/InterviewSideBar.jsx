@@ -3,12 +3,14 @@ import classNames from 'classnames/bind';
 import styles from '@/components/InterviewSideBar.module.scss';
 import dropdownImg from '@/assets/images/common/dropdown.png';
 
-const InterviewSideBar = ({ title, types, typeDetail, fetchTypeDetail }) => {
+const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex }) => {
 	const cx = classNames.bind(styles);
 	const [select, setSelect] = useState(false);
 	const [selectItem, setSelectItem] = useState('진단 항목을 선택해주세요.');
 	const [selected, setSelected] = useState(false);
 
+	typeDetail && console.log(typeDetail.responsePropensityQuestions.length);
+	typeDetail && console.log(typeDetail.responsePropensityQuestions[0].propensitySurveyQuestionCode);
 	//셀렉트바 열고닫는함수
 	const selectHandler = () => {
 		setSelect((prev) => !prev);
@@ -19,6 +21,7 @@ const InterviewSideBar = ({ title, types, typeDetail, fetchTypeDetail }) => {
 		setSelected(true);
 		setSelect(false);
 
+		//선택한 면접 타입의 코드를 찾아서 그 코드로 면접타입 디테일을 불러옴
 		types.map((type) => {
 			if (type.interviewType === e.target.dataset.object) {
 				const typeCode = type.interviewTypeCode;
@@ -49,20 +52,27 @@ const InterviewSideBar = ({ title, types, typeDetail, fetchTypeDetail }) => {
 							))}
 					</ul>
 				</div>
-				<div className={cx('sidebar__info-box')}>
-					<div className={cx('sidebar__info-box__count')}>
-						<span className={cx('now')}>
-							{typeDetail && typeDetail.responseInterviewQuestions[0].sequence.slice(1)}
-						</span>
-						<span>/</span>
-						<span>38</span>
+				{questionIndex < 4 && (
+					<div className={cx('sidebar__info-box')}>
+						<div className={cx('sidebar__info-box__count')}>
+							<span className={cx('now')}>
+								{typeDetail && typeDetail.responseInterviewQuestions[questionIndex].sequence.slice(1)}
+							</span>
+							<span>/</span>
+							<span>
+								{typeDetail
+									? typeDetail.responseInterviewQuestions.length +
+									  typeDetail.responsePropensityQuestions.length
+									: '28'}
+							</span>
+						</div>
+						<h2>{typeDetail && typeDetail.responseInterviewQuestions[questionIndex].questionContent}</h2>
+						<div className={cx('sidebar__info-box__test-box')}>
+							<h3>면접 진단 테스트</h3>
+							<p>나의 면접 예상점수는 몇 점일까?</p>
+						</div>
 					</div>
-					<h2>{typeDetail && typeDetail.responseInterviewQuestions[0].questionContent}</h2>
-					<div className={cx('sidebar__info-box__test-box')}>
-						<h3>면접 진단 테스트</h3>
-						<p>나의 면접 예상점수는 몇 점일까?</p>
-					</div>
-				</div>
+				)}
 			</div>
 		</div>
 	);

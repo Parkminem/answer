@@ -7,7 +7,7 @@ const InterviewBtns = (props) => {
 	return (
 		<div className={cx('btns')}>
 			<div className={cx('btns__btn')}>
-				<button className={cx('prev')} onClick={props.onPre}>
+				<button className={cx('prev')} onClick={props.onPrev}>
 					<span>&lt;&nbsp;&nbsp;&nbsp;이전</span>
 				</button>
 			</div>
