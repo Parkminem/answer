@@ -67,7 +67,6 @@ const CurriculumList = () => {
 	const [mobile, setMobile] = useState(width);
 
 	const swiperParams = {
-		centeredSlides: true,
 		centerInsufficientSlides: true,
 		slidesPerView: 3,
 	};
