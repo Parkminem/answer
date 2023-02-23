@@ -47,3 +47,64 @@
 		}
 	}
 }
+@media all and (max-width: 400px) {
+	.review-wrap {
+		padding: 46px 0 40px 0;
+		display: block;
+	}
+	.review__title-box {
+		h1 {
+			text-align: center;
+			span {
+				color: #8b8ae6;
+				font-weight: 500;
+				font-size: 16px;
+				line-height: 16px;
+				display: block;
+			}
+			font-weight: 500;
+			font-size: 28px;
+			line-height: 40px;
+		}
+	}
+	.review__review-box {
+		margin: 28px 0 35px 0;
+	}
+	.swiper_list {
+		display: flex;
+		justify-content: flex-start;
+		margin-left: 21px;
+		.swiper_slide {
+			margin-right: 16px;
+			width: 180px !important;
+			.review__list__box {
+				filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.25));
+				border-radius: 8px;
+				width: 180px;
+				height: 120px;
+				background-repeat: no-repeat;
+				background-size: contain;
+				&__texts {
+					font-weight: 500;
+					padding: 24px 0 0 12px;
+					h2 {
+						font-size: 16px;
+						line-height: 16px;
+						margin-bottom: 12px;
+					}
+					p {
+						font-size: 9px;
+						line-height: 13px;
+					}
+				}
+			}
+		}
+	}
+	.review__youtube-box {
+		text-align: center;
+		img {
+			width: 360px;
+			height: 195.49px;
+		}
+	}
+}
