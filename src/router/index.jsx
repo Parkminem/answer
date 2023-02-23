@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import PrivateRouter from '@/router/PrivateRouter';
 import DefaultLayout from '@/layout/DefaultLayout';
 import PageLayout from '@/layout/PageLayout';
@@ -67,7 +67,7 @@ export default function Router() {
 				<Route path="join" element={<Join />} />
 				<Route path="findpassword" element={<FindPw />} />
 				<Route path="/" element={<DefaultLayout />}>
-					<Route path="*" element={<Home />} />
+					<Route path="*" element={<Navigate to="/"></Navigate>} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
