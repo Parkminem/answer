@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import styles from '@/components/common/MobilePageHeader.module.scss';
 import prev from '@/assets/images/mobile/common/m_prev.png';
 import hamburger from '@/assets/images/mobile/common/mobile_hamburger.png';
+import { mobileSidebarState } from '@/store/style';
 
 const MobilePageHeader = () => {
 	const cx = classNames.bind(styles);
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
+	const setSideBar = useSetRecoilState(mobileSidebarState);
 
 	//타이틀 변경
 	const name = () => {
@@ -47,7 +50,7 @@ const MobilePageHeader = () => {
 				</div>
 				<h1>{title}</h1>
 				<div className={cx('hamburger-box')}>
-					<button>
+					<button onClick={() => setSideBar(true)}>
 						<img src={hamburger} alt="전체메뉴" />
 					</button>
 				</div>
