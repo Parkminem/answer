@@ -1,0 +1,38 @@
+.header {
+	&-top {
+		position: relative;
+		margin: 0 16px;
+		height: 71px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		h1 {
+			img {
+				width: 120px;
+				height: 27.65px;
+				object-fit: contain;
+			}
+		}
+		button {
+			position: absolute;
+			right: 0;
+		}
+	}
+	.gnb {
+		ul {
+			display: flex;
+			background: #1d27bc;
+			justify-content: space-around;
+			li {
+				a {
+					color: #ffffff;
+					font-weight: 500;
+					font-size: 12px;
+					line-height: 17px;
+					padding: 12px 8px;
+					display: inline-block;
+				}
+			}
+		}
+	}
+}

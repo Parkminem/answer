@@ -62,20 +62,22 @@ const MobileSideBar = () => {
 					</div>
 				) : (
 					<div className={cx('side-bar__profile-box')}>
-						<div className={cx('side-bar__profile-box__img-box')}>
+						<div className={cx('side-bar__no-profile-box__img-box')}>
 							<img src={noUser} alt="유저 이미지" />
 							<button>
 								<img src={editIcon} alt="수정" />
 							</button>
 						</div>
-						<div className={cx('side-bar__profile-box__text-box')}>
+						<div className={cx('side-bar__no-profile-box__text-box')}>
 							<h2>로그인을 해주세요.</h2>
-							<button className={cx('login')} onClick={() => navigate('/login')}>
-								<span>로그인</span>
-							</button>
-							<button onClick={() => navigate('/join')}>
-								<span>회원가입</span>
-							</button>
+							<div className={cx('btns')}>
+								<button className={cx('login')} onClick={() => navigate('/login')}>
+									<span>로그인</span>
+								</button>
+								<button onClick={() => navigate('/join')}>
+									<span>회원가입</span>
+								</button>
+							</div>
 						</div>
 					</div>
 				)}
