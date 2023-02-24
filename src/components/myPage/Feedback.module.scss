@@ -141,3 +141,164 @@ $listColors: (#065a9b, #1173c3, #1983d8, #2193e9, #3cabff);
 	display: inline-block;
 	margin-right: 12px;
 }
+
+@media all and (max-width: 400px) {
+	.m-feedback {
+		&-inner {
+			padding: 20px;
+		}
+		&__info-box {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 12px;
+			h1 {
+				font-weight: 700;
+				font-size: 20px;
+				line-height: 29px;
+				color: #333333;
+				display: flex;
+				align-items: center;
+				&::before {
+					content: '';
+					display: block;
+					background-color: #333;
+					border-radius: 100%;
+					width: 6px;
+					height: 6px;
+					margin-right: 10px;
+				}
+			}
+			p {
+				color: #999999;
+				font-weight: 500;
+				font-size: 12px;
+				line-height: 17px;
+				display: flex;
+				span {
+					display: inline-block;
+					&:first-child {
+						display: flex;
+						align-items: center;
+						margin-right: 5px;
+						&::after {
+							content: '';
+							display: block;
+							background-color: #999;
+							height: 10px;
+							width: 1px;
+							margin-left: 5px;
+						}
+					}
+				}
+			}
+		}
+		&__word-box {
+			text-align: center;
+			margin-bottom: 20px;
+			h2 {
+				color: #333333;
+				font-weight: 700;
+				font-size: 16px;
+				line-height: 23px;
+				margin-bottom: 22px;
+				strong {
+					color: #312fd2;
+				}
+			}
+			&__list {
+				display: flex;
+				justify-content: space-between;
+				@each $i in $listColors {
+					$index: index($listColors, $i);
+					li:nth-child(#{$index}) {
+						background-color: $i;
+					}
+				}
+				li {
+					border-radius: 100%;
+					width: 60px;
+					height: 60px;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					span {
+						color: #ffffff;
+						font-weight: 700;
+						font-size: 14px;
+						line-height: 20px;
+					}
+				}
+			}
+		}
+		&__sentence-box {
+			&:not(&:last-child) {
+				margin-bottom: 20px;
+			}
+			h3 {
+				color: #333333;
+				font-weight: 700;
+				font-size: 12px;
+				line-height: 17px;
+				margin-bottom: 11px;
+				strong {
+					color: #312fd2;
+				}
+			}
+			&__sentence {
+				background: #ffffff;
+				border: 1px solid #c9c9c9;
+				border-radius: 4px;
+				padding: 16px;
+				p {
+					color: #666666;
+					font-weight: 400;
+					font-size: 12px;
+					line-height: 17px;
+				}
+			}
+			&__desc {
+				&:not(&:last-child) {
+					margin-bottom: 20px;
+				}
+				> p {
+					color: #666666;
+					font-weight: 400;
+					font-size: 12px;
+					line-height: 17px;
+					margin-bottom: 4px;
+					span {
+						display: inline-block;
+						margin-right: 2px;
+					}
+				}
+			}
+		}
+		&__recommend-box {
+			background: #ebecfb;
+			height: 357px;
+			padding-bottom: 20px;
+			display: flex;
+			align-items: flex-end;
+			button {
+				margin: 0 auto;
+				width: 90%;
+				background: #312fd2;
+				border-radius: 4px;
+				padding: 14px 0;
+				span {
+					color: #ffffff;
+					font-weight: 700;
+					font-size: 20px;
+					line-height: 29px;
+				}
+			}
+		}
+	}
+	.num {
+		color: #1983d8;
+		font-weight: 700;
+		font-size: 12px;
+		line-height: 17px;
+	}
+}
