@@ -22,6 +22,7 @@ const Interview = () => {
 	const [interviewTypes, setInterviewTypes] = useState();
 	const [typeDetail, setTypeDetail] = useState(null);
 	const [questionIndex, setQuestionIndex] = useState(0);
+	const [ready, setReady] = useState(false);
 
 	useEffect(() => {
 		//면접 타입 조회
@@ -43,6 +44,7 @@ const Interview = () => {
 			setProgress(3);
 			const res = await interviewApi.getDetailInterviewType(typeCode);
 			setTypeDetail(res.data);
+			setReady(true);
 		} catch (error) {
 			console.log(error);
 		}
@@ -139,64 +141,79 @@ const Interview = () => {
 				typeDetail={typeDetail}
 				fetchTypeDetail={fetchTypeDetail}
 				questionIndex={questionIndex}
+				ready={ready}
 			/>
-			<div className={cx('container')}>
-				<InterviewProgressBar width={progress} />
-				{now && typeDetail && (
-					<InterviewFrontPart typeDetail={typeDetail} questionIndex={questionIndex} onNext={onNext} />
-				)}
-				{/* 성향 설문 객관식 5개 */}
-				{tendency && (
-					<div className={cx('tendency-wrap')}>
-						{typeDetail.responsePropensityQuestions.map((item, idx) => {
-							if (idx + 1 < 6) {
-								return <Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />;
-							}
-						})}
-					</div>
-				)}
-				{tendency02 && (
-					<div className={cx('tendency-wrap')}>
-						{typeDetail.responsePropensityQuestions.map((item, idx) => {
-							if (5 < idx + 1 && idx + 1 <= 10) {
-								return <Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />;
-							}
-						})}
-					</div>
-				)}
-				{tendency03 && (
-					<div className={cx('tendency-wrap')}>
-						{typeDetail.responsePropensityQuestions.map((item, idx) => {
-							if (10 < idx + 1 && idx + 1 <= 15) {
-								return <Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />;
-							}
-						})}
-					</div>
-				)}
-				{tendency04 && (
-					<div className={cx('tendency-wrap')}>
-						{typeDetail.responsePropensityQuestions.map((item, idx) => {
-							if (15 < idx + 1 && idx + 1 <= 20) {
-								return <Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />;
-							}
-						})}
-					</div>
-				)}
-				{tendency05 && (
-					<div className={cx('tendency-wrap')}>
-						{typeDetail.responsePropensityQuestions.map((item, idx) => {
-							if (20 < idx + 1 && idx + 1 <= 25) {
-								return <Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />;
-							}
-						})}
-					</div>
-				)}
-				{typeDetail && tendency05 === false ? (
-					<InterviewBtns onNext={onNext} onPrev={onPrev} />
-				) : (
-					<InterviewEndBtns onPrev={onPrev} />
-				)}
-			</div>
+			{ready ? (
+				<div className={cx('container')}>
+					<InterviewProgressBar width={progress} />
+					{now && typeDetail && (
+						<InterviewFrontPart typeDetail={typeDetail} questionIndex={questionIndex} onNext={onNext} />
+					)}
+					{/* 성향 설문 객관식 5개 */}
+					{tendency && (
+						<div className={cx('tendency-wrap')}>
+							{typeDetail.responsePropensityQuestions.map((item, idx) => {
+								if (idx + 1 < 6) {
+									return (
+										<Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />
+									);
+								}
+							})}
+						</div>
+					)}
+					{tendency02 && (
+						<div className={cx('tendency-wrap')}>
+							{typeDetail.responsePropensityQuestions.map((item, idx) => {
+								if (5 < idx + 1 && idx + 1 <= 10) {
+									return (
+										<Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />
+									);
+								}
+							})}
+						</div>
+					)}
+					{tendency03 && (
+						<div className={cx('tendency-wrap')}>
+							{typeDetail.responsePropensityQuestions.map((item, idx) => {
+								if (10 < idx + 1 && idx + 1 <= 15) {
+									return (
+										<Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />
+									);
+								}
+							})}
+						</div>
+					)}
+					{tendency04 && (
+						<div className={cx('tendency-wrap')}>
+							{typeDetail.responsePropensityQuestions.map((item, idx) => {
+								if (15 < idx + 1 && idx + 1 <= 20) {
+									return (
+										<Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />
+									);
+								}
+							})}
+						</div>
+					)}
+					{tendency05 && (
+						<div className={cx('tendency-wrap')}>
+							{typeDetail.responsePropensityQuestions.map((item, idx) => {
+								if (20 < idx + 1 && idx + 1 <= 25) {
+									return (
+										<Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />
+									);
+								}
+							})}
+						</div>
+					)}
+					{typeDetail && tendency05 === false ? (
+						<InterviewBtns onNext={onNext} onPrev={onPrev} />
+					) : (
+						<InterviewEndBtns onPrev={onPrev} />
+					)}
+				</div>
+			) : (
+				<div className={cx('container')}></div>
+			)}
 		</PageCard>
 	);
 };

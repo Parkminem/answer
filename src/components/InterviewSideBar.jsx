@@ -5,7 +5,7 @@ import styles from '@/components/InterviewSideBar.module.scss';
 import dropdownImg from '@/assets/images/common/dropdown.png';
 import { typeState } from '@/store/interview';
 
-const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex }) => {
+const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex, ready }) => {
 	const cx = classNames.bind(styles);
 	const [select, setSelect] = useState(false);
 	const [selectItem, setSelectItem] = useState('진단 항목을 선택해주세요.');
@@ -58,7 +58,7 @@ const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex })
 				</div>
 				{questionIndex < 5 && (
 					<div className={cx('sidebar__info-box')}>
-						<div className={cx('sidebar__info-box__count')}>
+						<div className={cx('sidebar__info-box__count', ready ? 'active' : '')}>
 							<span className={cx('now')}>
 								{typeDetail && typeDetail.responseInterviewQuestions[questionIndex].sequence.slice(1)}
 							</span>
