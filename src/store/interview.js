@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom, atomFamily } from 'recoil';
 
 //답변 리스트
 export const answerList = atom({
@@ -10,4 +10,9 @@ export const answerList = atom({
 export const typeState = atom({
 	key: 'type',
 	default: '진단 항목을 선택해주세요',
+});
+
+export const tendencyState = atom({
+	key: 'tendencyValue',
+	default: [],
 });
