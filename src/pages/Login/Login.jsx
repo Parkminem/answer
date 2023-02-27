@@ -7,11 +7,15 @@ import { history } from '@/router/history';
 import styles from '@/pages/Login/Login.module.scss';
 import AuthCard from '@/components/UI/AuthCard';
 import AuthInput from '@/components/AuthInput';
+import MobileAuthHeader from '@/components/common/MobileAuthHeader';
 import authApi from '@/apis/api/auth';
 import { timerState, certificationNumberState, changPwState } from '@/store/auth';
+import logo from '@/assets/images/mobile/common/mobile_logo.png';
 
 const Login = () => {
 	const cx = classNames.bind(styles);
+	const width = window.innerWidth;
+	const [mobile, setMobile] = useState(width);
 	const navigate = useNavigate();
 	const idRef = useRef();
 	const pwRef = useRef();
@@ -20,6 +24,7 @@ const Login = () => {
 	const setCount = useSetRecoilState(timerState);
 	const setCheckNum = useSetRecoilState(certificationNumberState);
 	const [changePw, setChangePw] = useRecoilState(changPwState);
+	const [showPw, setShowPw] = useState('password');
 
 	useEffect(() => {
 		idRef.current.focus();
@@ -73,36 +78,102 @@ const Login = () => {
 				}
 			});
 	};
+
+	//비밀번호 보기 체크
+	const showPwHandler = (e) => {
+		const nowState = e.target.checked;
+		if (nowState) {
+			setShowPw('text');
+		} else {
+			setShowPw('password');
+		}
+	};
 	return (
-		<AuthCard>
-			<div className={cx('login-wrap')}>
-				<form className={cx('login')} id="form" onSubmit={loginHandler}>
-					<div className={cx('login__form-box')}>
-						<AuthInput type="email" name="email" ref={idRef} placeholder="이메일" onChange={emailHandler} />
-						<AuthInput
-							type="password"
-							name="password"
-							ref={pwRef}
-							placeholder="비밀번호"
-							onChange={passwordHandler}
-						/>
-						<div className={cx('login__form-box__btn-box')}>
-							<button onClick={loginHandler}>
-								<span>로그인</span>
-							</button>
-						</div>
-						<div className={cx('login__form-box__link-box')}>
-							<Link to="/join">
-								<span>회원가입</span>
-							</Link>
-							<Link to="/findpassword">
-								<span>비밀번호 찾기</span>
+		<>
+			{mobile < 401 ? (
+				<>
+					<MobileAuthHeader />
+					<div className={cx('login-wrap')}>
+						<div className={cx('mobile', 'logo')}>
+							<Link to="/">
+								<img src={logo} alt="로고" />
 							</Link>
 						</div>
+						<form className={cx('login')} id="form" onSubmit={loginHandler}>
+							<div className={cx('login__form-box')}>
+								<AuthInput
+									type="email"
+									name="email"
+									ref={idRef}
+									placeholder="이메일"
+									onChange={emailHandler}
+								/>
+								<AuthInput
+									type={showPw}
+									name="password"
+									ref={pwRef}
+									placeholder="비밀번호"
+									onChange={passwordHandler}
+								/>
+								<div className={cx('show-pw')}>
+									<input type="checkbox" name="" id="check" onChange={showPwHandler} />
+									<label htmlFor="check">비밀번호 보기</label>
+								</div>
+								<div className={cx('login__form-box__btn-box')}>
+									<button onClick={loginHandler}>
+										<span>로그인</span>
+									</button>
+								</div>
+								<div className={cx('login__form-box__link-box')}>
+									<Link to="/join">
+										<span>회원가입</span>
+									</Link>
+									<Link to="/findpassword">
+										<span>비밀번호 찾기</span>
+									</Link>
+								</div>
+							</div>
+						</form>
 					</div>
-				</form>
-			</div>
-		</AuthCard>
+				</>
+			) : (
+				<AuthCard>
+					<div className={cx('login-wrap')}>
+						<form className={cx('login')} id="form" onSubmit={loginHandler}>
+							<div className={cx('login__form-box')}>
+								<AuthInput
+									type="email"
+									name="email"
+									ref={idRef}
+									placeholder="이메일"
+									onChange={emailHandler}
+								/>
+								<AuthInput
+									type="password"
+									name="password"
+									ref={pwRef}
+									placeholder="비밀번호"
+									onChange={passwordHandler}
+								/>
+								<div className={cx('login__form-box__btn-box')}>
+									<button onClick={loginHandler}>
+										<span>로그인</span>
+									</button>
+								</div>
+								<div className={cx('login__form-box__link-box')}>
+									<Link to="/join">
+										<span>회원가입</span>
+									</Link>
+									<Link to="/findpassword">
+										<span>비밀번호 찾기</span>
+									</Link>
+								</div>
+							</div>
+						</form>
+					</div>
+				</AuthCard>
+			)}
+		</>
 	);
 };
 

@@ -8,3 +8,11 @@
 	transform: translateY(-50%);
 	right: 40px;
 }
+
+@media all and (max-width: 400px) {
+	.time {
+		font-size: 12px;
+		line-height: 17px;
+		right: 16px;
+	}
+}

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import { useSetRecoilState } from 'recoil';
 import styles from '@/components/InterviewSideBar.module.scss';
 import dropdownImg from '@/assets/images/common/dropdown.png';
+import { typeState } from '@/store/interview';
 
 const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex }) => {
 	const cx = classNames.bind(styles);
 	const [select, setSelect] = useState(false);
 	const [selectItem, setSelectItem] = useState('진단 항목을 선택해주세요.');
 	const [selected, setSelected] = useState(false);
-
-	// typeDetail && console.log(typeDetail.responsePropensityQuestions.length);
-	// typeDetail && console.log(typeDetail.responsePropensityQuestions[0].propensitySurveyQuestionCode);
+	//스켈레톤 타입 atom set
+	const setTypeState = useSetRecoilState(typeState);
 
 	//셀렉트바 열고닫는함수
 	const selectHandler = () => {
@@ -23,6 +24,8 @@ const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex })
 		setSelect(false);
 
 		//선택한 면접 타입의 코드를 찾아서 그 코드로 면접타입 디테일을 불러옴
+		//스켈레톤 타입
+		setTypeState(e.target.dataset.object);
 		types.map((type) => {
 			if (type.interviewType === e.target.dataset.object) {
 				const typeCode = type.interviewTypeCode;

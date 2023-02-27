@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styles from '@/components/EditPassword.module.scss';
@@ -7,6 +7,7 @@ import AuthInput from '@/components/AuthInput';
 import userApi from '@/apis/api/user';
 import { userEmailState, changPwState } from '@/store/auth';
 import { regx } from '@/modules/reg';
+import logo from '@/assets/images/mobile/common/mobile_logo.png';
 
 const EditPassword = () => {
 	const cx = classNames.bind(styles);
@@ -15,6 +16,7 @@ const EditPassword = () => {
 	const [checkPassword, setCheckPassword] = useState('');
 	const setChangePw = useSetRecoilState(changPwState);
 	const email = useRecoilValue(userEmailState);
+	const [showPw, setShowPw] = useState('password');
 
 	const newPasswordHandler = (e) => {
 		setNewPassword(e.target.value);
@@ -47,15 +49,35 @@ const EditPassword = () => {
 			}
 		}
 	};
+
+	//비밀번호 보기 체크
+	const showPwHandler = (e) => {
+		const nowState = e.target.checked;
+		if (nowState) {
+			setShowPw('text');
+		} else {
+			setShowPw('password');
+		}
+	};
+
 	return (
 		<>
+			<div className={cx('mobile', 'logo')}>
+				<Link to="/">
+					<img src={logo} alt="로고" />
+				</Link>
+			</div>
 			<div className={cx('find__title-box')}>
 				<h1>비밀번호 재설정</h1>
 			</div>
 			<form className={cx('find__form-box')} onSubmit={submitHandler}>
 				<div className={cx('find__form-box__pw-box')}>
-					<AuthInput type="password" placeholder="새로운 비밀번호" onChange={newPasswordHandler} />
-					<AuthInput type="password" placeholder="비밀번호 확인" onChange={checkPasswordHandler} />
+					<AuthInput type={showPw} placeholder="새로운 비밀번호" onChange={newPasswordHandler} />
+					<AuthInput type={showPw} placeholder="비밀번호 확인" onChange={checkPasswordHandler} />
+				</div>
+				<div className={cx('show-pw', 'mobile')}>
+					<input type="checkbox" name="" id="check" onChange={showPwHandler} />
+					<label htmlFor="check">비밀번호 보기</label>
 				</div>
 				<div className={cx('find__form-box__btn-box')}>
 					<button onClick={submitHandler}>

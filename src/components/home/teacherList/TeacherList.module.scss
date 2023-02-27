@@ -17,10 +17,21 @@
 			justify-content: center;
 			margin-top: 51px;
 			padding-left: 25px;
-			img {
-				display: flex;
-				margin-right: 20px;
-				cursor: pointer;
+		}
+	}
+}
+
+@media all and (max-width: 400px) {
+	.teacher {
+		height: auto;
+		padding-bottom: 39px;
+		.bar {
+			margin-bottom: 70px;
+		}
+		.container {
+			.teacher_list {
+				margin-top: 64px;
+				padding-left: 20px;
 			}
 		}
 	}

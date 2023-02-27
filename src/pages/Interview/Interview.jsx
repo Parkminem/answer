@@ -22,7 +22,6 @@ const Interview = () => {
 	const [interviewTypes, setInterviewTypes] = useState();
 	const [typeDetail, setTypeDetail] = useState(null);
 	const [questionIndex, setQuestionIndex] = useState(0);
-	const [answer, setAnswer] = useState(null);
 
 	useEffect(() => {
 		//면접 타입 조회
@@ -131,7 +130,7 @@ const Interview = () => {
 		}
 	};
 
-	// console.log(tendency, tendency02, tendency03, tendency04, tendency05);
+	const saveContent = () => {};
 
 	return (
 		<PageCard>

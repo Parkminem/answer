@@ -12,3 +12,17 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+@media all and (max-width: 401px) {
+	.page-wrap {
+		padding: 0;
+		padding-top: 8px;
+		background-color: #ebecfb;
+	}
+	.page__container {
+		width: 100%;
+		background: #ffffff;
+		// background-color: #ebecfb;
+		padding: 0;
+	}
+}

@@ -7,6 +7,7 @@ import right from '@/assets/images/common/arrow_right.png';
 import classNames from 'classnames/bind';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
+import star from '@/assets/images/mobile/star.png';
 
 const dummyData = [
 	{
@@ -41,6 +42,8 @@ const dummyData = [
 
 const PassList = () => {
 	const cx = classNames.bind(styles);
+	const width = window.innerWidth;
+	const [mobile, setMobile] = useState(width);
 
 	//스와이퍼 스타일
 	const swiperStyle = {
@@ -48,6 +51,7 @@ const PassList = () => {
 		borderRadius: '20px',
 		width: '1094px',
 	};
+
 	const swiperSlideStyle = {
 		padding: '82px 115px 61px 56px',
 		flexShrink: '1',
@@ -55,6 +59,16 @@ const PassList = () => {
 		alignItems: 'center',
 	};
 
+	const mobileSwiperStyle = {
+		boxShadow: '0px 4px 32px rgba(0, 0, 0, 0.2)',
+		borderRadius: '20px',
+		width: '279px',
+		height: '273px',
+	};
+
+	const mobileSwiperSlideStyle = {
+		padding: '12px 16px 23px 16px',
+	};
 	const [swiper, setSwiper] = useState(null);
 	const [naviIdx, setNaviIndex] = useState(0);
 
@@ -77,37 +91,65 @@ const PassList = () => {
 	};
 	return (
 		<div className={cx('pass-list-wrap')}>
-			<Swiper
-				className={cx('pass-list')}
-				style={swiperStyle}
-				loop={true}
-				speed={600}
-				slidesPerView={1}
-				ref={setSwiper}
-				{...swiperParams}
-			>
-				{dummyData.map((data) => {
-					return (
-						<SwiperSlide key={data.id} className={cx('pass-list__item')} style={swiperSlideStyle}>
-							<div className={cx('pass-list__img-box')}>
-								<img src={data.img} alt="수강생 사진" />
-							</div>
-							<div className={cx('pass-list__text-box')}>
-								<div className={cx('pass-list__text-box__text')}>
+			{mobile < 401 ? (
+				<Swiper
+					className={cx('pass-list')}
+					style={mobileSwiperStyle}
+					loop={true}
+					speed={600}
+					slidesPerView={1}
+					ref={setSwiper}
+					{...swiperParams}
+				>
+					{dummyData.map((data) => {
+						return (
+							<SwiperSlide key={data.id} className={cx('mobile')} style={mobileSwiperSlideStyle}>
+								<div className={cx('mobile__title-box')}>
+									<img src={star} alt="별" />
 									<h1>{data.title}</h1>
+								</div>
+								<div className={cx('mobile__text-box')}>
+									<img src={data.img} alt="수강생 사진" />
 									<p>{data.text}</p>
-									<span>{data.from}</span>
 								</div>
-								<div className={cx('pass-list__btn-box')}>
-									<button>
-										<span>후기 더보기 &gt; </span>
-									</button>
+								<span className={cx('mobile__from')}>{data.from}</span>
+							</SwiperSlide>
+						);
+					})}
+				</Swiper>
+			) : (
+				<Swiper
+					className={cx('pass-list')}
+					style={swiperStyle}
+					loop={true}
+					speed={600}
+					slidesPerView={1}
+					ref={setSwiper}
+					{...swiperParams}
+				>
+					{dummyData.map((data) => {
+						return (
+							<SwiperSlide key={data.id} className={cx('pass-list__item')} style={swiperSlideStyle}>
+								<div className={cx('pass-list__img-box')}>
+									<img src={data.img} alt="수강생 사진" />
 								</div>
-							</div>
-						</SwiperSlide>
-					);
-				})}
-			</Swiper>
+								<div className={cx('pass-list__text-box')}>
+									<div className={cx('pass-list__text-box__text')}>
+										<h1>{data.title}</h1>
+										<p>{data.text}</p>
+										<span>{data.from}</span>
+									</div>
+									<div className={cx('pass-list__btn-box')}>
+										<button>
+											<span>후기 더보기 &gt; </span>
+										</button>
+									</div>
+								</div>
+							</SwiperSlide>
+						);
+					})}
+				</Swiper>
+			)}
 			<div className={cx('pass-list__navigation', 'pre')}>
 				<button ref={preRef}>
 					<img src={left} alt="왼쪽 버튼" />

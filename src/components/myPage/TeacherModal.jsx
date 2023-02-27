@@ -18,6 +18,8 @@ const BackDrop = (props) => {
 };
 
 const ModalOverlay = (props) => {
+	const width = window.innerWidth;
+	const [mobile, setMobile] = useState(width);
 	const [swiper, setSwiper] = useState(null);
 	const [naviIdx, setNaviIndex] = useState(0);
 	SwiperCore.use([Navigation]);
@@ -40,6 +42,9 @@ const ModalOverlay = (props) => {
 	const swiperStyle = {
 		width: '630px',
 	};
+	const mobileSwiperStyle = {
+		width: '300px',
+	};
 
 	return (
 		<div className={cx('modal')}>
@@ -50,7 +55,7 @@ const ModalOverlay = (props) => {
 					</button>
 				</div>
 				<Swiper
-					style={swiperStyle}
+					style={mobile < 401 ? mobileSwiperStyle : swiperStyle}
 					loop={true}
 					speed={600}
 					slidesPerView={1}
@@ -75,11 +80,12 @@ const ModalOverlay = (props) => {
 							</div>
 						</div>
 						<div className={cx('modal__card__graph-box')}>
-							<h1>면접전문가의 강점</h1>
+							<h1 className={cx('pc')}>면접전문가의 강점</h1>
 							<div className={cx('modal__card__graph-box__img-box')}>
 								<img src={graph} alt="그래프" />
 							</div>
 							<div className={cx('modal__card__graph-box__desc')}>
+								<h1 className={cx('mobile')}>면접전문가의 강점</h1>
 								<p>·면접 전문가의 강점이 있습니다.</p>
 								<p>·전문가 다운 강점으로 면접을 어쩌구 입니다.</p>
 								<p>·어려워잉~</p>
@@ -103,11 +109,12 @@ const ModalOverlay = (props) => {
 							</div>
 						</div>
 						<div className={cx('modal__card__graph-box')}>
-							<h1>면접전문가의 강점</h1>
+							<h1 className={cx('pc')}>면접전문가의 강점</h1>
 							<div className={cx('modal__card__graph-box__img-box')}>
 								<img src={graph} alt="그래프" />
 							</div>
 							<div className={cx('modal__card__graph-box__desc')}>
+								<h1 className={cx('mobile')}>면접전문가의 강점</h1>
 								<p>·면접 전문가의 강점이 있습니다.</p>
 								<p>·전문가 다운 강점으로 면접을 어쩌구 입니다.</p>
 								<p>·어려워잉~</p>
@@ -131,11 +138,12 @@ const ModalOverlay = (props) => {
 							</div>
 						</div>
 						<div className={cx('modal__card__graph-box')}>
-							<h1>면접전문가의 강점</h1>
+							<h1 className={cx('pc')}>면접전문가의 강점</h1>
 							<div className={cx('modal__card__graph-box__img-box')}>
 								<img src={graph} alt="그래프" />
 							</div>
 							<div className={cx('modal__card__graph-box__desc')}>
+								<h1 className={cx('mobile')}>면접전문가의 강점</h1>
 								<p>·면접 전문가의 강점이 있습니다.</p>
 								<p>·전문가 다운 강점으로 면접을 어쩌구 입니다.</p>
 								<p>·어려워잉~</p>

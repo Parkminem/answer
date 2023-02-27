@@ -41,3 +41,50 @@
 		}
 	}
 }
+@media all and (max-width: 400px) {
+	.curriculum-list-box {
+		margin-top: 54.47px;
+		.swiper-list {
+			display: flex;
+			margin-left: 21px;
+			width: 570px;
+			&__slide {
+				margin-right: 16px;
+				width: 138px !important;
+				&-box {
+					width: 138px;
+					height: 183px;
+					background-repeat: no-repeat;
+					background-size: contain;
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-end;
+					filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.25));
+					&__text-box {
+						user-select: none;
+						padding: 0 0 6px 10px;
+						.onoff {
+							color: #66b2ff;
+							font-weight: 700;
+							font-size: 8px;
+							line-height: 12px;
+						}
+						p {
+							color: #ffffff;
+							font-weight: 500;
+							font-size: 8px;
+							line-height: 12px;
+							margin-bottom: 1px;
+						}
+						.period {
+							color: rgba(255, 255, 255, 0.45);
+							font-weight: 500;
+							font-size: 8px;
+							line-height: 12px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
