@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from '@/components/InterviewFrontPart.module.scss';
 
-export default function InterviewFrontPart({ typeDetail, questionIndex }) {
+export default function InterviewFrontPart({ typeDetail, questionIndex, onNext }) {
 	const [textValue, setTextValue] = useState('');
 
 	const handleSetValue = (e) => {
@@ -22,7 +22,7 @@ export default function InterviewFrontPart({ typeDetail, questionIndex }) {
 				</span>
 			</div>
 			<div className={style.textarea_box}>
-				<form action="">
+				<form>
 					<textarea
 						name="interview_content"
 						id="interview_content"

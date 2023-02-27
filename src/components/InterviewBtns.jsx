@@ -12,7 +12,7 @@ const InterviewBtns = (props) => {
 				</button>
 			</div>
 			<div className={cx('btns__btn')}>
-				<button className={cx('next')} onClick={props.onNext}>
+				<button type="submit" className={cx('next')} onClick={props.onNext}>
 					<span>다음으로&nbsp;&nbsp;&nbsp;&gt;</span>
 				</button>
 			</div>
