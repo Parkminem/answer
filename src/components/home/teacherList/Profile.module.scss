@@ -78,3 +78,61 @@
 		}
 	}
 }
+
+@media all and (max-width: 400px) {
+	.profile {
+		margin-top: 48px;
+		width: 380px;
+		height: 237px;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.12);
+		.photo {
+			width: 164px;
+			height: 193px;
+			margin: 44px 13px 0 12px;
+		}
+		.right_box {
+			padding-top: 34px;
+			margin-bottom: 12px;
+			.subject {
+				font-size: 12px;
+				line-height: 17px;
+				margin-bottom: 0;
+			}
+			.name {
+				font-size: 28px;
+				line-height: 41px;
+				margin-bottom: 0;
+				.name_position {
+					font-size: 12px;
+					line-height: 17px;
+					margin-left: 5px;
+				}
+			}
+			.recode_box {
+				width: 175px;
+				height: 124px;
+				border-radius: 16px;
+				margin: 12px 0 0;
+				.recode_content {
+					margin: 12px 5px 10px 13px;
+					.history {
+						width: 77px;
+						height: 21.83px;
+						font-size: 12px;
+						line-height: 17px;
+						padding-top: 0;
+					}
+					.recode {
+						margin-top: 4.73px;
+						font-size: 8px;
+						height: 76px;
+						line-height: 16px;
+						word-break: keep-all;
+						overflow-y: scroll;
+					}
+				}
+			}
+		}
+	}
+}

@@ -5,5 +5,26 @@
 		transform: translate(80px, -35px);
 	}
 	.card {
+		display: flex;
+		margin-right: 20px;
+		cursor: pointer;
+	}
+}
+
+@media all and (max-width: 400px) {
+	.cards {
+		.selector {
+			width: 8px;
+			height: 8px;
+			object-fit: contain;
+			transform: translate(-50%, 0);
+			left: 50%;
+			top: -16px;
+		}
+		.card {
+			margin-right: 8px;
+			width: 80px;
+			object-fit: cover;
+		}
 	}
 }
