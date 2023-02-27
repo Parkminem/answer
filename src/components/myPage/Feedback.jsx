@@ -22,31 +22,31 @@ const Feedback = () => {
 	const [sentence, setSentence] = useState();
 	const [words, setWords] = useState();
 
-	// useEffect(() => {
-	// 	const code = searchParams.get('code');
-	// 	const queryType = searchParams.get('type');
-	// 	const queryDate = searchParams.get('date');
-	// 	setType(queryType);
-	// 	setDate(queryDate);
-	// 	async function getFeedback() {
-	// 		await interviewApi
-	// 			.getFeedback(code)
-	// 			.then((res) => {
-	// 				const contents = JSON.parse(res.data.content);
-	// 				setSummary(contents[1].AnswersSummary);
-	// 				setPoint(contents[2].noticeableAnswers);
-	// 				setSentence(contents[3].keySentence);
-	// 				setWords(contents[4].wordFreq);
-	// 			})
-	// 			.catch((err) => {
-	// 				if (err.response.status === 500) {
-	// 					alert('피드백이 존재하지 않습니다.');
-	// 					navigate(-1);
-	// 				}
-	// 			});
-	// 	}
-	// 	getFeedback();
-	// }, []);
+	useEffect(() => {
+		const code = searchParams.get('code');
+		const queryType = searchParams.get('type');
+		const queryDate = searchParams.get('date');
+		setType(queryType);
+		setDate(queryDate);
+		async function getFeedback() {
+			await interviewApi
+				.getFeedback(code)
+				.then((res) => {
+					const contents = JSON.parse(res.data.content);
+					setSummary(contents[1].AnswersSummary);
+					setPoint(contents[2].noticeableAnswers);
+					setSentence(contents[3].keySentence);
+					setWords(contents[4].wordFreq);
+				})
+				.catch((err) => {
+					if (err.response.status === 400) {
+						alert('피드백이 존재하지 않습니다.');
+						navigate(-1);
+					}
+				});
+		}
+		getFeedback();
+	}, []);
 
 	/**
 	 * 모달창 온오프
