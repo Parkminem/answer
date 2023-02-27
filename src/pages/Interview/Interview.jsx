@@ -15,6 +15,9 @@ const Interview = () => {
 	const [now, setNow] = useState(true);
 	const [tendency, setTendency] = useState(false);
 	const [tendency02, setTendency02] = useState(false);
+	const [tendency03, setTendency03] = useState(false);
+	const [tendency04, setTendency04] = useState(false);
+	const [tendency05, setTendency05] = useState(false);
 	const [progress, setProgress] = useState(3);
 	const [interviewTypes, setInterviewTypes] = useState();
 	const [typeDetail, setTypeDetail] = useState(null);
@@ -44,21 +47,92 @@ const Interview = () => {
 			console.log(error);
 		}
 	};
+	console.log(typeDetail);
 
 	const onNext = () => {
 		setQuestionIndex(questionIndex + 1);
-		setProgress(progress + 3.5);
+		setProgress(progress + 4);
 		const length = typeDetail && typeDetail.responseInterviewQuestions.length;
+		console.log(questionIndex);
 		if (questionIndex + 1 >= length) {
 			setNow(false);
 			setTendency(true);
+		}
+		if (questionIndex + 1 > 5) {
+			setTendency(false);
+			setTendency02(true);
+			setProgress(progress + 17.5);
+		}
+		if (questionIndex + 1 > 6) {
+			setTendency02(false);
+			setTendency03(true);
+			setProgress(progress + 17.5);
+		}
+		if (questionIndex + 1 > 7) {
+			setTendency03(false);
+			setTendency04(true);
+			setProgress(progress + 17.5);
+		}
+		if (questionIndex + 1 > 8) {
+			setTendency04(false);
+			setTendency05(true);
+			setProgress(progress + 17.5);
 		}
 	};
 
 	const onPrev = () => {
 		setQuestionIndex(questionIndex - 1);
-		setProgress(progress - 3.5);
+		setProgress(progress - 4);
+		setNow(true);
+		console.log(questionIndex);
+
+		if (questionIndex === 5) {
+			setNow(true);
+			setTendency(false);
+			setTendency02(false);
+			setTendency03(false);
+			setTendency04(false);
+			setTendency05(false);
+		}
+		if (questionIndex === 6) {
+			setNow(false);
+			setTendency(true);
+			setTendency02(false);
+			setTendency03(false);
+			setTendency04(false);
+			setTendency05(false);
+			setProgress(progress - 17.5);
+		}
+		if (questionIndex === 7) {
+			setNow(false);
+			setTendency(false);
+			setTendency02(true);
+			setTendency03(false);
+			setTendency04(false);
+			setTendency05(false);
+			setProgress(progress - 17.5);
+		}
+		if (questionIndex === 8) {
+			setNow(false);
+			setTendency(false);
+			setTendency02(false);
+			setTendency03(true);
+			setTendency04(false);
+			setTendency05(false);
+			setProgress(progress - 17.5);
+		}
+		if (questionIndex === 9) {
+			setNow(false);
+			setTendency(false);
+			setTendency02(false);
+			setTendency03(false);
+			setTendency04(true);
+			setTendency05(false);
+			setProgress(progress - 17.5);
+		}
 	};
+
+	// console.log(tendency, tendency02, tendency03, tendency04, tendency05);
 
 	return (
 		<PageCard>
@@ -75,23 +149,53 @@ const Interview = () => {
 				{tendency && (
 					<div className={cx('tendency-wrap')}>
 						{typeDetail.responsePropensityQuestions.map((item, idx) => {
-							if (idx + 1 <= 5) {
+							if (idx + 1 < 6) {
 								return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
 							}
 						})}
 					</div>
 				)}
-				{/* {tendency02 && (
+				{tendency02 && (
 					<div className={cx('tendency-wrap')}>
 						{typeDetail.responsePropensityQuestions.map((item, idx) => {
-							if (5 < idx + 1 < 11) {
+							if (5 < idx + 1 && idx + 1 <= 10) {
 								return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
 							}
 						})}
 					</div>
-				)} */}
-
-				{tendency ? <InterviewEndBtns onPrev={onPrev} /> : <InterviewBtns onNext={onNext} onPrev={onPrev} />}
+				)}
+				{tendency03 && (
+					<div className={cx('tendency-wrap')}>
+						{typeDetail.responsePropensityQuestions.map((item, idx) => {
+							if (10 < idx + 1 && idx + 1 <= 15) {
+								return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
+							}
+						})}
+					</div>
+				)}
+				{tendency04 && (
+					<div className={cx('tendency-wrap')}>
+						{typeDetail.responsePropensityQuestions.map((item, idx) => {
+							if (15 < idx + 1 && idx + 1 <= 20) {
+								return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
+							}
+						})}
+					</div>
+				)}
+				{tendency05 && (
+					<div className={cx('tendency-wrap')}>
+						{typeDetail.responsePropensityQuestions.map((item, idx) => {
+							if (20 < idx + 1 && idx + 1 <= 25) {
+								return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
+							}
+						})}
+					</div>
+				)}
+				{typeDetail && tendency05 === false ? (
+					<InterviewBtns onNext={onNext} onPrev={onPrev} />
+				) : (
+					<InterviewEndBtns onPrev={onPrev} />
+				)}
 			</div>
 		</PageCard>
 	);

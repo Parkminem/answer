@@ -9,8 +9,9 @@ const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex })
 	const [selectItem, setSelectItem] = useState('진단 항목을 선택해주세요.');
 	const [selected, setSelected] = useState(false);
 
-	typeDetail && console.log(typeDetail.responsePropensityQuestions.length);
-	typeDetail && console.log(typeDetail.responsePropensityQuestions[0].propensitySurveyQuestionCode);
+	// typeDetail && console.log(typeDetail.responsePropensityQuestions.length);
+	// typeDetail && console.log(typeDetail.responsePropensityQuestions[0].propensitySurveyQuestionCode);
+
 	//셀렉트바 열고닫는함수
 	const selectHandler = () => {
 		setSelect((prev) => !prev);
@@ -52,7 +53,7 @@ const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex })
 							))}
 					</ul>
 				</div>
-				{questionIndex < 4 && (
+				{questionIndex < 5 && (
 					<div className={cx('sidebar__info-box')}>
 						<div className={cx('sidebar__info-box__count')}>
 							<span className={cx('now')}>
@@ -67,6 +68,25 @@ const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex })
 							</span>
 						</div>
 						<h2>{typeDetail && typeDetail.responseInterviewQuestions[questionIndex].questionContent}</h2>
+						<div className={cx('sidebar__info-box__test-box')}>
+							<h3>면접 진단 테스트</h3>
+							<p>나의 면접 예상점수는 몇 점일까?</p>
+						</div>
+					</div>
+				)}
+				{questionIndex >= 5 && (
+					<div className={cx('sidebar__info-box')}>
+						<div className={cx('sidebar__info-box__count')}>
+							{questionIndex === 5 && <span className={cx('now')}>6-10</span>}
+							{questionIndex === 6 && <span className={cx('now')}>11-15</span>}
+							{questionIndex === 7 && <span className={cx('now')}>16-20</span>}
+							{questionIndex === 8 && <span className={cx('now')}>21-25</span>}
+							{questionIndex === 9 && <span className={cx('now')}>25-28</span>}
+							<span>/</span>
+							<span>28</span>
+						</div>
+						{/* <h2>{typeDetail && typeDetail.responseInterviewQuestions[questionIndex].questionContent}</h2> */}
+						<h2>주어진 문항에 대한 답변을 선택해 주십시오.</h2>
 						<div className={cx('sidebar__info-box__test-box')}>
 							<h3>면접 진단 테스트</h3>
 							<p>나의 면접 예상점수는 몇 점일까?</p>

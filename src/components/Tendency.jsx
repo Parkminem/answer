@@ -15,7 +15,7 @@ const Tendency = ({ item }) => {
 		<div className={cx('tendency')}>
 			<div className={cx('tendency-question')}>
 				<span className={cx('tendency-question__num')}>{item.sequence}.</span>
-				<p>{item.measure}</p>
+				<p>{item.questionContent}</p>
 			</div>
 			<div className={cx('tendency-select-box')}>
 				<span className={cx('agree')}>매우 그렇다</span>
