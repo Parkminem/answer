@@ -9,6 +9,9 @@ import InterviewEndBtns from '@/components/InterviewEndBtns';
 import styles from '@/pages/Interview/Interview.module.scss';
 import InterviewFrontPart from '@/components/InterviewFrontPart';
 import interviewApi from '@/apis/api/interview';
+import { useRecoilState } from 'recoil';
+import { answerList, repliesState } from '@/store/interview';
+import _ from 'lodash';
 
 const Interview = () => {
 	const cx = classNames.bind(styles);
@@ -22,7 +25,10 @@ const Interview = () => {
 	const [interviewTypes, setInterviewTypes] = useState();
 	const [typeDetail, setTypeDetail] = useState(null);
 	const [questionIndex, setQuestionIndex] = useState(0);
+	const [replyContent, setReplyContent] = useRecoilState(answerList);
+	const [replies, setReplies] = useRecoilState(repliesState);
 
+	// console.log(replies);
 	useEffect(() => {
 		//면접 타입 조회
 		const fetchTypes = async () => {
@@ -48,11 +54,40 @@ const Interview = () => {
 		}
 	};
 
-	const onNext = () => {
+	console.log(replies);
+	const onNext = (e) => {
 		setQuestionIndex(questionIndex + 1);
 		setProgress(progress + 4);
 		const length = typeDetail && typeDetail.responseInterviewQuestions.length;
 
+		//textarea의 값을 가져옴
+		let textAreaVal = document.getElementById('interview_content');
+
+		//다음 버튼을 클릭하면 store에 저장
+		const newReplies = _.cloneDeep(replies);
+		if (questionIndex < 5) {
+			setReplyContent(textAreaVal.value);
+			newReplies.requestInterviewReplyDetails[questionIndex] = {
+				interviewQuestionCode: typeDetail.responseInterviewQuestions[questionIndex].interviewQuestionCode,
+				interviewQuestionContent: typeDetail.responseInterviewQuestions[questionIndex].questionContent,
+				interviewReplyContent: replyContent,
+			};
+			//textarea 초기화
+			textAreaVal.value = '';
+		}
+
+		if (questionIndex > 4) {
+			newReplies.requestPropensityReplyDetails[questionIndex] = {
+				propensitySurveyQuestionCode: '',
+				propensitySurveyQuestionContent: '',
+				measure: 'string',
+				scoringBackwards: 'true or false',
+				replyContent: 'string',
+			};
+		}
+		setReplies(newReplies);
+
+		//To do switch문으로 교체
 		if (questionIndex + 1 >= length) {
 			setNow(false);
 			setTendency(true);
@@ -84,6 +119,7 @@ const Interview = () => {
 		setProgress(progress - 4);
 		setNow(true);
 
+		//Todo: switch문으로 교체
 		if (questionIndex === 5) {
 			setNow(true);
 			setTendency(false);
@@ -129,8 +165,6 @@ const Interview = () => {
 			setProgress(progress - 17.5);
 		}
 	};
-
-	const saveContent = () => {};
 
 	return (
 		<PageCard>

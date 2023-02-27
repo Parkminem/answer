@@ -11,3 +11,14 @@ export const typeState = atom({
 	key: 'type',
 	default: '진단 항목을 선택해주세요',
 });
+
+//모든 답변들
+export const repliesState = atom({
+	key: 'repliesState',
+	default: {
+		userCode: null,
+		interviewTypeCode: null,
+		requestInterviewReplyDetails: [],
+		requestPropensityReplyDetails: [],
+	},
+});

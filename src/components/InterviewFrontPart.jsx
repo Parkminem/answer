@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import style from '@/components/InterviewFrontPart.module.scss';
+import { useRecoilState } from 'recoil';
+import { answerList } from '@/store/interview';
 
 export default function InterviewFrontPart({ typeDetail, questionIndex, onNext }) {
-	const [textValue, setTextValue] = useState('');
+	const [textCount, setTextCount] = useState('');
+	const [replyContent, setReplyContent] = useRecoilState(answerList);
 
-	const handleSetValue = (e) => {
-		setTextValue(e.target.value.length);
+	const handletextCount = (e) => {
+		setTextCount(e.target.value.length);
+		setReplyContent(e.target.value);
 	};
 
 	return (
@@ -26,11 +30,11 @@ export default function InterviewFrontPart({ typeDetail, questionIndex, onNext }
 					<textarea
 						name="interview_content"
 						id="interview_content"
-						onChange={(e) => handleSetValue(e)}
+						onChange={(e) => handletextCount(e)}
 					></textarea>
 				</form>
 			</div>
-			<p>{textValue}/2000자</p>
+			<p>{textCount}/2000자</p>
 		</div>
 	);
 }
