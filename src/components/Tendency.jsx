@@ -1,15 +1,32 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from '@/components/Tendency.module.scss';
+import { useRecoilState } from 'recoil';
+import { repliesState, scoreState } from '@/store/interview';
+import _ from 'lodash';
 
 const Tendency = ({ item }) => {
 	const cx = classNames.bind(styles);
 	const [val, setVal] = useState('');
+	const [score, setScore] = useRecoilState(scoreState);
+	const [replies, setReplies] = useRecoilState(repliesState);
 
 	const valHandler = (e) => {
 		setVal(e.target.dataset.val);
+
+		setScore(e.target.dataset.score);
+		let index = item.propensitySurveyQuestionCode - 1;
+		const newReplies = _.cloneDeep(replies);
+
+		newReplies.requestPropensityReplyDetails[index] = {
+			propensitySurveyQuestionCode: item.propensitySurveyQuestionCode,
+			propensitySurveyQuestionContent: item.questionContent,
+			measure: item.measure,
+			scoringBackwards: item.scoringBackwards,
+			replyContent: score,
+		};
+		setReplies(newReplies);
 	};
-	// item && console.log(item);
 
 	return (
 		<div className={cx('tendency')}>
@@ -22,36 +39,36 @@ const Tendency = ({ item }) => {
 				<ul>
 					<li>
 						<span className={cx('hidden')}></span>
-						<button data-val="A" onClick={valHandler}>
-							<span data-val="A"></span>
+						<button data-score="1" data-val="A" onClick={valHandler}>
+							<span data-score="1" data-val="A"></span>
 						</button>
 						<span></span>
 					</li>
 					<li>
 						<span></span>
-						<button data-val="B" onClick={valHandler}>
-							<span data-val="B"></span>
+						<button data-score="2" data-val="B" onClick={valHandler}>
+							<span data-score="2" data-val="B"></span>
 						</button>
 						<span></span>
 					</li>
 					<li>
 						<span></span>
-						<button data-val="C" onClick={valHandler}>
-							<span data-val="C"></span>
+						<button data-score="3" data-val="C" onClick={valHandler}>
+							<span data-score="3" data-val="C"></span>
 						</button>
 						<span></span>
 					</li>
 					<li>
 						<span></span>
-						<button data-val="D" onClick={valHandler}>
-							<span data-val="D"></span>
+						<button data-score="4" data-val="D" onClick={valHandler}>
+							<span data-score="4" data-val="D"></span>
 						</button>
 						<span></span>
 					</li>
 					<li>
 						<span></span>
-						<button data-val="E" onClick={valHandler}>
-							<span data-val="E"></span>
+						<button data-score="5" data-val="E" onClick={valHandler}>
+							<span data-score="5" data-val="E"></span>
 						</button>
 						<span className={cx('hidden')}></span>
 					</li>

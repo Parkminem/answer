@@ -3,7 +3,7 @@ import style from '@/components/InterviewFrontPart.module.scss';
 import { useRecoilState } from 'recoil';
 import { answerList } from '@/store/interview';
 
-export default function InterviewFrontPart({ typeDetail, questionIndex, onNext }) {
+export default function InterviewFrontPart({ typeDetail, questionIndex }) {
 	const [textCount, setTextCount] = useState('');
 	const [replyContent, setReplyContent] = useRecoilState(answerList);
 

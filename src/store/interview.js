@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-//답변 리스트
+//주관식 답변
 export const answerList = atom({
 	key: 'answerList',
 	default: [],
@@ -21,4 +21,10 @@ export const repliesState = atom({
 		requestInterviewReplyDetails: [],
 		requestPropensityReplyDetails: [],
 	},
+});
+
+//객관식 점수
+export const scoreState = atom({
+	key: 'scoreState',
+	default: '',
 });

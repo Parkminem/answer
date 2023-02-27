@@ -28,7 +28,6 @@ const Interview = () => {
 	const [replyContent, setReplyContent] = useRecoilState(answerList);
 	const [replies, setReplies] = useRecoilState(repliesState);
 
-	// console.log(replies);
 	useEffect(() => {
 		//면접 타입 조회
 		const fetchTypes = async () => {
@@ -67,27 +66,19 @@ const Interview = () => {
 		const newReplies = _.cloneDeep(replies);
 		if (questionIndex < 5) {
 			setReplyContent(textAreaVal.value);
+			newReplies.userCode = localStorage.getItem('code');
+			newReplies.interviewTypeCode = typeDetail.interviewTypeCode;
 			newReplies.requestInterviewReplyDetails[questionIndex] = {
 				interviewQuestionCode: typeDetail.responseInterviewQuestions[questionIndex].interviewQuestionCode,
 				interviewQuestionContent: typeDetail.responseInterviewQuestions[questionIndex].questionContent,
 				interviewReplyContent: replyContent,
 			};
+			setReplies(newReplies);
 			//textarea 초기화
 			textAreaVal.value = '';
 		}
 
-		if (questionIndex > 4) {
-			newReplies.requestPropensityReplyDetails[questionIndex] = {
-				propensitySurveyQuestionCode: '',
-				propensitySurveyQuestionContent: '',
-				measure: 'string',
-				scoringBackwards: 'true or false',
-				replyContent: 'string',
-			};
-		}
-		setReplies(newReplies);
-
-		//To do switch문으로 교체
+		//Todo: switch문으로 교체
 		if (questionIndex + 1 >= length) {
 			setNow(false);
 			setTendency(true);
@@ -176,15 +167,13 @@ const Interview = () => {
 			/>
 			<div className={cx('container')}>
 				<InterviewProgressBar width={progress} />
-				{now && typeDetail && (
-					<InterviewFrontPart typeDetail={typeDetail} questionIndex={questionIndex} onNext={onNext} />
-				)}
+				{now && typeDetail && <InterviewFrontPart typeDetail={typeDetail} questionIndex={questionIndex} />}
 				{/* 성향 설문 객관식 5개 */}
 				{tendency && (
 					<div className={cx('tendency-wrap')}>
 						{typeDetail.responsePropensityQuestions.map((item, idx) => {
 							if (idx + 1 < 6) {
-								return <Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />;
+								return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
 							}
 						})}
 					</div>
@@ -193,7 +182,7 @@ const Interview = () => {
 					<div className={cx('tendency-wrap')}>
 						{typeDetail.responsePropensityQuestions.map((item, idx) => {
 							if (5 < idx + 1 && idx + 1 <= 10) {
-								return <Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />;
+								return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
 							}
 						})}
 					</div>
@@ -202,7 +191,7 @@ const Interview = () => {
 					<div className={cx('tendency-wrap')}>
 						{typeDetail.responsePropensityQuestions.map((item, idx) => {
 							if (10 < idx + 1 && idx + 1 <= 15) {
-								return <Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />;
+								return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
 							}
 						})}
 					</div>
@@ -211,7 +200,7 @@ const Interview = () => {
 					<div className={cx('tendency-wrap')}>
 						{typeDetail.responsePropensityQuestions.map((item, idx) => {
 							if (15 < idx + 1 && idx + 1 <= 20) {
-								return <Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />;
+								return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
 							}
 						})}
 					</div>
@@ -220,7 +209,7 @@ const Interview = () => {
 					<div className={cx('tendency-wrap')}>
 						{typeDetail.responsePropensityQuestions.map((item, idx) => {
 							if (20 < idx + 1 && idx + 1 <= 25) {
-								return <Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />;
+								return <Tendency item={item} key={item.propensitySurveyQuestionCode} />;
 							}
 						})}
 					</div>
