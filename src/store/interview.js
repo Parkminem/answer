@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom, atomFamily } from 'recoil';
 
 //주관식 답변
 export const answerList = atom({
@@ -27,4 +27,8 @@ export const repliesState = atom({
 export const scoreState = atom({
 	key: 'scoreState',
 	default: '',
+});
+export const tendencyState = atom({
+	key: 'tendencyValue',
+	default: [],
 });

@@ -5,8 +5,10 @@ import styles from '@/components/InterviewSideBar.module.scss';
 import dropdownImg from '@/assets/images/common/dropdown.png';
 import { typeState } from '@/store/interview';
 
-const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex }) => {
+const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex, ready }) => {
 	const cx = classNames.bind(styles);
+	const width = window.innerWidth;
+	const [mobile, setMobile] = useState(width);
 	const [select, setSelect] = useState(false);
 	const [selectItem, setSelectItem] = useState('진단 항목을 선택해주세요.');
 	const [selected, setSelected] = useState(false);
@@ -37,7 +39,16 @@ const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex })
 	return (
 		<div className={cx('sidebar')}>
 			<div className={cx('sidebar-wrap')}>
-				<h1>면접 진단하기</h1>
+				{mobile < 401 ? (
+					<>
+						<div className={cx('sidebar__mobile-title')}>
+							<h1>면접 진단 테스트</h1>
+							<p>나의 면접 예상 점수는 몇 점일까?</p>
+						</div>
+					</>
+				) : (
+					<h1>면접 진단하기</h1>
+				)}
 				<div className={cx('sidebar__select-box', select ? 'open' : '')}>
 					<div className={cx('sidebar__select-box__default', selected ? 'selected' : '')}>
 						<button onClick={selectHandler}>
@@ -56,9 +67,15 @@ const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex })
 							))}
 					</ul>
 				</div>
+				{mobile < 401 && (
+					<div className={cx('sidebar__mobile-desc-box')}>
+						<p>총 검사 시간은 00분 내외입니다.</p>
+						<p>가능하면 답변 시 ‘중립’을 선택하지 마십시오.</p>
+					</div>
+				)}
 				{questionIndex < 5 && (
 					<div className={cx('sidebar__info-box')}>
-						<div className={cx('sidebar__info-box__count')}>
+						<div className={cx('sidebar__info-box__count', ready ? 'active' : '')}>
 							<span className={cx('now')}>
 								{typeDetail && typeDetail.responseInterviewQuestions[questionIndex].sequence.slice(1)}
 							</span>

@@ -6,6 +6,8 @@ import { answerList } from '@/store/interview';
 export default function InterviewFrontPart({ typeDetail, questionIndex }) {
 	const [textCount, setTextCount] = useState('');
 	const [replyContent, setReplyContent] = useRecoilState(answerList);
+	const width = window.innerWidth;
+	const [mobile, setMobile] = useState(width);
 
 	const handletextCount = (e) => {
 		setTextCount(e.target.value.length);
@@ -19,7 +21,7 @@ export default function InterviewFrontPart({ typeDetail, questionIndex }) {
 					{questionIndex < 5 && typeDetail && typeDetail.responseInterviewQuestions[questionIndex].sequence}.
 				</span>
 				<span className={style.question_sentence}>
-					&nbsp;
+					{mobile > 400 && <>&nbsp;</>}
 					{questionIndex < 5 &&
 						typeDetail &&
 						typeDetail.responseInterviewQuestions[questionIndex].questionContent}
@@ -35,6 +37,7 @@ export default function InterviewFrontPart({ typeDetail, questionIndex }) {
 				</form>
 			</div>
 			<p>{textCount}/2000자</p>
+			{mobile > 401 && <p>{textCount}/2000자</p>}
 		</div>
 	);
 }

@@ -2,7 +2,8 @@
 	position: relative;
 	.selector {
 		position: absolute;
-		transform: translate(80px, -35px);
+		top: -45px;
+		left: 40%;
 	}
 	.card {
 		display: flex;
@@ -17,8 +18,7 @@
 			width: 8px;
 			height: 8px;
 			object-fit: contain;
-			transform: translate(-50%, 0);
-			left: 50%;
+			left: 40%;
 			top: -16px;
 		}
 		.card {

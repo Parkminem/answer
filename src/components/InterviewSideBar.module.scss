@@ -41,6 +41,7 @@
 			border: 1px solid rgba(0, 0, 0, 0.1);
 			box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.06);
 			border-radius: 8px;
+			display: block;
 			span {
 				font-weight: 400;
 				font-size: 16px;
@@ -109,6 +110,7 @@
 		width: 100%;
 		&__count {
 			margin-bottom: 30px;
+			opacity: 0;
 			span {
 				font-weight: 700;
 				font-size: 28px;
@@ -119,12 +121,16 @@
 					color: #312fd2;
 				}
 			}
+			&.active {
+				opacity: 1;
+			}
 		}
 		h2 {
 			font-weight: 700;
 			font-size: 24px;
 			line-height: 1.3;
 			word-break: keep-all;
+			min-height: 125px;
 		}
 		&__test-box {
 			margin-top: 155px;
@@ -144,4 +150,57 @@
 }
 button {
 	padding: 0;
+}
+
+@media all and (max-width: 400px) {
+	.sidebar {
+		width: 100%;
+		margin-top: 0;
+		&__mobile-title {
+			margin: 28px 0;
+			text-align: center;
+			h1 {
+				font-weight: 700;
+				font-size: 32px;
+				line-height: 130%;
+				margin-bottom: 5px;
+			}
+			p {
+				color: #999999;
+				font-weight: 500;
+				font-size: 12px;
+				line-height: 130%;
+			}
+		}
+		&__select-box {
+			width: 288px;
+			height: 40px;
+			button {
+				box-shadow: none;
+			}
+		}
+		&__mobile-desc-box {
+			margin-bottom: 28px;
+			p {
+				color: #999999;
+				font-weight: 500;
+				font-size: 12px;
+				line-height: 130%;
+				display: flex;
+				align-items: center;
+				&::before {
+					content: '';
+					display: block;
+					background-color: #999;
+					width: 3px;
+					height: 3px;
+					border-radius: 100%;
+					margin-right: 5px;
+				}
+			}
+		}
+		&__info-box {
+			display: none;
+		}
+	}
 }
