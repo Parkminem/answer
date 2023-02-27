@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import style from '@/components/InterviewFrontPart.module.scss';
 
 export default function InterviewFrontPart({ typeDetail, questionIndex, onNext }) {
+	const width = window.innerWidth;
+	const [mobile, setMobile] = useState(width);
 	const [textValue, setTextValue] = useState('');
 
 	const handleSetValue = (e) => {
@@ -15,7 +17,7 @@ export default function InterviewFrontPart({ typeDetail, questionIndex, onNext }
 					{questionIndex < 5 && typeDetail && typeDetail.responseInterviewQuestions[questionIndex].sequence}.
 				</span>
 				<span className={style.question_sentence}>
-					&nbsp;
+					{mobile > 400 && <>&nbsp;</>}
 					{questionIndex < 5 &&
 						typeDetail &&
 						typeDetail.responseInterviewQuestions[questionIndex].questionContent}
@@ -30,7 +32,7 @@ export default function InterviewFrontPart({ typeDetail, questionIndex, onNext }
 					></textarea>
 				</form>
 			</div>
-			<p>{textValue}/2000자</p>
+			{mobile > 401 && <p>{textValue}/2000자</p>}
 		</div>
 	);
 }

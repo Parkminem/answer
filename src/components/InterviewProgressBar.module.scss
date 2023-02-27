@@ -2,7 +2,7 @@
 	display: flex;
 	align-items: center;
 	margin-bottom: 70px;
-	span {
+	> span {
 		color: #666666;
 		font-weight: 500;
 		font-size: 20px;
@@ -19,6 +19,37 @@
 			background-color: #9da9f3;
 			height: 20px;
 			border-radius: 10px;
+		}
+	}
+}
+
+@media all and (max-width: 400px) {
+	.progress {
+		margin-bottom: 28px;
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: #8382e4;
+		width: 400px;
+		height: 48px;
+		padding: 0 20px;
+		> span {
+			color: #ffffff;
+			font-size: 16px;
+			line-height: 23px;
+		}
+		&__bar {
+			height: 4px;
+			background: #ffffff;
+			border-radius: 6px;
+			position: relative;
+			span {
+				position: absolute;
+				left: 0;
+				background: #312fd2;
+				height: 4px;
+				border-radius: 6px;
+			}
 		}
 	}
 }

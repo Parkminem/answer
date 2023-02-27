@@ -60,3 +60,53 @@
 		bottom: 70px;
 	}
 }
+
+@media all and (max-width: 400px) {
+	.front_part {
+		background: #ffffff;
+		border: 1px solid #c9c9c9;
+		border-radius: 4px;
+		width: 340px;
+		min-height: 360px;
+		margin: 0 auto;
+		padding: 16px;
+		// display: block;
+		.question {
+			transform: translateX(0);
+			height: 100%;
+			&_number {
+				color: #aeb6fe;
+				font-size: 20px;
+				line-height: 20px;
+				height: 23px;
+				display: inline-block;
+				margin-right: 8px;
+				padding-top: 5px;
+			}
+			&_sentence {
+				display: flex;
+				align-items: flex-start;
+				font-weight: 500;
+				font-size: 16px;
+				word-break: break-all;
+				line-height: 23px;
+			}
+		}
+		.textarea_box {
+			width: 100%;
+			margin: 10.5px 0 0;
+			transform: translateX(0);
+			background-color: #fff;
+			display: block;
+			textarea {
+				width: 100%;
+				height: 320px;
+				font-size: 10px;
+				line-height: 14px;
+				color: #666666;
+				padding: 0;
+				border: none;
+			}
+		}
+	}
+}

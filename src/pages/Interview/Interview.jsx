@@ -6,12 +6,15 @@ import InterviewProgressBar from '@/components/InterviewProgressBar';
 import Tendency from '@/components/Tendency';
 import InterviewBtns from '@/components/InterviewBtns';
 import InterviewEndBtns from '@/components/InterviewEndBtns';
+import MobileSideBar from '@/components/common/MobileSideBar';
 import styles from '@/pages/Interview/Interview.module.scss';
 import InterviewFrontPart from '@/components/InterviewFrontPart';
 import interviewApi from '@/apis/api/interview';
 
 const Interview = () => {
 	const cx = classNames.bind(styles);
+	const width = window.innerWidth;
+	const [mobile, setMobile] = useState(width);
 	const [now, setNow] = useState(true);
 	const [tendency, setTendency] = useState(false);
 	const [tendency02, setTendency02] = useState(false);
@@ -135,86 +138,109 @@ const Interview = () => {
 	const saveContent = () => {};
 
 	return (
-		<PageCard>
-			<InterviewSideBar
-				types={interviewTypes}
-				typeDetail={typeDetail}
-				fetchTypeDetail={fetchTypeDetail}
-				questionIndex={questionIndex}
-				ready={ready}
-			/>
-			{ready ? (
-				<div className={cx('container')}>
-					<InterviewProgressBar width={progress} />
-					{now && typeDetail && (
-						<InterviewFrontPart typeDetail={typeDetail} questionIndex={questionIndex} onNext={onNext} />
-					)}
-					{/* 성향 설문 객관식 5개 */}
-					{tendency && (
-						<div className={cx('tendency-wrap')}>
-							{typeDetail.responsePropensityQuestions.map((item, idx) => {
-								if (idx + 1 < 6) {
-									return (
-										<Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />
-									);
-								}
-							})}
-						</div>
-					)}
-					{tendency02 && (
-						<div className={cx('tendency-wrap')}>
-							{typeDetail.responsePropensityQuestions.map((item, idx) => {
-								if (5 < idx + 1 && idx + 1 <= 10) {
-									return (
-										<Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />
-									);
-								}
-							})}
-						</div>
-					)}
-					{tendency03 && (
-						<div className={cx('tendency-wrap')}>
-							{typeDetail.responsePropensityQuestions.map((item, idx) => {
-								if (10 < idx + 1 && idx + 1 <= 15) {
-									return (
-										<Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />
-									);
-								}
-							})}
-						</div>
-					)}
-					{tendency04 && (
-						<div className={cx('tendency-wrap')}>
-							{typeDetail.responsePropensityQuestions.map((item, idx) => {
-								if (15 < idx + 1 && idx + 1 <= 20) {
-									return (
-										<Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />
-									);
-								}
-							})}
-						</div>
-					)}
-					{tendency05 && (
-						<div className={cx('tendency-wrap')}>
-							{typeDetail.responsePropensityQuestions.map((item, idx) => {
-								if (20 < idx + 1 && idx + 1 <= 25) {
-									return (
-										<Tendency item={item} key={item.propensitySurveyQuestionCode} onNext={onNext} />
-									);
-								}
-							})}
-						</div>
-					)}
-					{typeDetail && tendency05 === false ? (
-						<InterviewBtns onNext={onNext} onPrev={onPrev} />
-					) : (
-						<InterviewEndBtns onPrev={onPrev} />
-					)}
-				</div>
-			) : (
-				<div className={cx('container')}></div>
-			)}
-		</PageCard>
+		<>
+			{mobile < 401 && <MobileSideBar />}
+			<PageCard>
+				<InterviewSideBar
+					types={interviewTypes}
+					typeDetail={typeDetail}
+					fetchTypeDetail={fetchTypeDetail}
+					questionIndex={questionIndex}
+					ready={ready}
+				/>
+				{ready ? (
+					<div className={cx('container')}>
+						<InterviewProgressBar width={progress} />
+						{now && typeDetail && (
+							<InterviewFrontPart typeDetail={typeDetail} questionIndex={questionIndex} onNext={onNext} />
+						)}
+						{/* 성향 설문 객관식 5개 */}
+						{tendency && (
+							<div className={cx('tendency-wrap')}>
+								{typeDetail.responsePropensityQuestions.map((item, idx) => {
+									if (idx + 1 < 6) {
+										return (
+											<Tendency
+												item={item}
+												key={item.propensitySurveyQuestionCode}
+												onNext={onNext}
+											/>
+										);
+									}
+								})}
+							</div>
+						)}
+						{tendency02 && (
+							<div className={cx('tendency-wrap')}>
+								{typeDetail.responsePropensityQuestions.map((item, idx) => {
+									if (5 < idx + 1 && idx + 1 <= 10) {
+										return (
+											<Tendency
+												item={item}
+												key={item.propensitySurveyQuestionCode}
+												onNext={onNext}
+											/>
+										);
+									}
+								})}
+							</div>
+						)}
+						{tendency03 && (
+							<div className={cx('tendency-wrap')}>
+								{typeDetail.responsePropensityQuestions.map((item, idx) => {
+									if (10 < idx + 1 && idx + 1 <= 15) {
+										return (
+											<Tendency
+												item={item}
+												key={item.propensitySurveyQuestionCode}
+												onNext={onNext}
+											/>
+										);
+									}
+								})}
+							</div>
+						)}
+						{tendency04 && (
+							<div className={cx('tendency-wrap')}>
+								{typeDetail.responsePropensityQuestions.map((item, idx) => {
+									if (15 < idx + 1 && idx + 1 <= 20) {
+										return (
+											<Tendency
+												item={item}
+												key={item.propensitySurveyQuestionCode}
+												onNext={onNext}
+											/>
+										);
+									}
+								})}
+							</div>
+						)}
+						{tendency05 && (
+							<div className={cx('tendency-wrap')}>
+								{typeDetail.responsePropensityQuestions.map((item, idx) => {
+									if (20 < idx + 1 && idx + 1 <= 25) {
+										return (
+											<Tendency
+												item={item}
+												key={item.propensitySurveyQuestionCode}
+												onNext={onNext}
+											/>
+										);
+									}
+								})}
+							</div>
+						)}
+						{typeDetail && tendency05 === false ? (
+							<InterviewBtns onNext={onNext} onPrev={onPrev} />
+						) : (
+							<InterviewEndBtns onPrev={onPrev} />
+						)}
+					</div>
+				) : (
+					<div className={cx('container')}></div>
+				)}
+			</PageCard>
+		</>
 	);
 };
 

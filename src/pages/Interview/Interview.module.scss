@@ -10,3 +10,12 @@
 .tendency-wrap {
 	padding: 10px 40px;
 }
+
+@media all and (max-width: 400px) {
+	.container {
+		width: 100%;
+		box-shadow: none;
+		border-radius: 0;
+		padding: 0;
+	}
+}

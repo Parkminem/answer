@@ -151,3 +151,56 @@
 button {
 	padding: 0;
 }
+
+@media all and (max-width: 400px) {
+	.sidebar {
+		width: 100%;
+		margin-top: 0;
+		&__mobile-title {
+			margin: 28px 0;
+			text-align: center;
+			h1 {
+				font-weight: 700;
+				font-size: 32px;
+				line-height: 130%;
+				margin-bottom: 5px;
+			}
+			p {
+				color: #999999;
+				font-weight: 500;
+				font-size: 12px;
+				line-height: 130%;
+			}
+		}
+		&__select-box {
+			width: 288px;
+			height: 40px;
+			button {
+				box-shadow: none;
+			}
+		}
+		&__mobile-desc-box {
+			margin-bottom: 28px;
+			p {
+				color: #999999;
+				font-weight: 500;
+				font-size: 12px;
+				line-height: 130%;
+				display: flex;
+				align-items: center;
+				&::before {
+					content: '';
+					display: block;
+					background-color: #999;
+					width: 3px;
+					height: 3px;
+					border-radius: 100%;
+					margin-right: 5px;
+				}
+			}
+		}
+		&__info-box {
+			display: none;
+		}
+	}
+}
