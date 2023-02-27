@@ -34,9 +34,15 @@ const MobileSideBar = () => {
 	const dropdownHandler = () => {
 		setSlide((prev) => !prev);
 	};
+
+	//사이드바 닫기
+	const offSidebarHandler = () => {
+		setOnOff(false);
+		setSlide(false);
+	};
 	return (
 		<div className={cx('side-bar', onOff ? 'open' : '')}>
-			<div className={cx('side-bar__back')} onClick={() => setOnOff(false)}></div>
+			<div className={cx('side-bar__back')} onClick={offSidebarHandler}></div>
 			<div className={cx('side-bar__inner')}>
 				<div className={cx('side-bar__logo')}>
 					<Link to="/">
