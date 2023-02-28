@@ -44,7 +44,6 @@ const Tendency = ({ item }) => {
 		});
 
 		//클릭을 했을때 store에 값을 보냄
-		setScore(e.target.dataset.val);
 		let questionIndex = item.propensitySurveyQuestionCode - 1;
 		const newReplies = _.cloneDeep(replies);
 
@@ -53,7 +52,7 @@ const Tendency = ({ item }) => {
 			propensitySurveyQuestionContent: item.questionContent,
 			measure: item.measure,
 			scoringBackwards: item.scoringBackwards,
-			replyContent: score,
+			replyContent: e.target.dataset.val,
 		};
 		setReplies(newReplies);
 	};
