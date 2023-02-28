@@ -29,3 +29,34 @@
 		}
 	}
 }
+
+@media all and (max-width: 400px) {
+	.btns {
+		background: #ebecfb;
+		margin: 0;
+		padding: 20px;
+		justify-content: baseline;
+		&__btn {
+			&.prev-box {
+				position: relative;
+				margin-right: 20px;
+			}
+			&.next-box {
+				flex-grow: 1;
+				width: 100%;
+			}
+			button {
+				height: 56px;
+				border-radius: 4px;
+				&.prev {
+					border: 2px solid rgba(201, 201, 201, 0.6);
+					width: 100px;
+					background: #ffffff;
+				}
+				&.next {
+					width: 240px;
+				}
+			}
+		}
+	}
+}

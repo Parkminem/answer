@@ -113,3 +113,60 @@ $disabledColors: (#999999, #c9c9c9, #e0e0e0, #c9c9c9, #999999);
 		}
 	}
 }
+
+@media all and (max-width: 400px) {
+	.tendency {
+		margin-bottom: 0;
+		padding: 28px 0 31px 0;
+		border-top: 1px solid #c9c9c9;
+		&.border {
+			border-bottom: 1px solid #c9c9c9;
+		}
+		&-question {
+			margin-bottom: 25px;
+			&__num {
+				font-weight: 500;
+				font-size: 20px;
+				line-height: 20px;
+				margin-bottom: 15px;
+			}
+			p {
+				color: #333333;
+				font-weight: 500;
+				font-size: 16px;
+				line-height: 23px;
+				word-break: keep-all;
+			}
+		}
+		&-select-box {
+			> span {
+				font-size: 12px;
+				line-height: 17px;
+				word-break: keep-all;
+				text-align: center;
+			}
+			ul {
+				li {
+					&.checked {
+						.border {
+							width: 28px;
+							height: 28px;
+						}
+					}
+					button {
+						width: 24px;
+						height: 24px;
+						background: #e0e0e0;
+						span {
+							width: 16px;
+							height: 16px;
+						}
+					}
+					span {
+						height: 8px;
+					}
+				}
+			}
+		}
+	}
+}

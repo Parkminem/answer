@@ -37,14 +37,20 @@ const MobilePageHeader = () => {
 
 	//이전 버튼 클릭
 	const prevHandler = () => {
-		navigate(-1);
+		if (pathname === '/interview') {
+			if (confirm('면접진단이 종료됩니다. 나가시겠습니까?') == true) {
+				navigate(-1);
+			}
+		} else {
+			navigate(-1);
+		}
 	};
 	return (
 		<header>
 			<div className={cx('empty')}></div>
 			<div className={cx('nav')}>
 				<div className={cx('prev-box')}>
-					<button onClick={prevHandler}>
+					<button onClick={prevHandler} type="button">
 						<img src={prev} alt="이전" />
 					</button>
 				</div>

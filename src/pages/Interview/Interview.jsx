@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useLocation, useNavigate, useBeforeUnload } from 'react-router-dom';
+import { Beforeunload } from 'react-beforeunload';
 import PageCard from '@/components/UI/PageCard';
 import InterviewSideBar from '@/components/InterviewSideBar';
 import InterviewProgressBar from '@/components/InterviewProgressBar';
@@ -13,7 +15,8 @@ import interviewApi from '@/apis/api/interview';
 import { useRecoilState } from 'recoil';
 import { answerList, repliesState, textCountState } from '@/store/interview';
 import _ from 'lodash';
-import { useNavigate } from 'react-router-dom';
+import { history } from '@/router/history';
+import { usePrompt } from '@/router/prompt';
 
 const Interview = () => {
 	const cx = classNames.bind(styles);
@@ -34,6 +37,22 @@ const Interview = () => {
 	const [ready, setReady] = useState(false);
 	const [textCount, setTextCount] = useRecoilState(textCountState);
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		const preventGoBack = () => {
+			if (confirm('면접진단이 종료됩니다. 메인화면으로 나가시겠습니까?')) {
+				navigate(-1);
+			} else {
+				navigate('/interview');
+			}
+		};
+		const historyEvent = history.listen(({ action }) => {
+			if (action === 'POP') {
+				preventGoBack();
+			}
+		});
+		return historyEvent;
+	}, []);
 
 	useEffect(() => {
 		//면접 타입 조회
@@ -207,7 +226,7 @@ const Interview = () => {
 	};
 
 	return (
-		<>
+		<Beforeunload onBeforeunload={() => '새로고침 시 면접진단이 종료됩니다. 새로고침 하시겠습니까?'}>
 			{mobile < 401 && <MobileSideBar />}
 			<PageCard>
 				<InterviewSideBar
@@ -300,7 +319,7 @@ const Interview = () => {
 							</div>
 						)}
 						{typeDetail && tendency05 === false ? (
-							<InterviewBtns onNext={onNext} onPrev={onPrev} />
+							<InterviewBtns onNext={onNext} onPrev={onPrev} idx={questionIndex} />
 						) : (
 							<InterviewEndBtns onPrev={onPrev} onSubmit={onSubmit} />
 						)}
@@ -309,7 +328,7 @@ const Interview = () => {
 					<div className={cx('container')}></div>
 				)}
 			</PageCard>
-		</>
+		</Beforeunload>
 	);
 };
 
