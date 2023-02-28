@@ -58,6 +58,8 @@
 		}
 	}
 	&__btn-box {
+		display: flex;
+		justify-content: center;
 		button {
 			width: 360px;
 			height: 75px;

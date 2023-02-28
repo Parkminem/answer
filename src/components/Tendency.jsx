@@ -176,7 +176,7 @@ const Tendency = ({ item }) => {
 						그렇지 않다
 					</span>
 				) : (
-					<span className={cx('agree')}>매우 그렇다</span>
+					<span className={cx('agree')}>매우 그렇지 않다</span>
 				)}
 			</div>
 		</div>
