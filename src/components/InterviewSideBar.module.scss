@@ -52,6 +52,7 @@
 			position: absolute;
 			width: 100%;
 			display: none;
+			z-index: 1;
 			li {
 				&:not(&:last-child) {
 					button {
@@ -111,6 +112,7 @@
 		&__count {
 			margin-bottom: 30px;
 			opacity: 0;
+			user-select: none;
 			span {
 				font-weight: 700;
 				font-size: 28px;
