@@ -11,8 +11,8 @@ const InterviewEndBtns = (props) => {
 					<span>&lt;&nbsp;&nbsp;&nbsp;이전</span>
 				</button>
 			</div>
-			<div className={cx('btns__btn', 'next-box')}>
-				<button className={cx('next')}>
+			<div className={cx('btns__btn')}>
+				<button className={cx('next')} onClick={props.onSubmit}>
 					<span>응답 제출</span>
 				</button>
 			</div>

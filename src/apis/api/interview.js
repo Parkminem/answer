@@ -18,7 +18,7 @@ function getUserAnswerList(userCode) {
  * @author sohee
  */
 function getSubmitInterviewList(userCode, data) {
-	return defaultInstance.post(`/api/v1/users/${userCode}/interview-replies`, data);
+	return defaultInstance.post(`/api/v1/users/${encodeURIComponent(userCode)}/interview-replies`, data);
 }
 
 /**

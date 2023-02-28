@@ -13,7 +13,7 @@ import styles from '@/pages/Interview/Interview.module.scss';
 import InterviewFrontPart from '@/components/InterviewFrontPart';
 import interviewApi from '@/apis/api/interview';
 import { useRecoilState } from 'recoil';
-import { answerList, repliesState } from '@/store/interview';
+import { answerList, repliesState, textCountState } from '@/store/interview';
 import _ from 'lodash';
 import { history } from '@/router/history';
 
@@ -21,7 +21,6 @@ const Interview = () => {
 	const cx = classNames.bind(styles);
 	const width = window.innerWidth;
 	const [mobile, setMobile] = useState(width);
-	const navigate = useNavigate();
 	const [now, setNow] = useState(true);
 	const [tendency, setTendency] = useState(false);
 	const [tendency02, setTendency02] = useState(false);
@@ -35,6 +34,8 @@ const Interview = () => {
 	const [replyContent, setReplyContent] = useRecoilState(answerList);
 	const [replies, setReplies] = useRecoilState(repliesState);
 	const [ready, setReady] = useState(false);
+	const [textCount, setTextCount] = useRecoilState(textCountState);
+	const navigate = useNavigate();
 
 	//뒤로가기 감지
 	useEffect(() => {
@@ -80,8 +81,6 @@ const Interview = () => {
 	};
 
 	const onNext = (e) => {
-		setQuestionIndex(questionIndex + 1);
-		setProgress(progress + 4);
 		const length = typeDetail && typeDetail.responseInterviewQuestions.length;
 
 		//textarea의 값을 가져옴
@@ -90,17 +89,34 @@ const Interview = () => {
 		//다음 버튼을 클릭하면 store에 저장
 		const newReplies = _.cloneDeep(replies);
 		if (questionIndex < 5) {
+			if (textCount < 300) {
+				alert('글자수가 최소 300자 이상이여야 합니다.');
+				return e.preventDefault();
+			}
+			setQuestionIndex(questionIndex + 1);
+			setProgress(progress + 4);
+
+			//textarea 초기화
+			if (replies.requestInterviewReplyDetails[questionIndex + 1]?.interviewReplyContent) {
+				textAreaVal.value = replies.requestInterviewReplyDetails[questionIndex + 1]?.interviewReplyContent;
+			} else {
+				textAreaVal.value = '';
+				setReplyContent('');
+				setTextCount('');
+			}
+
 			setReplyContent(textAreaVal.value);
-			newReplies.userCode = localStorage.getItem('code');
-			newReplies.interviewTypeCode = typeDetail.interviewTypeCode;
+
+			newReplies.userCode = parseInt(localStorage.getItem('code'));
+			newReplies.interviewTypeCode = parseInt(typeDetail.interviewTypeCode);
 			newReplies.requestInterviewReplyDetails[questionIndex] = {
-				interviewQuestionCode: typeDetail.responseInterviewQuestions[questionIndex].interviewQuestionCode,
+				interviewQuestionCode: parseInt(
+					typeDetail.responseInterviewQuestions[questionIndex].interviewQuestionCode,
+				),
 				interviewQuestionContent: typeDetail.responseInterviewQuestions[questionIndex].questionContent,
 				interviewReplyContent: replyContent,
 			};
 			setReplies(newReplies);
-			//textarea 초기화
-			textAreaVal.value = '';
 		}
 
 		//Todo: switch문으로 교체
@@ -109,33 +125,43 @@ const Interview = () => {
 			setTendency(true);
 		}
 		if (questionIndex + 1 > 5) {
+			setQuestionIndex(questionIndex + 1);
 			setTendency(false);
 			setTendency02(true);
 			setProgress(progress + 17.5);
 		}
 		if (questionIndex + 1 > 6) {
+			setQuestionIndex(questionIndex + 1);
 			setTendency02(false);
 			setTendency03(true);
 			setProgress(progress + 17.5);
 		}
 		if (questionIndex + 1 > 7) {
+			setQuestionIndex(questionIndex + 1);
 			setTendency03(false);
 			setTendency04(true);
 			setProgress(progress + 17.5);
 		}
 		if (questionIndex + 1 > 8) {
+			setQuestionIndex(questionIndex + 1);
 			setTendency04(false);
 			setTendency05(true);
 			setProgress(progress + 17.5);
 		}
 	};
-
+	console.log(replies);
 	const onPrev = () => {
 		setQuestionIndex(questionIndex - 1);
 		setProgress(progress - 4);
 		setNow(true);
+		let textAreaVal = document.getElementById('interview_content');
 
 		//Todo: switch문으로 교체
+		if (questionIndex < 5) {
+			textAreaVal.value = replies.requestInterviewReplyDetails[questionIndex - 1].interviewReplyContent;
+			setTextCount(textAreaVal.value.length);
+		}
+
 		if (questionIndex === 5) {
 			setNow(true);
 			setTendency(false);
@@ -180,6 +206,23 @@ const Interview = () => {
 			setTendency05(false);
 			setProgress(progress - 17.5);
 		}
+	};
+
+	//제출하기 함수
+	const onSubmit = () => {
+		//Todo
+		const userCode = localStorage.getItem('code');
+		const config = { 'Content-Type': 'application/json' };
+		interviewApi
+			.getSubmitInterviewList(userCode, replies, config)
+			.then((res) => {
+				console.log(res);
+				alert('제출이 완료되었습니다');
+				navigate('/mypage/diagnostic_history');
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	return (
@@ -278,7 +321,7 @@ const Interview = () => {
 						{typeDetail && tendency05 === false ? (
 							<InterviewBtns onNext={onNext} onPrev={onPrev} idx={questionIndex} />
 						) : (
-							<InterviewEndBtns onPrev={onPrev} />
+							<InterviewEndBtns onPrev={onPrev} onSubmit={onSubmit} />
 						)}
 					</div>
 				) : (
