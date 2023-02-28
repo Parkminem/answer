@@ -62,21 +62,22 @@ export default function DiagnosticDetail() {
 							</p>
 						</div>
 						<ul>
-							{answer.map((item, idx) => {
-								return (
-									<li key={idx}>
-										<div className={cx('text-box')}>
-											<div className={cx('question')}>
-												<span className={cx('num')}>{`Q${idx + 1}.`}</span>
-												<p>{item.questionContent}</p>
+							{answer &&
+								answer.map((item, idx) => {
+									return (
+										<li key={idx}>
+											<div className={cx('text-box')}>
+												<div className={cx('question')}>
+													<span className={cx('num')}>{`Q${idx + 1}.`}</span>
+													<p>{item.questionContent}</p>
+												</div>
+												<div className={cx('answer')}>
+													<p>{item.interviewReplyContent}</p>
+												</div>
 											</div>
-											<div className={cx('answer')}>
-												<p>{item.interviewReplyContent}</p>
-											</div>
-										</div>
-									</li>
-								);
-							})}
+										</li>
+									);
+								})}
 						</ul>
 					</div>
 					<div className={cx('detail__btn-box')}>
