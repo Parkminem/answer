@@ -17,5 +17,9 @@
 		box-shadow: none;
 		border-radius: 0;
 		padding: 0;
+		min-height: calc(800px - 611px + 58px);
+	}
+	.tendency-wrap {
+		padding: 0 30px 28px;
 	}
 }

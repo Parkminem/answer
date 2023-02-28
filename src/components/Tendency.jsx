@@ -6,11 +6,14 @@ import { tendencyState } from '@/store/interview';
 
 const Tendency = ({ item }) => {
 	const cx = classNames.bind(styles);
+	const width = window.innerWidth;
+	const [mobile, setMobile] = useState(width);
 
 	//클릭css 상태관리
 	const [active, setActive] = useState(false);
 	const [val, setVal] = useState('');
 	const [clicked, setClicked] = useRecoilState(tendencyState);
+	const [lastQna, setLastQna] = useState(false);
 
 	//클릭한 버튼 활성화
 	const clickHandler = (e) => {
@@ -61,6 +64,16 @@ const Tendency = ({ item }) => {
 				setActive(true);
 			}
 		}
+		//각 페이지의 마지막 질문
+		if (
+			item.sequence === 'Q10' ||
+			item.sequence === 'Q15' ||
+			item.sequence === 'Q20' ||
+			item.sequence === 'Q25' ||
+			item.sequence === 'Q28'
+		) {
+			setLastQna(true);
+		}
 	}, []);
 
 	//다음 객관식 활성화
@@ -76,13 +89,21 @@ const Tendency = ({ item }) => {
 	}, [clicked]);
 
 	return (
-		<div className={cx('tendency')}>
+		<div className={cx('tendency', lastQna && 'border')}>
 			<div className={cx('tendency-question')}>
 				<span className={cx('tendency-question__num')}>{item.sequence}.</span>
 				<p>{item.questionContent}</p>
 			</div>
 			<div className={cx('tendency-select-box', active ? '' : 'no-active')}>
-				<span className={cx('agree')}>매우 그렇다</span>
+				{mobile < 401 ? (
+					<span className={cx('agree')}>
+						매우
+						<br />
+						그렇다
+					</span>
+				) : (
+					<span className={cx('agree')}>매우 그렇다</span>
+				)}
 				<ul>
 					<li className={cx(val === 'A' ? 'checked' : '')}>
 						<span className={cx('hidden')}></span>
@@ -130,7 +151,15 @@ const Tendency = ({ item }) => {
 						<span className={cx('hidden')}></span>
 					</li>
 				</ul>
-				<span className={cx('disagree')}>매우 그렇지 않다</span>
+				{mobile < 401 ? (
+					<span className={cx('disagree')}>
+						매우
+						<br />
+						그렇지 않다
+					</span>
+				) : (
+					<span className={cx('agree')}>매우 그렇다</span>
+				)}
 			</div>
 		</div>
 	);
