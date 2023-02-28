@@ -3,6 +3,9 @@
 	justify-content: space-between;
 	padding: 0 15px 0 40px;
 	&__btn {
+		&.hidden {
+			opacity: 0;
+		}
 		button {
 			height: 42px;
 			padding: 0;
@@ -26,10 +29,12 @@
 
 @media all and (max-width: 400px) {
 	.btns {
-		margin-top: 68px;
 		background: #ebecfb;
 		padding: 20px;
 		&__btn {
+			&.hidden {
+				display: none;
+			}
 			&.next_btn {
 				flex-grow: 1;
 			}

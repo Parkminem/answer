@@ -256,7 +256,7 @@ const Interview = () => {
 							</div>
 						)}
 						{typeDetail && tendency05 === false ? (
-							<InterviewBtns onNext={onNext} onPrev={onPrev} />
+							<InterviewBtns onNext={onNext} onPrev={onPrev} idx={questionIndex} />
 						) : (
 							<InterviewEndBtns onPrev={onPrev} />
 						)}
