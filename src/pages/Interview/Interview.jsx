@@ -71,7 +71,7 @@ const Interview = () => {
 		const newReplies = _.cloneDeep(replies);
 		if (questionIndex < 5) {
 			setReplyContent(textAreaVal.value);
-			newReplies.userCode = localStorage.getItem('code');
+			newReplies.userCode = parseInt(localStorage.getItem('code'));
 			newReplies.interviewTypeCode = typeDetail.interviewTypeCode;
 			newReplies.requestInterviewReplyDetails[questionIndex] = {
 				interviewQuestionCode: typeDetail.responseInterviewQuestions[questionIndex].interviewQuestionCode,
@@ -160,6 +160,21 @@ const Interview = () => {
 			setTendency05(false);
 			setProgress(progress - 17.5);
 		}
+	};
+
+	//제출하기 함수
+	const onSubmit = () => {
+		//Todo
+		const userCode = localStorage.getItem('code');
+		const config = { 'Content-Type': 'application/json' };
+		interviewApi
+			.getSubmitInterviewList(userCode, replies, config)
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	return (
@@ -258,7 +273,7 @@ const Interview = () => {
 						{typeDetail && tendency05 === false ? (
 							<InterviewBtns onNext={onNext} onPrev={onPrev} />
 						) : (
-							<InterviewEndBtns onPrev={onPrev} />
+							<InterviewEndBtns onPrev={onPrev} onSubmit={onSubmit} />
 						)}
 					</div>
 				) : (
