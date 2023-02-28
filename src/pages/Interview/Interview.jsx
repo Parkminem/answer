@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useLocation, useNavigate, useBeforeUnload } from 'react-router-dom';
 import PageCard from '@/components/UI/PageCard';
 import InterviewSideBar from '@/components/InterviewSideBar';
 import InterviewProgressBar from '@/components/InterviewProgressBar';
@@ -13,11 +14,14 @@ import interviewApi from '@/apis/api/interview';
 import { useRecoilState } from 'recoil';
 import { answerList, repliesState } from '@/store/interview';
 import _ from 'lodash';
+import { history } from '@/router/history';
+import { usePrompt } from '@/router/prompt';
 
 const Interview = () => {
 	const cx = classNames.bind(styles);
 	const width = window.innerWidth;
 	const [mobile, setMobile] = useState(width);
+	const navigate = useNavigate();
 	const [now, setNow] = useState(true);
 	const [tendency, setTendency] = useState(false);
 	const [tendency02, setTendency02] = useState(false);
@@ -31,6 +35,36 @@ const Interview = () => {
 	const [replyContent, setReplyContent] = useRecoilState(answerList);
 	const [replies, setReplies] = useRecoilState(repliesState);
 	const [ready, setReady] = useState(false);
+
+	//뒤로가기 막기
+	const preventGoBack = () => {
+		window.history.pushState(null, '', location.href);
+		if (confirm('면접진단이 종료됩니다. 메인화면으로 나가시겠습니까?')) {
+			navigate('/');
+		} else {
+			console.log('취소');
+		}
+	};
+	useEffect(() => {
+		(() => {
+			window.history.pushState(null, '', location.href);
+			window.addEventListener('popstate', preventGoBack);
+		})();
+		return () => {
+			window.removeEventListener('popstate', preventGoBack);
+		};
+	}, []);
+
+	//새로고침 감지
+	useEffect(() => {
+		window.addEventListener('beforeunload', (e) => {
+			e.preventDefault();
+			e.returnValue = '';
+		});
+	});
+
+	//라우터 변경 감지
+	// usePrompt('면접진단이 종료됩니다. 나가시겠습니까?', true);
 
 	useEffect(() => {
 		//면접 타입 조회
@@ -58,7 +92,6 @@ const Interview = () => {
 		}
 	};
 
-	console.log(replies);
 	const onNext = (e) => {
 		setQuestionIndex(questionIndex + 1);
 		setProgress(progress + 4);
