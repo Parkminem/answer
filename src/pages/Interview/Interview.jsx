@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useLocation, useNavigate, useBeforeUnload } from 'react-router-dom';
+import { Beforeunload } from 'react-beforeunload';
 import PageCard from '@/components/UI/PageCard';
 import InterviewSideBar from '@/components/InterviewSideBar';
 import InterviewProgressBar from '@/components/InterviewProgressBar';
@@ -36,35 +37,21 @@ const Interview = () => {
 	const [replies, setReplies] = useRecoilState(repliesState);
 	const [ready, setReady] = useState(false);
 
-	//뒤로가기 막기
-	const preventGoBack = () => {
-		window.history.pushState(null, '', location.href);
-		if (confirm('면접진단이 종료됩니다. 메인화면으로 나가시겠습니까?')) {
-			navigate('/');
-		} else {
-			console.log('취소');
-		}
-	};
 	useEffect(() => {
-		(() => {
-			window.history.pushState(null, '', location.href);
-			window.addEventListener('popstate', preventGoBack);
-		})();
-		return () => {
-			window.removeEventListener('popstate', preventGoBack);
+		const preventGoBack = () => {
+			if (confirm('면접진단이 종료됩니다. 메인화면으로 나가시겠습니까?')) {
+				navigate(-1);
+			} else {
+				navigate('/interview');
+			}
 		};
-	}, []);
-
-	//새로고침 감지
-	useEffect(() => {
-		window.addEventListener('beforeunload', (e) => {
-			e.preventDefault();
-			e.returnValue = '';
+		const historyEvent = history.listen(({ action }) => {
+			if (action === 'POP') {
+				preventGoBack();
+			}
 		});
-	});
-
-	//라우터 변경 감지
-	// usePrompt('면접진단이 종료됩니다. 나가시겠습니까?', true);
+		return historyEvent;
+	}, []);
 
 	useEffect(() => {
 		//면접 타입 조회
@@ -196,7 +183,7 @@ const Interview = () => {
 	};
 
 	return (
-		<>
+		<Beforeunload onBeforeunload={() => '새로고침 시 면접진단이 종료됩니다. 새로고침 하시겠습니까?'}>
 			{mobile < 401 && <MobileSideBar />}
 			<PageCard>
 				<InterviewSideBar
@@ -298,7 +285,7 @@ const Interview = () => {
 					<div className={cx('container')}></div>
 				)}
 			</PageCard>
-		</>
+		</Beforeunload>
 	);
 };
 
