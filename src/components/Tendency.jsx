@@ -39,12 +39,14 @@ const Tendency = ({ item }) => {
 			});
 			return sortResult;
 		});
-		setScore(e.target.dataset.score);
+
+		//클릭을 했을때 store에 값을 보냄
+		setScore(e.target.dataset.val);
 		let questionIndex = item.propensitySurveyQuestionCode - 1;
 		const newReplies = _.cloneDeep(replies);
 
 		newReplies.requestPropensityReplyDetails[questionIndex] = {
-			propensitySurveyQuestionCode: item.propensitySurveyQuestionCode,
+			propensitySurveyQuestionCode: parseInt(item.propensitySurveyQuestionCode),
 			propensitySurveyQuestionContent: item.questionContent,
 			measure: item.measure,
 			scoringBackwards: item.scoringBackwards,

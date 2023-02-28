@@ -28,7 +28,14 @@ export const scoreState = atom({
 	key: 'scoreState',
 	default: '',
 });
+
 export const tendencyState = atom({
 	key: 'tendencyValue',
+	default: [],
+});
+
+//textCount
+export const textCountState = atom({
+	key: 'textCountState',
 	default: [],
 });
