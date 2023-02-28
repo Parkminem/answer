@@ -26,6 +26,9 @@ const Tendency = ({ item }) => {
 		const value = e.target.dataset.val;
 		const object = { index: formatIdx, value: value };
 		setVal(value);
+		if (!active) {
+			setActive(true);
+		}
 		setClicked((prev) => {
 			let newList = prev;
 			let result;
