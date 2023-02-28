@@ -16,7 +16,6 @@ import { useRecoilState } from 'recoil';
 import { answerList, repliesState } from '@/store/interview';
 import _ from 'lodash';
 import { history } from '@/router/history';
-import { usePrompt } from '@/router/prompt';
 
 const Interview = () => {
 	const cx = classNames.bind(styles);
@@ -37,9 +36,10 @@ const Interview = () => {
 	const [replies, setReplies] = useRecoilState(repliesState);
 	const [ready, setReady] = useState(false);
 
+	//뒤로가기 감지
 	useEffect(() => {
 		const preventGoBack = () => {
-			if (confirm('면접진단이 종료됩니다. 메인화면으로 나가시겠습니까?')) {
+			if (confirm('면접진단이 종료됩니다. 나가시겠습니까?')) {
 				navigate(-1);
 			} else {
 				navigate('/interview');

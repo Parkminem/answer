@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Router from '@/router';
 import { RecoilRoot } from 'recoil';
 import GlobalStyles from '@/assets/styles/GlobalStyles';
+import { history } from '@/router/history';
 
 function App() {
 	const width = window.innerWidth;
@@ -18,7 +19,7 @@ function App() {
 		<RecoilRoot>
 			<GlobalStyles />
 			<div className="App" style={{ minWidth: `${minWidth()}px` }}>
-				<Router />
+				<Router history={history} />
 			</div>
 		</RecoilRoot>
 	);
