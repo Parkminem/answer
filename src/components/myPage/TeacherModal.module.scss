@@ -13,7 +13,7 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 	z-index: 101;
-	width: 36.7%;
+	min-width: 700px;
 	&-wrap {
 		margin: 30px;
 		position: relative;

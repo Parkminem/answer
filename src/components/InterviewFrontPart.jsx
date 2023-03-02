@@ -28,13 +28,13 @@ export default function InterviewFrontPart({ typeDetail, questionIndex }) {
 				</span>
 			</div>
 			<div className={style.textarea_box}>
-				<form>
+				<div className={style.box}>
 					<textarea
 						name="interview_content"
 						id="interview_content"
 						onChange={(e) => handletextCount(e)}
 					></textarea>
-				</form>
+				</div>
 			</div>
 			{mobile > 401 && <p>{textCount}/2000자</p>}
 		</div>

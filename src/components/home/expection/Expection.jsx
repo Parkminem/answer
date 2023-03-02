@@ -8,6 +8,7 @@ import expection03 from '@/assets/images/image/expection03.png';
 import expection04 from '@/assets/images/image/expection04.png';
 import expection05 from '@/assets/images/image/expection05.png';
 import arrow from '@/assets/images/mobile/common/mobile_big_arrow.png';
+import pcBg from '@/assets/images/image/pc_service.png';
 import mobileBooks from '@/assets/images/mobile/mobile_books.png';
 
 const Expection = () => {
@@ -47,7 +48,8 @@ const Expection = () => {
 					</div>
 				</section>
 			) : (
-				<section className={style.expection}>
+				<>
+					{/* <section className={style.expection}>
 					<div className={style.container}>
 						<div className={style.inner}>
 							<div className={style.sentence}>
@@ -95,7 +97,11 @@ const Expection = () => {
 							</div>
 						</div>
 					</div>
-				</section>
+				</section> */}
+					<section style={{ width: 100 + '%' }}>
+						<img src={pcBg} alt="적중률 93.7%" style={{ maxWidth: 100 + '%', objectFit: 'contain' }} />
+					</section>
+				</>
 			)}
 		</>
 	);

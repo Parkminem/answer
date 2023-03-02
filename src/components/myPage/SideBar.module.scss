@@ -1,6 +1,10 @@
 .sidebar {
 	margin-top: 50px;
-	min-width: 288px;
+	min-width: 250px;
+	margin-right: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 .sidebar__top {
 	display: flex;
@@ -8,14 +12,14 @@
 	align-items: center;
 	h1 {
 		font-weight: 500;
-		font-size: 48px;
+		font-size: 32px;
 		margin-bottom: 28px;
 	}
 	&__info-box {
 		background: #ffffff;
 		border: 1px solid rgba(0, 0, 0, 0.1);
 		border-radius: 8px;
-		padding: 32px 0 40px 0;
+		padding: 20px 0 40px 0;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
@@ -46,11 +50,11 @@
 		h2 {
 			color: #333;
 			font-weight: 500;
-			font-size: 20px;
+			font-size: 16px;
 			margin-bottom: 10px;
 			strong {
 				font-weight: 700;
-				font-size: 28px;
+				font-size: 22px;
 				margin-right: 8px;
 			}
 		}
@@ -71,9 +75,9 @@
 			border-radius: 36px;
 			color: #666;
 			font-weight: 500;
-			font-size: 20px;
-			width: 200px;
-			height: 56px;
+			font-size: 17px;
+			width: 180px;
+			height: 52px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -110,8 +114,9 @@
 	h1 {
 		font-weight: 400;
 		color: #333;
-		font-size: 36px;
+		font-size: 28px;
 		margin-bottom: 15px;
+		word-break: keep-all;
 		strong {
 			font-weight: 700;
 		}
@@ -119,7 +124,7 @@
 	&__tel-box {
 		p {
 			color: #666;
-			font-size: 16px;
+			font-size: 14px;
 			font-weight: 400;
 			margin-bottom: 6px;
 		}
@@ -127,7 +132,7 @@
 			color: #1d27bc;
 			opacity: 0.8;
 			font-weight: 700;
-			font-size: 40px;
+			font-size: 30px;
 			margin-top: 15px;
 		}
 	}

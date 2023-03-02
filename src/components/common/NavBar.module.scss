@@ -7,14 +7,14 @@
 
 	.container {
 		position: relative;
-		margin: 0 200px;
+		// margin: 0 200px;
 		display: flex;
 		justify-content: center;
 		.menu {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			width: 60%;
+			width: 50%;
 			li {
 				word-break: keep-all;
 				a {
@@ -25,7 +25,7 @@
 			}
 			.all {
 				position: absolute;
-				right: 0;
+				right: 200px;
 				display: flex;
 				align-items: center;
 				img {

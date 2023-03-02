@@ -10,7 +10,7 @@ function App() {
 
 	const minWidth = () => {
 		if (mobile > 400) {
-			return 1520;
+			return 1400;
 		} else {
 			return 400;
 		}

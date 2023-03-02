@@ -96,7 +96,7 @@ const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex, r
 				)}
 				{questionIndex >= 5 && (
 					<div className={cx('sidebar__info-box')}>
-						<div className={cx('sidebar__info-box__count')}>
+						<div className={cx('sidebar__info-box__count', ready ? 'active' : '')}>
 							{questionIndex === 5 && <span className={cx('now')}>6-10</span>}
 							{questionIndex === 6 && <span className={cx('now')}>11-15</span>}
 							{questionIndex === 7 && <span className={cx('now')}>16-20</span>}
