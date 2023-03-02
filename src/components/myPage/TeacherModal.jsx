@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
-import ApexCharts from 'apexcharts';
-import ReactApexChart from 'react-apexcharts';
 import {
 	Chart as ChartJS,
 	LineElement,
@@ -114,7 +112,6 @@ const ModalOverlay = (props) => {
 			},
 		},
 	};
-	console.log(dataArr);
 	return (
 		<div className={cx('modal')}>
 			<div className={cx('modal-wrap')}>
