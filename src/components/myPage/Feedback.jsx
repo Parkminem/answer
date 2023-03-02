@@ -21,6 +21,7 @@ const Feedback = () => {
 	const [point, setPoint] = useState();
 	const [sentence, setSentence] = useState();
 	const [words, setWords] = useState();
+	const [teacherData, setTeacherData] = useState();
 
 	useEffect(() => {
 		const code = searchParams.get('code');
@@ -54,8 +55,17 @@ const Feedback = () => {
 	const onClose = () => {
 		setModal(false);
 	};
-	const onOpen = () => {
-		setModal(true);
+	const onOpen = async () => {
+		const code = searchParams.get('code');
+		await interviewApi
+			.getExperts(code)
+			.then((res) => {
+				setTeacherData(res.data);
+				setModal(true);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	/**
@@ -71,7 +81,7 @@ const Feedback = () => {
 			) : (
 				<InterviewTab title="면접 진단 내용" />
 			)}
-			{modal && <TeacherModal onConfirm={onClose} />}
+			{modal && <TeacherModal data={teacherData} onConfirm={onClose} />}
 			{mobile < 401 ? (
 				<section className={cx('m-feedback')}>
 					<div className={cx('m-feedback-inner')}>
