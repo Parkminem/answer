@@ -32,19 +32,26 @@ const Feedback = () => {
 					</div>
 				</section>
 			) : (
-				<section className={style.feedback}>
-					<div className={style.container}>
-						<div className={style.left_wrap}>
-							<img className={style.text_image} src={feedback02} alt="면접 답변 텍스트 이미지" />
-							<Link to="/mypage/feedback">
-								<img
-									className={style.button_image}
-									src={feedback03}
-									alt="면접 답변 피드백 시작 이미지"
-								/>
-							</Link>
+				<section className={cx('feed')}>
+					<div className={cx('feed__inner')}>
+						<div className={cx('feed_left')}>
+							<div className={cx('feed__title-box')}>
+								<h1>일단, 면접 답변 피드백을 받아보세요.</h1>
+								<p>
+									AI 모델 공인인증시험 성적서에서 <br />
+									<span>93%</span> 정확성을 인정받은 서비스
+								</p>
+							</div>
+							<div className={cx('feed__link-box')}>
+								<Link to="/mypage/feed">
+									<h2>면접 답변 피드백 시작</h2>
+									<p>10분 정도 소요됩니다.</p>
+								</Link>
+							</div>
 						</div>
-						<img className={style.image_image} src={feedback01} alt="답변 피드백 이미지" />
+						<div className={cx('feed__img-box')}>
+							<img src={feedback01} alt="면접 답변 피드백" />
+						</div>
 					</div>
 				</section>
 			)}

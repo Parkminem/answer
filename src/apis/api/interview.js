@@ -61,6 +61,8 @@ function getFeedback(interviewReplyCode) {
 	return defaultInstance.get(`/api/v1/interview-replies/${interviewReplyCode}/interview-feedbacks`);
 }
 
+function getExperts() {}
+
 const interviewApi = {
 	getUserAnswerList,
 	getSubmitInterviewList,
