@@ -12,8 +12,8 @@ import MobileSideBar from '@/components/common/MobileSideBar';
 import styles from '@/pages/Interview/Interview.module.scss';
 import InterviewFrontPart from '@/components/InterviewFrontPart';
 import interviewApi from '@/apis/api/interview';
-import { useRecoilState } from 'recoil';
-import { answerList, repliesState, textCountState } from '@/store/interview';
+import { useRecoilState, useResetRecoilState } from 'recoil';
+import { answerList, repliesState, textCountState, tendencyState } from '@/store/interview';
 import _ from 'lodash';
 import { history } from '@/router/history';
 
@@ -35,6 +35,7 @@ const Interview = () => {
 	const [replies, setReplies] = useRecoilState(repliesState);
 	const [ready, setReady] = useState(false);
 	const [textCount, setTextCount] = useRecoilState(textCountState);
+	const resetTendencyValue = useResetRecoilState(tendencyState);
 	const navigate = useNavigate();
 
 	//뒤로가기 감지
@@ -70,7 +71,6 @@ const Interview = () => {
 	//면접 타입을 선택하면 문제를 받아오는 함수
 	const fetchTypeDetail = async (typeCode) => {
 		try {
-			setQuestionIndex(0);
 			setProgress(3);
 			const res = await interviewApi.getDetailInterviewType(typeCode);
 			setTypeDetail(res.data);
@@ -81,11 +81,6 @@ const Interview = () => {
 	};
 
 	const onNext = (e) => {
-		const length = typeDetail && typeDetail.responseInterviewQuestions.length;
-
-		//textarea의 값을 가져옴
-		let textAreaVal = document.getElementById('interview_content');
-
 		//다음 버튼을 클릭하면 store에 저장
 		const newReplies = _.cloneDeep(replies);
 		if (questionIndex < 5) {
@@ -93,18 +88,11 @@ const Interview = () => {
 				alert('글자수가 최소 300자 이상이여야 합니다.');
 				return e.preventDefault();
 			}
-			setQuestionIndex(questionIndex + 1);
+			setQuestionIndex((questionIndex) => questionIndex + 1);
 			setProgress(progress + 4);
 
-			//textarea 초기화
-			if (replies.requestInterviewReplyDetails[questionIndex + 1]?.interviewReplyContent) {
-				textAreaVal.value = replies.requestInterviewReplyDetails[questionIndex + 1]?.interviewReplyContent;
-			} else {
-				textAreaVal.value = '';
-				setReplyContent('');
-				setTextCount('');
-			}
-
+			//textarea의 값을 가져옴
+			let textAreaVal = document.getElementById('interview_content');
 			setReplyContent(textAreaVal.value);
 
 			newReplies.userCode = parseInt(localStorage.getItem('code'));
@@ -114,53 +102,63 @@ const Interview = () => {
 					typeDetail.responseInterviewQuestions[questionIndex].interviewQuestionCode,
 				),
 				interviewQuestionContent: typeDetail.responseInterviewQuestions[questionIndex].questionContent,
-				interviewReplyContent: replyContent,
+				interviewReplyContent: textAreaVal.value,
 			};
 			setReplies(newReplies);
 		}
 
 		//Todo: switch문으로 교체
-		if (questionIndex + 1 >= length) {
+		if (questionIndex === 4) {
 			setNow(false);
 			setTendency(true);
 		}
-		if (questionIndex + 1 > 5) {
-			setQuestionIndex(questionIndex + 1);
+		if (questionIndex === 5) {
+			if (replies.requestPropensityReplyDetails.length < 5) {
+				alert('모든 항목을 선택해주세요.');
+				return e.preventDefault();
+			}
+			setQuestionIndex((questionIndex) => questionIndex + 1);
 			setTendency(false);
 			setTendency02(true);
 			setProgress(progress + 17.5);
 		}
-		if (questionIndex + 1 > 6) {
-			setQuestionIndex(questionIndex + 1);
+		if (questionIndex === 6) {
+			if (replies.requestPropensityReplyDetails.length < 10) {
+				alert('모든 항목을 선택해주세요.');
+				return e.preventDefault();
+			}
+			setQuestionIndex((questionIndex) => questionIndex + 1);
 			setTendency02(false);
 			setTendency03(true);
 			setProgress(progress + 17.5);
 		}
-		if (questionIndex + 1 > 7) {
-			setQuestionIndex(questionIndex + 1);
+		if (questionIndex === 7) {
+			if (replies.requestPropensityReplyDetails.length < 15) {
+				alert('모든 항목을 선택해주세요.');
+				return e.preventDefault();
+			}
+			setQuestionIndex((questionIndex) => questionIndex + 1);
 			setTendency03(false);
 			setTendency04(true);
 			setProgress(progress + 17.5);
 		}
-		if (questionIndex + 1 > 8) {
-			setQuestionIndex(questionIndex + 1);
+		if (questionIndex === 8) {
+			if (replies.requestPropensityReplyDetails.length < 20) {
+				alert('모든 항목을 선택해주세요.');
+				return e.preventDefault();
+			}
+			setQuestionIndex((questionIndex) => questionIndex + 1);
 			setTendency04(false);
 			setTendency05(true);
 			setProgress(progress + 17.5);
 		}
 	};
 	console.log(replies);
+
 	const onPrev = () => {
-		setQuestionIndex(questionIndex - 1);
+		setQuestionIndex((questionIndex) => questionIndex - 1);
 		setProgress(progress - 4);
 		setNow(true);
-		let textAreaVal = document.getElementById('interview_content');
-
-		//Todo: switch문으로 교체
-		if (questionIndex < 5) {
-			textAreaVal.value = replies.requestInterviewReplyDetails[questionIndex - 1].interviewReplyContent;
-			setTextCount(textAreaVal.value.length);
-		}
 
 		if (questionIndex === 5) {
 			setNow(true);
@@ -208,8 +206,29 @@ const Interview = () => {
 		}
 	};
 
+	useEffect(() => {
+		let textAreaVal = document.getElementById('interview_content');
+
+		if (questionIndex < 5) {
+			if (replies.requestInterviewReplyDetails[questionIndex]?.interviewReplyContent) {
+				textAreaVal.value = replies.requestInterviewReplyDetails[questionIndex]?.interviewReplyContent;
+				setTextCount(textAreaVal.value.length);
+			} else {
+				if (textAreaVal) {
+					textAreaVal.value = '';
+				}
+				setReplyContent('');
+				setTextCount('');
+			}
+		}
+	}, [questionIndex]);
+
 	//제출하기 함수
-	const onSubmit = () => {
+	const onSubmit = (e) => {
+		if (replies.requestPropensityReplyDetails.length < 23) {
+			alert('모든 항목을 선택해주세요.');
+			return e.preventDefault();
+		}
 		//Todo
 		const userCode = localStorage.getItem('code');
 		const config = { 'Content-Type': 'application/json' };
@@ -219,6 +238,7 @@ const Interview = () => {
 				console.log(res);
 				alert('제출이 완료되었습니다');
 				navigate('/mypage/diagnostic_history');
+				resetTendencyValue();
 			})
 			.catch((error) => {
 				console.log(error);

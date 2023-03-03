@@ -39,3 +39,8 @@ export const textCountState = atom({
 	key: 'textCountState',
 	default: [],
 });
+
+export const questionIndexState = atom({
+	key: 'questionIndexState',
+	default: 0,
+});

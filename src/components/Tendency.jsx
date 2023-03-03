@@ -15,7 +15,6 @@ const Tendency = ({ item }) => {
 	const [active, setActive] = useState(false);
 	const [val, setVal] = useState('');
 	const [clicked, setClicked] = useRecoilState(tendencyState);
-	const [score, setScore] = useRecoilState(scoreState);
 	const [replies, setReplies] = useRecoilState(repliesState);
 	const [lastQna, setLastQna] = useState(false);
 
