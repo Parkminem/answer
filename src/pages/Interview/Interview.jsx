@@ -163,20 +163,6 @@ const Interview = () => {
 		setProgress(progress - 4);
 		setNow(true);
 
-		const newReplies = _.cloneDeep(replies);
-		//textarea의 값을 가져옴
-		let textAreaVal = document.getElementById('interview_content');
-		textAreaVal.value && setReplyContent(textAreaVal.value);
-
-		newReplies.userCode = parseInt(localStorage.getItem('code'));
-		newReplies.interviewTypeCode = parseInt(typeDetail.interviewTypeCode);
-		newReplies.requestInterviewReplyDetails[questionIndex] = {
-			interviewQuestionCode: parseInt(typeDetail.responseInterviewQuestions[questionIndex].interviewQuestionCode),
-			interviewQuestionContent: typeDetail.responseInterviewQuestions[questionIndex].questionContent,
-			interviewReplyContent: textAreaVal.value,
-		};
-		setReplies(newReplies);
-
 		if (questionIndex === 5) {
 			setNow(true);
 			setTendency(false);
