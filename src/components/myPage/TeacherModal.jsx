@@ -88,7 +88,6 @@ const ModalOverlay = (props) => {
 			],
 		};
 	});
-	console.log(dataArr, props.data);
 	const options = {
 		maintainAspectRatio: false,
 		legend: {
