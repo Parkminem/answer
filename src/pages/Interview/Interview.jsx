@@ -46,6 +46,33 @@ const modalStyle = {
 		zIndex: 10,
 	},
 };
+const mobileModalStyle = {
+	overlay: {
+		position: 'fixed',
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		backgroundColor: 'rgba(255, 255, 255, 0.45)',
+		zIndex: 10,
+	},
+	content: {
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+		background: '#FFFFFF',
+		overflow: 'auto',
+		top: '40vh',
+		left: '-3vw',
+		right: '-3vw',
+		bottom: '40vh',
+		WebkitOverflowScrolling: 'touch',
+		borderRadius: '14px',
+		outline: 'none',
+		zIndex: 10,
+	},
+};
 
 const Interview = () => {
 	const cx = classNames.bind(styles);
@@ -409,7 +436,7 @@ const Interview = () => {
 			</PageCard>
 			<ReactModal
 				isOpen={modalIsOpen}
-				style={modalStyle}
+				style={mobile > 480 ? modalStyle : mobileModalStyle}
 				onRequestClose={() => {
 					setModalIsOpen(false);
 				}} // 오버레이나 esc를 누르면 핸들러 동작
