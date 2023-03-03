@@ -9,7 +9,7 @@ const SectionCard = ({ children }) => {
 	const cx = classNames.bind(styles);
 	return (
 		<div className={cx('container')}>
-			{mobile > 400 ? <BreadCrumb /> : ''}
+			{mobile > 480 ? <BreadCrumb /> : ''}
 			{children}
 		</div>
 	);

@@ -72,7 +72,7 @@ const CurriculumList = () => {
 	};
 	return (
 		<div className={cx('curriculum-list-box')}>
-			{mobile < 401 ? (
+			{mobile < 481 ? (
 				<Swiper className={cx('swiper-list')} {...swiperParams}>
 					{info.map((i) => {
 						return (

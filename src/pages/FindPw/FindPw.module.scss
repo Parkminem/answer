@@ -1,5 +1,5 @@
 .find-wrap {
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
 	display: flex;
 	align-items: center;
@@ -16,9 +16,10 @@
 	align-items: center;
 }
 
-@media all and (max-width: 400px) {
+@media all and (max-width: 480px) {
 	.find {
-		width: 100%;
+		// min-width: 360px;
+		// width: ;
 		border-radius: 0;
 		height: 100%;
 		background-color: #ebecfb;

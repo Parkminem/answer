@@ -10,9 +10,9 @@ const InterviewLayout = () => {
 	const [mobile, setMobile] = useState(width);
 	return (
 		<>
-			{mobile < 401 ? <MobilePageHeader /> : <Header />}
+			{mobile < 481 ? <MobilePageHeader /> : <Header />}
 			<Outlet />
-			{mobile < 401 ? <MobileFooter /> : <Footer />}
+			{mobile < 481 ? <MobileFooter /> : <Footer />}
 		</>
 	);
 };

@@ -306,7 +306,7 @@ const Interview = () => {
 
 	return (
 		<Beforeunload onBeforeunload={() => '새로고침 시 면접진단이 종료됩니다. 새로고침 하시겠습니까?'}>
-			{mobile < 401 && <MobileSideBar />}
+			{mobile < 481 && <MobileSideBar />}
 			<PageCard>
 				<InterviewSideBar
 					types={interviewTypes}

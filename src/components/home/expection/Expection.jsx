@@ -17,7 +17,7 @@ const Expection = () => {
 	const cx = classNames.bind(style);
 	return (
 		<>
-			{mobile < 401 ? (
+			{mobile < 480 ? (
 				<section className={cx('service')}>
 					<div className={cx('service__inner')}>
 						<div className={cx('service__title-box')}>

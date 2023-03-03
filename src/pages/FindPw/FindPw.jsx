@@ -33,7 +33,7 @@ const FindPw = () => {
 
 	return (
 		<>
-			{mobile < 401 ? <MobileAuthHeader /> : <></>}
+			{mobile < 481 ? <MobileAuthHeader /> : <></>}
 			<div className={cx('find-wrap')}>
 				<div className={cx('find')}>{!changePw ? <FindPassword /> : <EditPassword />}</div>
 			</div>

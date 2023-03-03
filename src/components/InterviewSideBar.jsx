@@ -39,7 +39,7 @@ const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex, r
 	return (
 		<div className={cx('sidebar')}>
 			<div className={cx('sidebar-wrap')}>
-				{mobile < 401 ? (
+				{mobile < 481 ? (
 					<>
 						<div className={cx('sidebar__mobile-title')}>
 							<h1>면접 진단 테스트</h1>
@@ -67,7 +67,7 @@ const InterviewSideBar = ({ types, typeDetail, fetchTypeDetail, questionIndex, r
 							))}
 					</ul>
 				</div>
-				{mobile < 401 && (
+				{mobile < 481 && (
 					<div className={cx('sidebar__mobile-desc-box')}>
 						<p>총 검사 시간은 00분 내외입니다.</p>
 						<p>가능하면 답변 시 ‘중립’을 선택하지 마십시오.</p>

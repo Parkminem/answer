@@ -46,12 +46,12 @@ export default function DiagnosticDetail() {
 
 	return (
 		<>
-			{mobile < 401 ? (
+			{mobile < 481 ? (
 				<MobileInterviewTap title={`면접 진단 내역 > 진단 상세 - ${type}`} />
 			) : (
 				<InterviewTab title="면접 진단 내용" />
 			)}
-			{mobile < 401 ? (
+			{mobile < 481 ? (
 				<div className={cx('detail')}>
 					<div className={cx('detail__inner')}>
 						<div className={cx('detail__info-box')}>
