@@ -23,12 +23,6 @@ export const repliesState = atom({
 	},
 });
 
-//객관식 점수
-export const scoreState = atom({
-	key: 'scoreState',
-	default: '',
-});
-
 //객관식 css
 export const tendencyState = atom({
 	key: 'tendencyValue',

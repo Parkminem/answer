@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import { useRecoilState } from 'recoil';
 import styles from '@/components/Tendency.module.scss';
 import { tendencyState } from '@/store/interview';
-import { repliesState, scoreState } from '@/store/interview';
+import { repliesState } from '@/store/interview';
 import _ from 'lodash';
 
 const Tendency = ({ item }) => {
@@ -127,8 +127,8 @@ const Tendency = ({ item }) => {
 					<li className={cx(val === 'A' ? 'checked' : '')}>
 						<span className={cx('hidden')}></span>
 						<div className={cx('border')}>
-							<button data-score="5" data-val="A" data-index={item.sequence} onClick={clickHandler}>
-								<span data-score="5" data-val="A" data-index={item.sequence}></span>
+							<button data-val="A" data-index={item.sequence} onClick={clickHandler}>
+								<span data-val="A" data-index={item.sequence}></span>
 							</button>
 						</div>
 						<span></span>
@@ -136,8 +136,8 @@ const Tendency = ({ item }) => {
 					<li className={cx(val === 'B' ? 'checked' : '')}>
 						<span></span>
 						<div className={cx('border')}>
-							<button data-score="4" data-val="B" data-index={item.sequence} onClick={clickHandler}>
-								<span data-score="4" data-val="B" data-index={item.sequence}></span>
+							<button data-val="B" data-index={item.sequence} onClick={clickHandler}>
+								<span data-val="B" data-index={item.sequence}></span>
 							</button>
 						</div>
 						<span></span>
@@ -145,8 +145,8 @@ const Tendency = ({ item }) => {
 					<li className={cx(val === 'C' ? 'checked' : '')}>
 						<span></span>
 						<div className={cx('border')}>
-							<button data-score="3" data-val="C" data-index={item.sequence} onClick={clickHandler}>
-								<span data-score="3" data-val="C" data-index={item.sequence}></span>
+							<button data-val="C" data-index={item.sequence} onClick={clickHandler}>
+								<span data-val="C" data-index={item.sequence}></span>
 							</button>
 						</div>
 						<span></span>
@@ -154,8 +154,8 @@ const Tendency = ({ item }) => {
 					<li className={cx(val === 'D' ? 'checked' : '')}>
 						<span></span>
 						<div className={cx('border')}>
-							<button data-score="2" data-val="D" data-index={item.sequence} onClick={clickHandler}>
-								<span data-score="2" data-val="D" data-index={item.sequence}></span>
+							<button data-val="D" data-index={item.sequence} onClick={clickHandler}>
+								<span data-val="D" data-index={item.sequence}></span>
 							</button>
 						</div>
 						<span></span>
@@ -163,8 +163,8 @@ const Tendency = ({ item }) => {
 					<li className={cx(val === 'E' ? 'checked' : '')}>
 						<span></span>
 						<div className={cx('border')}>
-							<button data-score="1" data-val="E" data-index={item.sequence} onClick={clickHandler}>
-								<span data-score="1" data-val="E" data-index={item.sequence}></span>
+							<button data-val="E" data-index={item.sequence} onClick={clickHandler}>
+								<span data-val="E" data-index={item.sequence}></span>
 							</button>
 						</div>
 						<span className={cx('hidden')}></span>

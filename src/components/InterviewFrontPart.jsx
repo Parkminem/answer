@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import style from '@/components/InterviewFrontPart.module.scss';
 import { useRecoilState } from 'recoil';
-import { answerList, repliesState, textCountState } from '@/store/interview';
+import { answerList, textCountState } from '@/store/interview';
 
 export default function InterviewFrontPart({ typeDetail, questionIndex }) {
 	const [textCount, setTextCount] = useRecoilState(textCountState);
 	const [replyContent, setReplyContent] = useRecoilState(answerList);
-	const [replies, setReplies] = useRecoilState(repliesState);
 	const width = window.innerWidth;
 	const [mobile, setMobile] = useState(width);
 

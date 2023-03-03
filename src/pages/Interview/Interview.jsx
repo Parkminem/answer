@@ -30,12 +30,13 @@ const Interview = () => {
 	const [progress, setProgress] = useState(3);
 	const [interviewTypes, setInterviewTypes] = useState();
 	const [typeDetail, setTypeDetail] = useState(null);
-	const [questionIndex, setQuestionIndex] = useState(0);
+	const [questionIndex, setQuestionIndex] = useState(null);
 	const [replyContent, setReplyContent] = useRecoilState(answerList);
 	const [replies, setReplies] = useRecoilState(repliesState);
 	const [ready, setReady] = useState(false);
 	const [textCount, setTextCount] = useRecoilState(textCountState);
 	const resetTendencyValue = useResetRecoilState(tendencyState);
+	const resetRepliesValue = useResetRecoilState(repliesState);
 	const navigate = useNavigate();
 
 	//뒤로가기 감지
@@ -71,6 +72,8 @@ const Interview = () => {
 	//면접 타입을 선택하면 문제를 받아오는 함수
 	const fetchTypeDetail = async (typeCode) => {
 		try {
+			resetRepliesValue();
+			setQuestionIndex(0);
 			setProgress(3);
 			const res = await interviewApi.getDetailInterviewType(typeCode);
 			setTypeDetail(res.data);
@@ -93,7 +96,7 @@ const Interview = () => {
 
 			//textarea의 값을 가져옴
 			let textAreaVal = document.getElementById('interview_content');
-			setReplyContent(textAreaVal.value);
+			textAreaVal.value && setReplyContent(textAreaVal.value);
 
 			newReplies.userCode = parseInt(localStorage.getItem('code'));
 			newReplies.interviewTypeCode = parseInt(typeDetail.interviewTypeCode);
@@ -239,6 +242,7 @@ const Interview = () => {
 				alert('제출이 완료되었습니다');
 				navigate('/mypage/diagnostic_history');
 				resetTendencyValue();
+				resetRepliesValue();
 			})
 			.catch((error) => {
 				console.log(error);
