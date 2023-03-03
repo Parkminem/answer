@@ -3,12 +3,11 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	margin-bottom: 112px;
 	.container {
 		margin: 48px 107px 115px 107px;
 		p {
 			font-weight: 400;
-			font-size: 16px;
+			font-size: 14px;
 			line-height: 23px;
 			letter-spacing: -0.04em;
 			color: #999999;
@@ -19,7 +18,7 @@
 			margin-top: 20px;
 			.type {
 				font-weight: 700;
-				font-size: 28px;
+				font-size: 24px;
 				line-height: 41px;
 				letter-spacing: -0.04em;
 				color: #333333;
@@ -31,10 +30,12 @@
 			}
 			h2 {
 				font-weight: 500;
-				font-size: 20px;
+				font-size: 16px;
 				line-height: 29px;
 				letter-spacing: -0.04em;
 				color: #999999;
+				display: flex;
+				align-items: flex-end;
 			}
 			.content_info {
 				display: flex;
@@ -56,7 +57,7 @@
 				border: 1px solid #c9c9c9;
 				border-radius: 4px;
 				font-weight: 400;
-				font-size: 12px;
+				font-size: 11px;
 				line-height: 17px;
 				display: flex;
 				letter-spacing: -0.04em;
@@ -75,11 +76,11 @@
 	button {
 		background-color: #312fd2;
 		border-radius: 28px;
-		width: 190px;
-		height: 56px;
+		width: 180px;
+		height: 54px;
 		span {
 			font-weight: 700;
-			font-size: 20px;
+			font-size: 18px;
 			color: #ffffff;
 		}
 	}

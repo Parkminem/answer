@@ -1,8 +1,19 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
+import {
+	Chart as ChartJS,
+	LineElement,
+	PointElement,
+	Tooltip,
+	Legend,
+	RadialLinearScale,
+	Filler,
+	LinearScale,
+} from 'chart.js';
+import { Chart, Radar } from 'react-chartjs-2';
 import 'swiper/swiper.min.css';
 import styles from '@/components/myPage/TeacherModal.module.scss';
 import teacherImg from '@/assets/images/image/teacher_yang.png';
@@ -12,6 +23,8 @@ import prev from '@/assets/images/common/prev.png';
 import next from '@/assets/images/common/next.png';
 
 const cx = classNames.bind(styles);
+
+ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend, LinearScale);
 
 const BackDrop = (props) => {
 	return <div className={cx('backdrop')} onClick={props.onConfirm} />;
@@ -23,7 +36,6 @@ const ModalOverlay = (props) => {
 	const [swiper, setSwiper] = useState(null);
 	const [naviIdx, setNaviIndex] = useState(0);
 	SwiperCore.use([Navigation]);
-
 	const preRef = useRef(null);
 	const nextRef = useRef(null);
 
@@ -46,6 +58,75 @@ const ModalOverlay = (props) => {
 		width: '300px',
 	};
 
+	const dataArr = props.data.map((i) => {
+		return {
+			labels: [
+				'논리력',
+				'창의력',
+				'심리',
+				'스피치역량',
+				'기업분석',
+				[
+					'전문분야',
+					`(${i.responseInterviewExpertDomains.map((name, idx) => {
+						if (idx < 2) {
+							return name.domainName;
+						}
+					})})`,
+				],
+			],
+
+			datasets: [
+				{
+					data: i.responseInterviewExpertCapabilities.map((s) => {
+						return s.score;
+					}),
+					backgroundColor: 'rgb(253, 194, 126, 0.2)',
+					borderColor: '#fdc27e',
+					borderWidth: 1,
+				},
+			],
+		};
+	});
+	const options = {
+		maintainAspectRatio: false,
+		legend: {
+			position: 'top',
+		},
+		elements: {
+			point: {
+				radius: 0,
+			},
+		},
+		plugins: {
+			legend: {
+				display: false,
+			},
+		},
+		tooltips: {
+			enabled: false,
+			intersect: false,
+		},
+		scales: {
+			r: {
+				startAngle: -30.5,
+				max: 6,
+				min: 0,
+				grid: {
+					circular: false,
+				},
+				pointLabels: {
+					font: {
+						size: 10,
+					},
+				},
+				ticks: {
+					display: false,
+					stepSize: 1,
+				},
+			},
+		},
+	};
 	return (
 		<div className={cx('modal')}>
 			<div className={cx('modal-wrap')}>
@@ -63,93 +144,52 @@ const ModalOverlay = (props) => {
 					{...swiperParams}
 					className={cx('modal__card')}
 				>
-					<SwiperSlide className={cx('modal__card-wrap')}>
-						<div className={cx('modal__card__img-box')}>
-							<div className={cx('modal__card__img-box__img')}>
-								<img src={teacherImg} alt="양다현 강사님" />
-							</div>
-							<div className={cx('modal__card__img-box__text-box')}>
-								<div className={cx('modal__card__img-box__text-box__text')}>
-									<span>스피치 강사</span>
-									<h2>양다현 강사님</h2>
-									<p>성인PT, 보이스, 아나운서 스피치</p>
-								</div>
-								<a href="">
-									<span>자세히 보기</span>
-								</a>
-							</div>
-						</div>
-						<div className={cx('modal__card__graph-box')}>
-							<h1 className={cx('pc')}>면접전문가의 강점</h1>
-							<div className={cx('modal__card__graph-box__img-box')}>
-								<img src={graph} alt="그래프" />
-							</div>
-							<div className={cx('modal__card__graph-box__desc')}>
-								<h1 className={cx('mobile')}>면접전문가의 강점</h1>
-								<p>·면접 전문가의 강점이 있습니다.</p>
-								<p>·전문가 다운 강점으로 면접을 어쩌구 입니다.</p>
-								<p>·어려워잉~</p>
-							</div>
-						</div>
-					</SwiperSlide>
-					<SwiperSlide className={cx('modal__card-wrap')}>
-						<div className={cx('modal__card__img-box')}>
-							<div className={cx('modal__card__img-box__img')}>
-								<img src={teacherImg} alt="양다현 강사님" />
-							</div>
-							<div className={cx('modal__card__img-box__text-box')}>
-								<div className={cx('modal__card__img-box__text-box__text')}>
-									<span>스피치 강사</span>
-									<h2>양다현 강사님</h2>
-									<p>성인PT, 보이스, 아나운서 스피치</p>
-								</div>
-								<a href="">
-									<span>자세히 보기</span>
-								</a>
-							</div>
-						</div>
-						<div className={cx('modal__card__graph-box')}>
-							<h1 className={cx('pc')}>면접전문가의 강점</h1>
-							<div className={cx('modal__card__graph-box__img-box')}>
-								<img src={graph} alt="그래프" />
-							</div>
-							<div className={cx('modal__card__graph-box__desc')}>
-								<h1 className={cx('mobile')}>면접전문가의 강점</h1>
-								<p>·면접 전문가의 강점이 있습니다.</p>
-								<p>·전문가 다운 강점으로 면접을 어쩌구 입니다.</p>
-								<p>·어려워잉~</p>
-							</div>
-						</div>
-					</SwiperSlide>
-					<SwiperSlide className={cx('modal__card-wrap')}>
-						<div className={cx('modal__card__img-box')}>
-							<div className={cx('modal__card__img-box__img')}>
-								<img src={teacherImg} alt="양다현 강사님" />
-							</div>
-							<div className={cx('modal__card__img-box__text-box')}>
-								<div className={cx('modal__card__img-box__text-box__text')}>
-									<span>스피치 강사</span>
-									<h2>양다현 강사님</h2>
-									<p>성인PT, 보이스, 아나운서 스피치</p>
-								</div>
-								<a href="">
-									<span>자세히 보기</span>
-								</a>
-							</div>
-						</div>
-						<div className={cx('modal__card__graph-box')}>
-							<h1 className={cx('pc')}>면접전문가의 강점</h1>
-							<div className={cx('modal__card__graph-box__img-box')}>
-								<img src={graph} alt="그래프" />
-							</div>
-							<div className={cx('modal__card__graph-box__desc')}>
-								<h1 className={cx('mobile')}>면접전문가의 강점</h1>
-								<p>·면접 전문가의 강점이 있습니다.</p>
-								<p>·전문가 다운 강점으로 면접을 어쩌구 입니다.</p>
-								<p>·어려워잉~</p>
-							</div>
-						</div>
-					</SwiperSlide>
+					{props.data &&
+						props.data.map((item, idx) => {
+							return (
+								<SwiperSlide className={cx('modal__card-wrap')} key={item.name}>
+									<div className={cx('modal__card__img-box')}>
+										<div className={cx('modal__card__img-box__img')}>
+											<img
+												src={
+													'data:image/' +
+													item.profileImageType +
+													';base64,' +
+													item.profileImage
+												}
+												alt={item.name}
+											/>
+										</div>
+										<div className={cx('modal__card__img-box__text-box')}>
+											<div className={cx('modal__card__img-box__text-box__text')}>
+												<span>스피치 강사</span>
+												<h2>{item.name} 강사님</h2>
+												<p>
+													{item.responseInterviewExpertDomains.map((i, idx) => {
+														return idx === 0 ? i.domainName : ' , ' + i.domainName;
+													})}
+												</p>
+											</div>
+											<a href="">
+												<span>자세히 보기</span>
+											</a>
+										</div>
+									</div>
+									<div className={cx('modal__card__graph-box')}>
+										<h1 className={cx('pc')}>면접전문가의 강점</h1>
+										<div className={cx('modal__card__graph-box__img-box')}>
+											<div className="" style={{ width: 275 + 'px', height: 137 + 'px' }}>
+												<Radar width={275} height={137} options={options} data={dataArr[idx]} />
+											</div>
+										</div>
+										<div className={cx('modal__card__graph-box__desc')}>
+											<h1 className={cx('mobile')}>면접전문가의 강점</h1>
+											<p>{item.instructorDescription}</p>
+										</div>
+									</div>
+								</SwiperSlide>
+							);
+						})}
 				</Swiper>
 				<div className={cx('modal__btns')}>
 					<button className={cx('modal__btns__prev', 'btn')} ref={preRef}>
@@ -168,7 +208,10 @@ const TeacherModal = (props) => {
 	return (
 		<>
 			{ReactDOM.createPortal(<BackDrop onConfirm={props.onConfirm} />, document.getElementById('backdrop'))}
-			{ReactDOM.createPortal(<ModalOverlay onConfirm={props.onConfirm} />, document.getElementById('modal'))}
+			{ReactDOM.createPortal(
+				<ModalOverlay data={props.data} onConfirm={props.onConfirm} />,
+				document.getElementById('modal'),
+			)}
 		</>
 	);
 };

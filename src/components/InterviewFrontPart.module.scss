@@ -5,18 +5,18 @@
 	flex-direction: column;
 
 	.question {
+		padding-left: 20px;
 		display: flex;
-		transform: translateX(50px);
 		&_number {
 			font-family: 'GmarketSansBold';
 			font-weight: 500;
-			font-size: 28px;
+			font-size: 24px;
 			line-height: 28px;
 			letter-spacing: -0.04em;
 			color: #312fd2;
 		}
 		&_sentence {
-			font-size: 20px;
+			font-size: 18px;
 			line-height: 29px;
 			font-weight: 700;
 			letter-spacing: -0.04em;
@@ -24,34 +24,36 @@
 		}
 	}
 	.textarea_box {
-		width: 834px;
+		width: 100%;
 		height: 320px;
 		background: #f1f1f1;
 		border-radius: 16px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		transform: translateX(15px);
 		margin: 26.5px 0 45px 0;
-		transform: translateX(30px);
+		.box {
+			width: 95%;
+		}
 		textarea {
-			width: 796px;
+			width: 100%;
 			height: 300px;
 			resize: none;
 			border: 1px solid #999999;
 			border-radius: 2px;
 			font-weight: 400;
-			font-size: 20px;
-			line-height: 29px;
+			font-size: 14px;
+			line-height: 18px;
 			letter-spacing: -0.04em;
 			outline: none;
 			padding: 20px;
+			word-break: break-all;
 		}
 	}
 	p {
 		position: absolute;
 		font-weight: 400;
-		font-size: 16px;
+		font-size: 13px;
 		line-height: 23px;
 		text-align: right;
 		letter-spacing: -0.04em;

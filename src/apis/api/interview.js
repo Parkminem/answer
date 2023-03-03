@@ -61,6 +61,15 @@ function getFeedback(interviewReplyCode) {
 	return defaultInstance.get(`/api/v1/interview-replies/${interviewReplyCode}/interview-feedbacks`);
 }
 
+/**
+ * 유저의 특정 면접 답변에 대한 면접 전문가 추천 리스트 조회 api
+ * @param {number} interviewReplyCode
+ * @returns array
+ */
+function getExperts(interviewReplyCode) {
+	return defaultInstance.get(`/api/v1/interview-replies/${interviewReplyCode}/interview-experts`);
+}
+
 const interviewApi = {
 	getUserAnswerList,
 	getSubmitInterviewList,
@@ -68,6 +77,7 @@ const interviewApi = {
 	getDetailInterviewType,
 	getDetailAnswer,
 	getFeedback,
+	getExperts,
 };
 
 export default interviewApi;
