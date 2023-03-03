@@ -90,7 +90,7 @@ const Login = () => {
 	};
 	return (
 		<>
-			{mobile < 401 ? (
+			{mobile < 481 ? (
 				<>
 					<MobileAuthHeader />
 					<div className={cx('login-wrap')}>

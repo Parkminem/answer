@@ -36,7 +36,7 @@ export default function InterviewFrontPart({ typeDetail, questionIndex }) {
 					></textarea>
 				</div>
 			</div>
-			{mobile > 401 && <p>{textCount}/2000자</p>}
+			{mobile > 480 && <p>{textCount}/2000자</p>}
 		</div>
 	);
 }

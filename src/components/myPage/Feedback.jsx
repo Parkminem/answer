@@ -76,13 +76,13 @@ const Feedback = () => {
 	};
 	return (
 		<>
-			{mobile < 401 ? (
+			{mobile < 481 ? (
 				<MobileInterviewTap title="면접 진단 내역 > 면접 피드백" />
 			) : (
 				<InterviewTab title="면접 진단 내용" />
 			)}
 			{modal && <TeacherModal data={teacherData} onConfirm={onClose} />}
-			{mobile < 401 ? (
+			{mobile < 481 ? (
 				<section className={cx('m-feedback')}>
 					<div className={cx('m-feedback-inner')}>
 						<div className={cx('m-feedback__info-box')}>

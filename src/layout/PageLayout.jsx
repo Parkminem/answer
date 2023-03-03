@@ -15,15 +15,15 @@ export default function PageLayout() {
 
 	return (
 		<>
-			{mobile < 401 ? <MobilePageHeader /> : <Header />}
-			{mobile < 401 && <MobileSideBar />}
+			{mobile < 481 ? <MobilePageHeader /> : <Header />}
+			{mobile < 481 && <MobileSideBar />}
 			<PageCard>
-				{mobile < 401 ? '' : <SideBar />}
+				{mobile < 481 ? '' : <SideBar />}
 				<SectionCard>
 					<Outlet />
 				</SectionCard>
 			</PageCard>
-			{mobile < 401 ? <MobileFooter /> : <Footer />}
+			{mobile < 481 ? <MobileFooter /> : <Footer />}
 		</>
 	);
 }

@@ -120,7 +120,7 @@ const Join = () => {
 
 	return (
 		<>
-			{mobile < 401 ? (
+			{mobile < 481 ? (
 				<>
 					<MobileAuthHeader />
 					<div className={cx('join-wrap')}>
