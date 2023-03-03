@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -13,7 +13,7 @@ import {
 	Filler,
 	LinearScale,
 } from 'chart.js';
-import { Radar } from 'react-chartjs-2';
+import { Chart, Radar } from 'react-chartjs-2';
 import 'swiper/swiper.min.css';
 import styles from '@/components/myPage/TeacherModal.module.scss';
 import teacherImg from '@/assets/images/image/teacher_yang.png';
@@ -60,7 +60,22 @@ const ModalOverlay = (props) => {
 
 	const dataArr = props.data.map((i) => {
 		return {
-			labels: ['논리력', '창의력', '심리', '스피치역량', '기업분석', '전문분야'],
+			labels: [
+				'논리력',
+				'창의력',
+				'심리',
+				'스피치역량',
+				'기업분석',
+				[
+					'전문분야',
+					`(${i.responseInterviewExpertDomains.map((name, idx) => {
+						if (idx < 2) {
+							return name.domainName;
+						}
+					})})`,
+				],
+			],
+
 			datasets: [
 				{
 					data: i.responseInterviewExpertCapabilities.map((s) => {
@@ -73,7 +88,7 @@ const ModalOverlay = (props) => {
 			],
 		};
 	});
-
+	console.log(dataArr, props.data);
 	const options = {
 		maintainAspectRatio: false,
 		legend: {
@@ -95,6 +110,7 @@ const ModalOverlay = (props) => {
 		},
 		scales: {
 			r: {
+				startAngle: -30.5,
 				max: 6,
 				min: 0,
 				grid: {
@@ -150,8 +166,8 @@ const ModalOverlay = (props) => {
 												<span>스피치 강사</span>
 												<h2>{item.name} 강사님</h2>
 												<p>
-													{item.responseInterviewExpertDomains.map((i) => {
-														return i.domainName + ',';
+													{item.responseInterviewExpertDomains.map((i, idx) => {
+														return idx === 0 ? i.domainName : ' , ' + i.domainName;
 													})}
 												</p>
 											</div>
@@ -163,8 +179,8 @@ const ModalOverlay = (props) => {
 									<div className={cx('modal__card__graph-box')}>
 										<h1 className={cx('pc')}>면접전문가의 강점</h1>
 										<div className={cx('modal__card__graph-box__img-box')}>
-											<div className="" style={{ width: 208 + 'px', height: 137 + 'px' }}>
-												<Radar width={208} height={137} options={options} data={dataArr[idx]} />
+											<div className="" style={{ width: 275 + 'px', height: 137 + 'px' }}>
+												<Radar width={275} height={137} options={options} data={dataArr[idx]} />
 											</div>
 										</div>
 										<div className={cx('modal__card__graph-box__desc')}>
