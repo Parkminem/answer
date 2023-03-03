@@ -35,13 +35,13 @@ const TeacherList = () => {
 
 	return (
 		<section className={style.teacher}>
-			{mobile < 401 ? (
+			{mobile < 481 ? (
 				<img src={mobileBar} alt="상단바" style={{ width: 100 + '%' }} className={style.bar} />
 			) : (
 				<img src={teacher01} alt="상단바" style={{ width: 100 + '%' }} />
 			)}
 			<div className={style.container}>
-				{mobile < 401 ? <img src={mobileTitle} alt="title" /> : <img src={teacher02} alt="title" />}
+				{mobile < 481 ? <img src={mobileTitle} alt="title" /> : <img src={teacher02} alt="title" />}
 				<div className={style.profile}>
 					<Profile
 						key={selectedTeacher.name}
@@ -51,7 +51,7 @@ const TeacherList = () => {
 						recode={selectedTeacher.recode}
 					/>
 				</div>
-				{mobile < 401 ? (
+				{mobile < 481 ? (
 					<Swiper className={style.teacher_list} {...swiperParams} style={swiperStyle}>
 						{teacherList.map((teacher, idx) => {
 							return (

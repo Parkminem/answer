@@ -12,7 +12,7 @@ const MainSubTitle = (props) => {
 		<div className={cx('main-title')}>
 			<div
 				className={cx('main-title__polygon')}
-				style={{ backgroundImage: `url(${mobile < 401 ? mPolygon : polygon})` }}
+				style={{ backgroundImage: `url(${mobile < 481 ? mPolygon : polygon})` }}
 			>
 				<span>{props.number}</span>
 			</div>

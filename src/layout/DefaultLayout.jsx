@@ -11,10 +11,10 @@ export default function DefaultLayout() {
 	const [mobile, setMobile] = useState(width);
 	return (
 		<>
-			{mobile < 401 ? <MobileHeader /> : <Header />}
-			{mobile < 401 && <MobileSideBar />}
+			{mobile < 481 ? <MobileHeader /> : <Header />}
+			{mobile < 481 && <MobileSideBar />}
 			<Outlet />
-			{mobile < 401 ? <MobileFooter /> : <Footer />}
+			{mobile < 481 ? <MobileFooter /> : <Footer />}
 		</>
 	);
 }

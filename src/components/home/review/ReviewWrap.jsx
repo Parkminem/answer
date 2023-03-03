@@ -20,7 +20,7 @@ const ReviewWrap = () => {
 				</h1>
 			</div>
 			<div className={cx('review__review-box')}>
-				{mobile < 401 ? (
+				{mobile < 481 ? (
 					<Swiper className={cx('swiper_list')} slidesPerView={1.8} centerInsufficientSlides={true}>
 						<SwiperSlide className={cx('swiper_slide')}>
 							<div className={cx('review__list__box')} style={{ backgroundImage: `url(${review01})` }}>

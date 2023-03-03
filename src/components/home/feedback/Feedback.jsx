@@ -13,7 +13,7 @@ const Feedback = () => {
 	const cx = classNames.bind(style);
 	return (
 		<>
-			{mobile < 401 ? (
+			{mobile < 480 ? (
 				<section className={cx('feedback')}>
 					<div className={cx('feedback__inner')}>
 						<div className={cx('feedback__title-box')}>

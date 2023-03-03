@@ -65,8 +65,8 @@ export default function DiagnosticHistory() {
 
 	return (
 		<>
-			{mobile < 401 ? <MobileInterviewTap title="면접 진단 내역" /> : <InterviewTab title="면접 진단 내역" />}
-			{mobile < 401 ? (
+			{mobile < 481 ? <MobileInterviewTap title="면접 진단 내역" /> : <InterviewTab title="면접 진단 내역" />}
+			{mobile < 481 ? (
 				<div className={cx('history')}>
 					<div className={cx('history-inner')}>
 						<p>이전에 작성한 면접 진단 내용을 확인할 수 있습니다.</p>

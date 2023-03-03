@@ -18,7 +18,7 @@ const Title = () => {
 	const [mobile, setMobile] = useState(width);
 	return (
 		<>
-			{mobile < 401 ? (
+			{mobile < 480 ? (
 				<section className={cx('main')} style={{ backgroundImage: `url(${mobileBg})` }}>
 					<div className={cx('main__inner')}>
 						<div className={cx('main__banner-box')}>

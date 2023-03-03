@@ -114,7 +114,7 @@ const Tendency = ({ item }) => {
 				<p>{item.questionContent}</p>
 			</div>
 			<div className={cx('tendency-select-box', active ? '' : 'no-active')}>
-				{mobile < 401 ? (
+				{mobile < 481 ? (
 					<span className={cx('agree')}>
 						매우
 						<br />
@@ -170,7 +170,7 @@ const Tendency = ({ item }) => {
 						<span className={cx('hidden')}></span>
 					</li>
 				</ul>
-				{mobile < 401 ? (
+				{mobile < 481 ? (
 					<span className={cx('disagree')}>
 						매우
 						<br />

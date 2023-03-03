@@ -10,9 +10,9 @@ const Ready = () => {
 	const [mobile, setMobile] = useState(width);
 	return (
 		<>
-			{mobile < 401 ? (
+			{mobile < 480 ? (
 				<section style={{ width: 100 + '%' }}>
-					<img src={mobileBg} alt="면접 준비 이미지" style={{ objectFit: 'contain' }} />
+					<img src={mobileBg} alt="면접 준비 이미지" style={{ objectFit: 'contain', width: 100 + '%' }} />
 				</section>
 			) : (
 				<section style={{ width: 100 + '%' }} className={style.ready}>

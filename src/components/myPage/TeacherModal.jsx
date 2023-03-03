@@ -136,7 +136,7 @@ const ModalOverlay = (props) => {
 					</button>
 				</div>
 				<Swiper
-					style={mobile < 401 ? mobileSwiperStyle : swiperStyle}
+					style={mobile < 481 ? mobileSwiperStyle : swiperStyle}
 					loop={true}
 					speed={600}
 					slidesPerView={1}
