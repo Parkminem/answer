@@ -9,10 +9,10 @@ function App() {
 	const [mobile, setMobile] = useState(width);
 
 	const minWidth = () => {
-		if (mobile > 400) {
+		if (mobile > 480) {
 			return 1400;
 		} else {
-			return 400;
+			return 360;
 		}
 	};
 	return (

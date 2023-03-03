@@ -21,7 +21,7 @@ export default function InterviewFrontPart({ typeDetail, questionIndex }) {
 					{questionIndex < 5 && typeDetail && typeDetail.responseInterviewQuestions[questionIndex].sequence}.
 				</span>
 				<span className={style.question_sentence}>
-					{mobile > 400 && <>&nbsp;</>}
+					{mobile > 480 && <>&nbsp;</>}
 					{questionIndex < 5 &&
 						typeDetail &&
 						typeDetail.responseInterviewQuestions[questionIndex].questionContent}

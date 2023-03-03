@@ -14,7 +14,7 @@ const PassWrap = () => {
 		<section className={cx('pass-wrap')}>
 			<PassList />
 			<div className={cx('pass-throphy-box')}>
-				<img src={mobile < 401 ? mTrophy : trophy} alt="앤써의 다음 면접 합격자는 바로 당신입니다." />
+				<img src={mobile < 481 ? mTrophy : trophy} alt="앤써의 다음 면접 합격자는 바로 당신입니다." />
 			</div>
 			<div className={cx('pass-answer-box')}>
 				<img src={answer} alt="앤써" />

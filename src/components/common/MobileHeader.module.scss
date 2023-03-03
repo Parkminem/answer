@@ -1,7 +1,7 @@
 .header {
 	&-top {
 		position: relative;
-		margin: 0 16px;
+		margin: 0 30px;
 		height: 71px;
 		display: flex;
 		align-items: center;
@@ -19,17 +19,18 @@
 		}
 	}
 	.gnb {
+		padding: 0 16px;
+		background: #1d27bc;
 		ul {
 			display: flex;
-			background: #1d27bc;
-			justify-content: space-around;
+			justify-content: space-evenly;
 			li {
 				a {
 					color: #ffffff;
 					font-weight: 500;
-					font-size: 12px;
+					font-size: 10px;
 					line-height: 17px;
-					padding: 12px 8px;
+					padding: 10px 6px;
 					display: inline-block;
 				}
 			}

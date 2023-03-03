@@ -91,7 +91,7 @@ const PassList = () => {
 	};
 	return (
 		<div className={cx('pass-list-wrap')}>
-			{mobile < 401 ? (
+			{mobile < 481 ? (
 				<Swiper
 					className={cx('pass-list')}
 					style={mobileSwiperStyle}
