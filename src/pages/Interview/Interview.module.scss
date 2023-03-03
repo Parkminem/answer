@@ -10,6 +10,34 @@
 .tendency-wrap {
 	padding: 10px 40px;
 }
+.content {
+	p {
+		display: flex;
+		justify-content: center;
+		transform: translateY(-16px);
+		font-size: 20px;
+	}
+	&__button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&__back {
+			background-color: #8f8f8f;
+		}
+		&__submit {
+			background-color: #0e84dd;
+		}
+	}
+	button {
+		font-size: 18px;
+		transform: translateY(20px);
+		margin: 10px;
+		width: 150px;
+		height: 50px;
+		border-radius: 15px;
+		color: #ffff;
+	}
+}
 
 @media all and (max-width: 400px) {
 	.container {

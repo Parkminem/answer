@@ -16,6 +16,36 @@ import { useRecoilState, useResetRecoilState } from 'recoil';
 import { answerList, repliesState, textCountState, tendencyState } from '@/store/interview';
 import _ from 'lodash';
 import { history } from '@/router/history';
+import ReactModal from 'react-modal';
+
+ReactModal.setAppElement('#root');
+const modalStyle = {
+	overlay: {
+		position: 'fixed',
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		backgroundColor: 'rgba(255, 255, 255, 0.45)',
+		zIndex: 10,
+	},
+	content: {
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+		background: '#FFFFFF',
+		overflow: 'auto',
+		top: '42vh',
+		left: '38vw',
+		right: '38vw',
+		bottom: '42vh',
+		WebkitOverflowScrolling: 'touch',
+		borderRadius: '14px',
+		outline: 'none',
+		zIndex: 10,
+	},
+};
 
 const Interview = () => {
 	const cx = classNames.bind(styles);
@@ -37,6 +67,7 @@ const Interview = () => {
 	const [textCount, setTextCount] = useRecoilState(textCountState);
 	const resetTendencyValue = useResetRecoilState(tendencyState);
 	const resetRepliesValue = useResetRecoilState(repliesState);
+	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const navigate = useNavigate();
 
 	//뒤로가기 감지
@@ -156,7 +187,6 @@ const Interview = () => {
 			setProgress(progress + 17.5);
 		}
 	};
-	console.log(replies);
 
 	const onPrev = () => {
 		setQuestionIndex((questionIndex) => questionIndex - 1);
@@ -232,20 +262,45 @@ const Interview = () => {
 			alert('모든 항목을 선택해주세요.');
 			return e.preventDefault();
 		}
-		//Todo
+		setModalIsOpen(true);
+	};
+
+	const handleSubmit = () => {
 		const userCode = localStorage.getItem('code');
 		const config = { 'Content-Type': 'application/json' };
 		interviewApi
 			.getSubmitInterviewList(userCode, replies, config)
 			.then((res) => {
-				console.log(res);
 				alert('제출이 완료되었습니다');
-				navigate('/mypage/diagnostic_history');
+
+				let type = res.data.interviewTypeCode;
+				let resultType;
+				switch (type) {
+					case 1:
+						resultType = '공기업';
+						break;
+					case 2:
+						resultType = '공무원';
+						break;
+					case 3:
+						resultType = '간호사';
+						break;
+					case 4:
+						resultType = '대입수시';
+						break;
+				}
+				navigate(
+					`/mypage/diagnostic_detail?code=${res.data.interviewReplyCode}&type=${encodeURIComponent(
+						resultType,
+					)}&date=${encodeURIComponent(res.data.replyDate)}`,
+				);
 				resetTendencyValue();
 				resetRepliesValue();
 			})
 			.catch((error) => {
-				console.log(error);
+				if (error.response.status === 400) {
+					alert('면접 답변 형식이 올바르지 않습니다.');
+				}
 			});
 	};
 
@@ -352,6 +407,31 @@ const Interview = () => {
 					<div className={cx('container')}></div>
 				)}
 			</PageCard>
+			<ReactModal
+				isOpen={modalIsOpen}
+				style={modalStyle}
+				onRequestClose={() => {
+					setModalIsOpen(false);
+				}} // 오버레이나 esc를 누르면 핸들러 동작
+				ariaHideApp={false}
+			>
+				<div className={styles.content}>
+					<p>답변을 제출하시겠습니까?</p>
+					<div className={styles.content__button}>
+						<button
+							className={styles.content__button__back}
+							onClick={() => {
+								setModalIsOpen(false);
+							}}
+						>
+							뒤로가기
+						</button>
+						<button className={styles.content__button__submit} onClick={handleSubmit}>
+							제출하기
+						</button>
+					</div>
+				</div>
+			</ReactModal>
 		</Beforeunload>
 	);
 };
