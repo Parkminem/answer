@@ -5,7 +5,7 @@ import styles from '@/components/InterviewBtns.module.scss';
 const InterviewBtns = (props) => {
 	const cx = classNames.bind(styles);
 	return (
-		<div className={cx('btns', props.idx == 0 ? 'hidden' : '')}>
+		<div className={cx('btns', props.idx == 1 ? 'hidden' : '')}>
 			<div className={cx('btns__btn', 'prev-box')}>
 				<button className={cx('prev')} onClick={props.onPrev}>
 					<span>&lt;&nbsp;&nbsp;&nbsp;이전</span>
